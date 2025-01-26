@@ -1,23 +1,24 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<SpaRoot>..\DynSec.Web</SpaRoot>
+		<SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
+		<SpaProxyServerUrl>https://localhost:62784</SpaProxyServerUrl>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
-    <PackageReference Include="MQTTnet.AspNetCore" Version="5.0.1.1416" />
-    <PackageReference Include="MQTTnet.Extensions.ManagedClient" Version="4.3.7.1207" />
-    <PackageReference Include="Scalar.AspNetCore" Version="2.0.4" />
-    <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+		<PackageReference Include="Scalar.AspNetCore" Version="2.0.4" />
+		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\DynSec.Model\DynSec.Model.csproj" />
-    <ProjectReference Include="..\DynSec.MQTT\DynSec.MQTT.csproj" />
-    <ProjectReference Include="..\DynSec.Protocol\DynSec.Protocol.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\DynSec.Model\DynSec.Model.csproj" />
+		<ProjectReference Include="..\DynSec.MQTT\DynSec.MQTT.csproj" />
+		<ProjectReference Include="..\DynSec.Protocol\DynSec.Protocol.csproj" />
+	</ItemGroup>
 
 </Project>

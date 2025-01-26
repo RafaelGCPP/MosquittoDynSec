@@ -3,9 +3,9 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  standalone: false,
+  styleUrl: './app.component.css'
 })
 export class AppComponent {
   title = 'DynSec.Web';

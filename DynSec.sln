@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35707.178 d17.12
+VisualStudioVersion = 17.12.35707.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynSec.API", "DynSec.API\DynSec.API.csproj", "{D1332A8F-4DD7-4355-8AD6-927518A478E0}"
 EndProject
@@ -15,6 +15,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynSec.Model", "DynSec.Model\DynSec.Model.csproj", "{671A522F-E20C-44E8-86BD-D0A0F38DC205}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynSec.Protocol", "DynSec.Protocol\DynSec.Protocol.csproj", "{C040792E-4A60-4822-AE95-61A0836E78F2}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "DynSec.Web", "DynSec.Web\DynSec.Web.esproj", "{DD9CA52D-8CDA-4CC6-AAF6-0287CA07499E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -38,6 +40,12 @@ Global
 		{C040792E-4A60-4822-AE95-61A0836E78F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C040792E-4A60-4822-AE95-61A0836E78F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C040792E-4A60-4822-AE95-61A0836E78F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD9CA52D-8CDA-4CC6-AAF6-0287CA07499E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD9CA52D-8CDA-4CC6-AAF6-0287CA07499E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD9CA52D-8CDA-4CC6-AAF6-0287CA07499E}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DD9CA52D-8CDA-4CC6-AAF6-0287CA07499E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD9CA52D-8CDA-4CC6-AAF6-0287CA07499E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD9CA52D-8CDA-4CC6-AAF6-0287CA07499E}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

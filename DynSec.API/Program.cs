@@ -1,4 +1,3 @@
-
 using DynSec.MQTT;
 using DynSec.Protocol.Interfaces;
 using Scalar.AspNetCore;
@@ -28,7 +27,7 @@ namespace DynSec.API
             builder.Services.AddSingleton(mqttConfig);
             builder.Services.AddMqttOptions(mqttConfig);
             builder.Services.AddMqttClient();
-            builder.Services.AddSingleton<IDynamicSecurityProtocol, DynSec.Protocol.DynamicSecurityProtocol>();
+            builder.Services.AddSingleton<IDynamicSecurityProtocol, Protocol.DynamicSecurityProtocol>();
 
             // Add services to the container.
 
@@ -40,6 +39,9 @@ namespace DynSec.API
 
 
             var app = builder.Build();
+
+            app.UseDefaultFiles();
+            app.MapStaticAssets();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -59,6 +61,8 @@ namespace DynSec.API
 
 
             app.MapControllers();
+            app.MapFallbackToFile("/index.html");
+
 
             app.Run();
         }
