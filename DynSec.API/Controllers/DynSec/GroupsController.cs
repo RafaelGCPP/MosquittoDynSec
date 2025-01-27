@@ -13,9 +13,9 @@ namespace DynSec.API.Controllers.DynSec
     [ApiController]
     public class GroupsController : ControllerBase
     {
-        private readonly IDynamicSecurityProtocol dynSec;
+        private readonly IDynamicSecurityHandler dynSec;
 
-        public GroupsController(IDynamicSecurityProtocol _dynSec) { dynSec = _dynSec; }
+        public GroupsController(IDynamicSecurityHandler _dynSec) { dynSec = _dynSec; }
 
         // GET: api/<MQTTdynsecController>/groups
         [HttpGet("groups")]

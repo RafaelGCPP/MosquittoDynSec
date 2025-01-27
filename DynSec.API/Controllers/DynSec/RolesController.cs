@@ -11,9 +11,9 @@ namespace DynSec.API.Controllers.DynSec
     [ApiController]
     public class RolesController : ControllerBase
     {
-        private readonly IDynamicSecurityProtocol dynSec;
+        private readonly IDynamicSecurityHandler dynSec;
 
-        public RolesController(IDynamicSecurityProtocol _dynSec) { dynSec = _dynSec; }
+        public RolesController(IDynamicSecurityHandler _dynSec) { dynSec = _dynSec; }
 
         // GET: api/<MQTTdynsecController>/roles
         [HttpGet("roles")]

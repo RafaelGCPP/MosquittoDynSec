@@ -10,9 +10,9 @@ namespace DynSec.API.Controllers.DynSec
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private readonly IDynamicSecurityProtocol dynSec;
+        private readonly IDynamicSecurityHandler dynSec;
 
-        public ClientsController(IDynamicSecurityProtocol _dynSec) { dynSec = _dynSec; }
+        public ClientsController(IDynamicSecurityHandler _dynSec) { dynSec = _dynSec; }
 
         // GET: api/<MQTTdynsecController>/clients
         [HttpGet("clients")]
