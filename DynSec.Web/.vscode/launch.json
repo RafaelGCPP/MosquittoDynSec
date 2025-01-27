@@ -6,14 +6,22 @@
       "request": "launch",
       "name": "localhost (Edge)",
       "url": "https://localhost:62784",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}",
+      "env": {
+        "ASPNETCORE_HTTPS_PORT": 7044,
+        "ASPNETCORE_HTTP_PORT": 5045
+      }
     },
     {
       "type": "chrome",
       "request": "launch",
       "name": "localhost (Chrome)",
       "url": "https://localhost:62784",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}",
+      "env": {
+        "ASPNETCORE_HTTPS_PORT": 7044,
+        "ASPNETCORE_HTTP_PORT": 5045
+      }
     }
   ]
 }
