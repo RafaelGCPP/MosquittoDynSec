@@ -7,8 +7,5 @@
     <!-- Folder where production build objects will be placed -->
     <BuildOutputFolder>$(MSBuildProjectDirectory)\dist\DynSec.Web\browser\</BuildOutputFolder>
   </PropertyGroup>
-  <ItemGroup>
-    <None Remove="src\app\app.config" />
-    <None Remove="src\app\app.config.js" />
-  </ItemGroup>
+
 </Project>
