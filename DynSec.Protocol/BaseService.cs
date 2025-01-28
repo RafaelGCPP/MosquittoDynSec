@@ -20,7 +20,7 @@ namespace DynSec.Protocol
             return new DynSecProtocolException(error);
         }
 
-        protected async Task<T> ExecuteCommand<T>(AbstractCommand cmd) where T: AbstractResponse
+        protected async Task<T> ExecuteCommand<T>(AbstractCommand cmd) where T : AbstractResponse
         {
             var result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse
             {

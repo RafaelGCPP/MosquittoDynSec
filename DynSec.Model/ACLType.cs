@@ -7,8 +7,10 @@ namespace DynSec.Model
     {
         publishClientSend,
         publishClientReceive,
+        subscribe,
         subscribeLiteral,
         subscribePattern,
+        unsubscribe,
         unsubscribeLiteral,
         unsubscribePattern
     }

@@ -10,6 +10,8 @@ namespace DynSec.Protocol
             services.AddSingleton<IDynamicSecurityHandler, DynamicSecurityHandler>();
             services.AddSingleton<ICLientsService, ClientsService>();
             services.AddSingleton<IRolesService, RolesService>();
+            services.AddSingleton<IGroupsService, GroupsService>();
+            services.AddSingleton<IACLService, ACLService>();
             return services;
         }
     }
