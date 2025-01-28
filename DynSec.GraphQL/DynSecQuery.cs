@@ -9,25 +9,35 @@ namespace DynSec.GraphQL
 {
     public  class DynSecQuery
     {
-        public async Task<ClientListData?> GetClientListAsync(bool? verbose, IDynamicSecurityHandler dynSec)
+        public async Task<ClientListData?> GetClientsListAsync(bool? verbose, ICLientsService clientsService)
         {
-            var cmd = new ListClients(verbose ?? true);
-            var result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse
+            try
             {
-                Error = "Task cancelled",
-                Command = cmd.Command,
-                Data = null
-            };
+                return await clientsService.GetList(verbose);
+            }
+            catch (DynSecProtocolTimeoutException e)
+            {
+                return null;
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return null;
+            }
+        }
 
-            switch (result.Error)
+        public async Task<ClientInfoData?> GetClientAsync(string client, ICLientsService cLientsService)
+        {
+            try
             {
-                case "Ok":
-                    var data = ((ClientList)result).Data;
-                    return data;
-                case "Task cancelled":
-                    return null;
-                default:
-                    return null;
+                return await cLientsService.Get(client);
+            }
+            catch (DynSecProtocolTimeoutException e)
+            {
+                return null;
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return null;
             }
         }
     }

@@ -2,7 +2,7 @@
 namespace DynSec.Protocol
 {
     [Serializable]
-    internal class DynSecProtocolTimeoutException : Exception
+    public class DynSecProtocolTimeoutException : Exception
     {
         public DynSecProtocolTimeoutException()
         {

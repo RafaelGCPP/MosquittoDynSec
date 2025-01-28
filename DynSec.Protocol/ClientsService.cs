@@ -40,7 +40,7 @@ namespace DynSec.Protocol
             return null;
         }
 
-        public async Task<ClientInfoData?> Get(string username)
+        public async Task<ClientInfoData?> Get(string client)
         {
             var cmd = new GetClient(client);
             var result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse

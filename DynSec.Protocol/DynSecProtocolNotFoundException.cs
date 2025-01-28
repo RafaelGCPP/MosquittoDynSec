@@ -2,7 +2,7 @@
 namespace DynSec.Protocol
 {
     [Serializable]
-    internal class DynSecProtocolNotFoundException : Exception
+    public class DynSecProtocolNotFoundException : Exception
     {
         public DynSecProtocolNotFoundException()
         {
