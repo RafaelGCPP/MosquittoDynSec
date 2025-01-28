@@ -19,12 +19,12 @@ using Timer = System.Timers.Timer;
 namespace DynSec.Protocol
 {
 
-    public class DynamicSecurityProtocol : IDisposable, IDynamicSecurityProtocol
+    public class DynamicSecurityHandler : IDisposable, IDynamicSecurityHandler
     {
 
         readonly IMqttClient client;
         readonly MqttClientOptions options;
-        readonly ILogger<DynamicSecurityProtocol> logger;
+        readonly ILogger<DynamicSecurityHandler> logger;
         Timer watchDog;
         private bool disposedValue;
         private object transmitting = new object();
@@ -32,7 +32,7 @@ namespace DynSec.Protocol
         private const string responseTopic = "$CONTROL/dynamic-security/v1/response";
         readonly ConcurrentDictionary<string, AsyncTaskCompletionSource<ResponseList>> _waitingCalls = new();
 
-        public DynamicSecurityProtocol(IMqttClient mqttClient, MqttClientOptions? mqttOptions, ILogger<DynamicSecurityProtocol> _logger)
+        public DynamicSecurityHandler(IMqttClient mqttClient, MqttClientOptions? mqttOptions, ILogger<DynamicSecurityHandler> _logger)
         {
             client = mqttClient;
             options = mqttOptions ?? new();

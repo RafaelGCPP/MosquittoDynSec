@@ -11,11 +11,13 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="9.0.1" />
 		<PackageReference Include="Scalar.AspNetCore" Version="2.0.4" />
 		<PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\DynSec.GraphQL\DynSec.GraphQL.csproj" />
 		<ProjectReference Include="..\DynSec.Model\DynSec.Model.csproj" />
 		<ProjectReference Include="..\DynSec.MQTT\DynSec.MQTT.csproj" />
 		<ProjectReference Include="..\DynSec.Protocol\DynSec.Protocol.csproj" />

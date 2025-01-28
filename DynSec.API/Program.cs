@@ -1,5 +1,6 @@
+using DynSec.GraphQL;
 using DynSec.MQTT;
-using DynSec.Protocol.Interfaces;
+using DynSec.Protocol;
 using Scalar.AspNetCore;
 using Serilog;
 
@@ -27,21 +28,24 @@ namespace DynSec.API
             builder.Services.AddSingleton(mqttConfig);
             builder.Services.AddMqttOptions(mqttConfig);
             builder.Services.AddMqttClient();
-            builder.Services.AddSingleton<IDynamicSecurityProtocol, Protocol.DynamicSecurityProtocol>();
+            builder.Services.AddDynamicSecurityProtocol();
+
 
             // Add services to the container.
 
             builder.Services.AddControllers();
+            builder.Services.AddDynSecGraphQL();
 
+            
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
-
+            
 
             var app = builder.Build();
-
+            
+            app.UseRouting();
             app.UseDefaultFiles();
-            app.MapStaticAssets();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -50,19 +54,23 @@ namespace DynSec.API
                 app.MapScalarApiReference(options =>
                 {
                     options.WithTitle("Mosquitto Dynamic Security Plugin")
-                    .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient)
+                    .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient)                   
                     .WithTheme(ScalarTheme.BluePlanet);
                 });
             }
+            
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
-
+            
+            app.MapDynSecGraphQL();
             app.MapControllers();
-            app.MapFallbackToFile("/index.html");
+            app.MapStaticAssets();
 
+            app.MapFallbackToFile("/index.html");
+           
 
             app.Run();
         }

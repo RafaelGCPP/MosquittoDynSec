@@ -6,7 +6,7 @@ using DynSec.Model.Responses.TopLevel;
 namespace DynSec.Protocol.Interfaces
 {
 
-    public interface IDynamicSecurityProtocol
+    public interface IDynamicSecurityHandler
     {
         Task<ResponseList> ExecuteAsync(TimeSpan timeout, CommandsList commands);
         Task<ResponseList> ExecuteAsync(CommandsList commands, CancellationToken cancellationToken = default);

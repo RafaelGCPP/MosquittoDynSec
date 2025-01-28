@@ -1,41 +1,33 @@
-﻿using DynSec.Model.Commands;
-using DynSec.Model.Responses;
-using DynSec.Model.Responses.Abstract;
-using DynSec.Model.Responses.TopLevel;
+﻿using DynSec.Model.Responses;
+using DynSec.Protocol.Exceptions;
 using DynSec.Protocol.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
-namespace DynSec.API.Controllers.DynSec 
-{ 
+namespace DynSec.API.Controllers.DynSec
+{
     [Route("api/[controller]")]
     [ApiController]
     public class RolesController : ControllerBase
     {
-        private readonly IDynamicSecurityProtocol dynSec;
+        private readonly IRolesService rolesService;
 
-        public RolesController(IDynamicSecurityProtocol _dynSec) { dynSec = _dynSec; }
+        public RolesController(IRolesService _rolesService) { rolesService = _rolesService; }
 
         // GET: api/<MQTTdynsecController>/roles
         [HttpGet("roles")]
         public async Task<ActionResult<RoleListData>> GetRoles(bool? verbose)
         {
-            var cmd = new ListRoles(verbose ?? true);
-            AbstractResponse result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse
+            try
             {
-                Error = "Task cancelled",
-                Command = cmd.Command,
-                Data = null
-            };
-
-            switch (result.Error)
+                return Ok(await rolesService.GetList(verbose));
+            }
+            catch (DynSecProtocolTimeoutException e)
             {
-                case "Ok":
-                    var data = ((RoleList)result).Data;
-                    return Ok(data);
-                case "Task cancelled":
-                    return StatusCode(504);
-                default:
-                    return NotFound(result);
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
             }
         }
 
@@ -43,23 +35,17 @@ namespace DynSec.API.Controllers.DynSec
         [HttpGet("role/{role}")]
         public async Task<ActionResult<RoleInfoData>> GetRole(string role)
         {
-            var cmd = new GetRole(role);
-            AbstractResponse result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse
+            try
             {
-                Error = "Task cancelled",
-                Command = cmd.Command,
-                Data = null
-            };
-
-            switch (result.Error)
+                return Ok(await rolesService.Get(role));
+            }
+            catch (DynSecProtocolTimeoutException e)
             {
-                case "Ok":
-                    var data = ((RoleInfo)result).Data;
-                    return Ok(data);
-                case "Task cancelled":
-                    return StatusCode(504);
-                default:
-                    return NotFound(result);
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
             }
         }
     }
