@@ -7,39 +7,15 @@ using DynSec.Protocol.Interfaces;
 
 namespace DynSec.GraphQL
 {
-    public  class DynSecQuery
+    public class DynSecQuery
     {
-        public async Task<ClientListData?> GetClientsListAsync(bool? verbose, ICLientsService clientsService)
-        {
-            try
-            {
-                return await clientsService.GetList(verbose);
-            }
-            catch (DynSecProtocolTimeoutException e)
-            {
-                return null;
-            }
-            catch (DynSecProtocolNotFoundException e)
-            {
-                return null;
-            }
-        }
+        private readonly ICLientsService clientsService;
+        public DynSecQuery(ICLientsService _clientsService) { clientsService = _clientsService; }
 
-        public async Task<ClientInfoData?> GetClientAsync(string client, ICLientsService cLientsService)
-        {
-            try
-            {
-                return await cLientsService.Get(client);
-            }
-            catch (DynSecProtocolTimeoutException e)
-            {
-                return null;
-            }
-            catch (DynSecProtocolNotFoundException e)
-            {
-                return null;
-            }
-        }
+
+
+        public async Task<ClientListData?> GetClientsListAsync(bool? verbose) => await clientsService.GetList(verbose);
+        public async Task<ClientInfoData?> GetClientAsync(string client) => await clientsService.Get(client);
     }
 
 }

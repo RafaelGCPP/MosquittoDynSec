@@ -14,15 +14,9 @@ using DynSec.Model;
 
 namespace DynSec.Protocol
 {
-    public class ClientsService : ICLientsService
+    public class ClientsService : BaseService, ICLientsService
     {
-        private readonly IDynamicSecurityHandler dynSec;
-        public ClientsService(IDynamicSecurityHandler _handler) { dynSec = _handler; }
-        private void RaiseError(string? error)
-        {
-            if (error == "Task Cancelled") throw new DynSecProtocolTimeoutException(error);
-            throw new DynSecProtocolNotFoundException(error);
-        }
+        public ClientsService(IDynamicSecurityHandler _handler) : base(_handler) { }
 
         public async Task<ClientListData?> GetList(bool? verbose)
         {
@@ -35,7 +29,7 @@ namespace DynSec.Protocol
             };
 
             if (result.Error == "Ok") return ((ClientList)result).Data;
-             
+
             RaiseError(result.Error);
             return null;
         }

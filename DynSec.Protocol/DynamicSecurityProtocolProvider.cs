@@ -1,10 +1,5 @@
 ﻿using DynSec.Protocol.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DynSec.Protocol
 {
@@ -14,6 +9,7 @@ namespace DynSec.Protocol
         {
             services.AddSingleton<IDynamicSecurityHandler, DynamicSecurityHandler>();
             services.AddSingleton<ICLientsService, ClientsService>();
+            services.AddSingleton<IRolesService, RolesService>();
             return services;
         }
     }
