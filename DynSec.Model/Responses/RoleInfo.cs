@@ -4,7 +4,7 @@ namespace DynSec.Model.Responses
 {
     public class RoleInfo : AbstractResponse
     {
-        public RoleInfoData? Data { get; set; }
+        public  RoleInfoData? Data { get; set; }
     }
 
     public class RoleInfoData : AbstractResponseData

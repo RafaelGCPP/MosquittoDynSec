@@ -16,35 +16,18 @@ namespace DynSec.Protocol
     {
         public RolesService(IDynamicSecurityHandler _handler) : base(_handler) { }
 
-
         public async Task<RoleListData?> GetList(bool? verbose)
         {
             var cmd = new ListRoles(verbose ?? true);
-            AbstractResponse result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse
-            {
-                Error = "Task cancelled",
-                Command = cmd.Command,
-                Data = null
-            };
-
-            if (result.Error == "Ok") return ((RoleList)result).Data;
-            RaiseError(result.Error);
-            return null;
+            var result = await ExecuteCommand<RoleList>(cmd);
+            return result.Data;
         }
 
         public async Task<RoleInfoData?> Get(string role)
         {
             var cmd = new GetRole(role);
-            AbstractResponse result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse
-            {
-                Error = "Task cancelled",
-                Command = cmd.Command,
-                Data = null
-            };
-
-            if (result.Error == "Ok") return ((RoleInfo)result).Data;
-            RaiseError(result.Error);
-            return null;
+            var result = await ExecuteCommand<RoleInfo>(cmd);
+            return result.Data;
         }
 
     }

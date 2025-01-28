@@ -19,35 +19,17 @@ namespace DynSec.Protocol
         public ClientsService(IDynamicSecurityHandler _handler) : base(_handler) { }
 
         public async Task<ClientListData?> GetList(bool? verbose)
-        {
+        {           
             var cmd = new ListClients(verbose ?? true);
-            var result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse
-            {
-                Error = "Task cancelled",
-                Command = cmd.Command,
-                Data = null
-            };
-
-            if (result.Error == "Ok") return ((ClientList)result).Data;
-
-            RaiseError(result.Error);
-            return null;
+            var result = await ExecuteCommand<ClientList>(cmd);
+            return result.Data;
         }
 
         public async Task<ClientInfoData?> Get(string client)
         {
             var cmd = new GetClient(client);
-            var result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse
-            {
-                Error = "Task cancelled",
-                Command = cmd.Command,
-                Data = null
-            };
-
-            if (result.Error == "Ok") return ((ClientInfo)result).Data;
-
-            RaiseError(result.Error);
-            return null;
+            var result = await ExecuteCommand<ClientInfo>(cmd);
+            return result.Data;
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using DynSec.Model.Responses;
-using DynSec.Protocol;
+using DynSec.Protocol.Exceptions;
 using DynSec.Protocol.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 

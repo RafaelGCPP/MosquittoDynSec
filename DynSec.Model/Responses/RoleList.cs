@@ -5,7 +5,7 @@ namespace DynSec.Model.Responses
     public sealed class RoleList : AbstractResponse
     {
 
-        public RoleListData? Data { get; set; }
+        public  RoleListData? Data { get; set; }
     }
 
     public sealed class RoleListData
