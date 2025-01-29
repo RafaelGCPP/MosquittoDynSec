@@ -1,13 +1,17 @@
-﻿using DynSec.Protocol.Interfaces;
+﻿using DynSec.Model;
+using DynSec.Model.Responses;
+using DynSec.Protocol.Interfaces;
 
 namespace DynSec.GraphQL
 {
     public class DynSecMutation
     {
+        #region Constructor and fields
         private readonly ICLientsService clientsService;
         private readonly IRolesService rolesService;
         private readonly IGroupsService groupsService;
         private readonly IACLService aclService;
+        private readonly DynSecQuery query;
 
         public DynSecMutation(
             ICLientsService _clientsService,
@@ -20,6 +24,17 @@ namespace DynSec.GraphQL
             rolesService = _rolesService;
             groupsService = _groupsService;
             aclService = _aclService;
+            query = new DynSecQuery(_clientsService, _rolesService, _groupsService, _aclService);
         }
+        #endregion
+
+        #region ACLs
+
+        public async Task<DefaultACLAccessData?> SetDefaultACLsAsync(List<DefaultACL> data)
+        {
+            await aclService.SetDefault(data);
+            return await query.GetDefaultACLAsync();
+        }
+        #endregion
     }
 }

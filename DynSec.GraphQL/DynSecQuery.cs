@@ -5,6 +5,7 @@ namespace DynSec.GraphQL
 {
     public class DynSecQuery
     {
+        #region Constructor and fields
         private readonly ICLientsService clientsService;
         private readonly IRolesService rolesService;
         private readonly IGroupsService groupsService;
@@ -22,7 +23,7 @@ namespace DynSec.GraphQL
             groupsService = _groupsService;
             aclService = _aclService;
         }
-
+        #endregion
 
         #region Clients
 
