@@ -4,9 +4,8 @@ using DynSec.Protocol.Interfaces;
 
 namespace DynSec.Protocol
 {
-    public class ACLService : BaseService, IACLService
+    public class ACLService(IDynamicSecurityHandler _handler) : BaseService(_handler), IACLService
     {
-        public ACLService(IDynamicSecurityHandler _handler) : base(_handler) { }
         public async Task<DefaultACLAccessData?> GetDefault()
         {
             var cmd = new GetDefaultACLAccess();

@@ -14,10 +14,8 @@ using DynSec.Model;
 
 namespace DynSec.Protocol
 {
-    public class ClientsService : BaseService, ICLientsService
+    public partial class ClientsService(IDynamicSecurityHandler _handler) : BaseService(_handler), ICLientsService
     {
-        public ClientsService(IDynamicSecurityHandler _handler) : base(_handler) { }
-
         public async Task<ClientListData?> GetList(bool? verbose)
         {           
             var cmd = new ListClients(verbose ?? true);

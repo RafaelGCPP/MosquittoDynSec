@@ -12,7 +12,8 @@ namespace DynSec.GraphQL
         {
 
             var hcbuilder = services.AddGraphQLServer()
-                .AddQueryType<DynSecQuery>();
+                .AddQueryType<DynSecQuery>()
+                .AddMutationType<DynSecMutation>();
 
             return services;
         }

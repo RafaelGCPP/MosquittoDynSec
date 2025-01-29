@@ -45,9 +45,8 @@ namespace DynSec.GraphQL
         #endregion
 
         #region ACLs
-        public async Task<DefaultACLAccessData?> GetDefaultACL() => await aclService.GetDefault();
+        public async Task<DefaultACLAccessData?> GetDefaultACLAsync() => await aclService.GetDefault();
 
         #endregion
     }
-
 }

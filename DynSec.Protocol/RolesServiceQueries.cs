@@ -12,10 +12,8 @@ using System.Threading.Tasks;
 
 namespace DynSec.Protocol
 {
-    public class RolesService : BaseService, IRolesService
+    public partial class RolesService(IDynamicSecurityHandler _handler) : BaseService(_handler), IRolesService
     {
-        public RolesService(IDynamicSecurityHandler _handler) : base(_handler) { }
-
         public async Task<RoleListData?> GetList(bool? verbose)
         {
             var cmd = new ListRoles(verbose ?? true);
