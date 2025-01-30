@@ -32,7 +32,7 @@ namespace DynSec.API.Controllers.DynSec
             }
         }
         [HttpPost("defaultACL")]
-        public async Task<ActionResult<String>> SetDefaultACL([FromBody] List<DefaultACL> data)
+        public async Task<ActionResult<string>> SetDefaultACL([FromBody] List<DefaultACL> data)
         {
             try
             {

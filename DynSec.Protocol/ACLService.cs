@@ -15,7 +15,7 @@ namespace DynSec.Protocol
             return result.Data;
         }
 
-        public async Task<String?> SetDefault(List<DefaultACL> data)
+        public async Task<string?> SetDefault(List<DefaultACL> data)
         {
             var cmd = new SetDefaultACLAccess(data);
             var result = await ExecuteCommand<GeneralResponse>(cmd);

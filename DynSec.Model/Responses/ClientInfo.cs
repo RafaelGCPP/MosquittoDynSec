@@ -4,7 +4,7 @@ namespace DynSec.Model.Responses
 {
     public sealed class ClientInfo : AbstractResponse
     {
-        public  ClientInfoData? Data { get; set; }
+        public ClientInfoData? Data { get; set; }
     }
 
     public sealed class ClientInfoData : AbstractResponseData

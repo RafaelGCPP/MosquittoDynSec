@@ -1,7 +1,4 @@
-﻿using HotChocolate.Resolvers;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Routing;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace DynSec.GraphQL
@@ -22,7 +19,7 @@ namespace DynSec.GraphQL
         {
 
             app.UseEndpoints(endpoints =>
-            {                
+            {
                 endpoints.MapGraphQL();
             });
             return app;

@@ -5,7 +5,7 @@ namespace DynSec.Protocol
 {
     public static class DynamicSecurityProtocolProvider
     {
-        public static IServiceCollection AddDynamicSecurityProtocol (this IServiceCollection services)
+        public static IServiceCollection AddDynamicSecurityProtocol(this IServiceCollection services)
         {
             services.AddSingleton<IDynamicSecurityHandler, DynamicSecurityHandler>();
             services.AddSingleton<ICLientsService, ClientsService>();

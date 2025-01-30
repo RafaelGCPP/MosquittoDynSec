@@ -28,6 +28,15 @@ namespace DynSec.GraphQL
         }
         #endregion
 
+        #region Clients
+        public async Task<ClientInfoData?> CreateClientAsync(Client newclient, string password)
+        {
+            await clientsService.CreateClient(newclient, password);
+            return await query.GetClientAsync(newclient.UserName ?? "");
+        }
+        public async Task<string?> DeleteClientAsync(string client) => await clientsService.DeleteClient(client);
+
+        #endregion
         #region ACLs
 
         public async Task<DefaultACLAccessData?> SetDefaultACLsAsync(List<DefaultACL> data)

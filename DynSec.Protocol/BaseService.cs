@@ -8,7 +8,7 @@ namespace DynSec.Protocol
 {
     public class BaseService
     {
-        protected const String commandDoneString = "Done";
+        protected const string commandDoneString = "Done";
 
         protected readonly IDynamicSecurityHandler dynSec;
         protected BaseService(IDynamicSecurityHandler _handler) { dynSec = _handler; }
