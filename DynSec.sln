@@ -9,7 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynSec.MQTT", "DynSec.MQTT\
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{609FC1C1-3F2A-436F-94C0-206BFEDC3613}"
 	ProjectSection(SolutionItems) = preProject
+		.dockerignore = .dockerignore
 		.gitignore = .gitignore
+		Dockerfile = Dockerfile
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynSec.Model", "DynSec.Model\DynSec.Model.csproj", "{671A522F-E20C-44E8-86BD-D0A0F38DC205}"
