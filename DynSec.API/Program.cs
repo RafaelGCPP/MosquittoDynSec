@@ -45,10 +45,10 @@ namespace DynSec.API
             var app = builder.Build();
 
             app.UseRouting();
-            app.UseDefaultFiles();
+            
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            //if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
                 app.MapScalarApiReference(options =>
@@ -61,13 +61,16 @@ namespace DynSec.API
 
 
             app.UseHttpsRedirection();
-
-            app.UseAuthorization();
-
-
             app.MapDynSecGraphQL();
             app.MapControllers();
+
+            app.UseAuthorization();
+            app.UseStaticFiles();
+            app.UseDefaultFiles();
+
             app.MapStaticAssets();
+
+
 
             app.MapFallbackToFile("/index.html");
 
