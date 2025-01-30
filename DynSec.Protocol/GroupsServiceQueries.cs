@@ -5,11 +5,8 @@ using DynSec.Protocol.Interfaces;
 
 namespace DynSec.Protocol
 {
-    public class GroupsService : BaseService, IGroupsService
+    public partial class GroupsService(IDynamicSecurityHandler _handler) : BaseService(_handler), IGroupsService
     {
-
-        public GroupsService(IDynamicSecurityHandler _handler) : base(_handler) { }
-
         public async Task<GroupListData?> GetList(bool? verbose)
         {
             var cmd = new ListGroups(verbose ?? true);

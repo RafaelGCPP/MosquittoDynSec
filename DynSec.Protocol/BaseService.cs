@@ -8,6 +8,8 @@ namespace DynSec.Protocol
 {
     public class BaseService
     {
+        protected const string commandDoneString = "Done";
+
         protected readonly IDynamicSecurityHandler dynSec;
         protected BaseService(IDynamicSecurityHandler _handler) { dynSec = _handler; }
         protected DynSecProtocolException SelectException(string? error)

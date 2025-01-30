@@ -36,14 +36,14 @@ namespace DynSec.API
             builder.Services.AddControllers();
             builder.Services.AddDynSecGraphQL();
 
-            
+
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
-            
+
 
             var app = builder.Build();
-            
+
             app.UseRouting();
             app.UseDefaultFiles();
 
@@ -54,23 +54,23 @@ namespace DynSec.API
                 app.MapScalarApiReference(options =>
                 {
                     options.WithTitle("Mosquitto Dynamic Security Plugin")
-                    .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient)                   
+                    .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient)
                     .WithTheme(ScalarTheme.BluePlanet);
                 });
             }
-            
+
 
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
 
-            
+
             app.MapDynSecGraphQL();
             app.MapControllers();
             app.MapStaticAssets();
 
             app.MapFallbackToFile("/index.html");
-           
+
 
             app.Run();
         }
