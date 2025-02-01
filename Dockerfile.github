@@ -1,0 +1,8 @@
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-noble-chiseled AS runtime
+
+COPY /app /app
+WORKDIR /app
+
+ENV ASPNETCORE_URLS=http://+:8080
+
+ENTRYPOINT ["dotnet", "DynSec.API.dll"]
