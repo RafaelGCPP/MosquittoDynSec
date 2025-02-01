@@ -28,7 +28,7 @@ jobs:
       
   build-Angular:
 
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest       
     defaults:
       run:
         working-directory: ./DynSec.Web
