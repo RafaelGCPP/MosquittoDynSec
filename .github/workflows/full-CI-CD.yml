@@ -5,13 +5,15 @@ name: Full CI/CD
 
 on:
   workflow_dispatch:
-#  push:
-#    branches: [ "main" ]
-#  pull_request:
-#    branches: [ "main" ]
+  push:
+    branches: 
+      - "main"
+    tags: 
+      - "**"
 
 jobs:
   build-dotnet:
+    name: Build .NET solution
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -31,6 +33,7 @@ jobs:
           path: app
 
   build-angular:
+    name: Build Angular client app
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -52,7 +55,8 @@ jobs:
           name: angular-build
           path: DynSec.Web/dist/dyn-sec.web/browser
 
-  build-docker:
+  publish-to-docker-hub:
+    name: Publish Docker image to Docker Hub
     needs: [build-dotnet, build-angular] # Docker job depends on .NET and Angular
     runs-on: ubuntu-latest
     permissions:
@@ -83,11 +87,27 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+
+      - name: Get timestamp
+        if: github.event_name=workflow_dispatch
+        id: timestamp
+        uses: nanzm/get-time-action@master
+        with:
+            timeZone: UTC-3
+            format: 'YYYYMMDD-HHmmss'
+
+
       - name: Extract metadata (tags, labels) for Docker
         id: meta
         uses: docker/metadata-action@v5.6.1
         with:
           images: rafaelgcpp/mosquitto-dynsec-manager
+          tags: |
+            type=schedule
+            type=raw,value=snapshot-{{ steps.time.outputs.timestamp }},event=workflow_dispatch
+            type=ref,event=branch
+            type=ref,event=tag
+            type=ref,event=pr
 
       - name: Build and push Docker image
         id: push

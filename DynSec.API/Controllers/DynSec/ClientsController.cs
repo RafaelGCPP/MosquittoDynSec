@@ -10,9 +10,9 @@ namespace DynSec.API.Controllers.DynSec
     [ApiController]
     public class ClientsController : ControllerBase
     {
-        private readonly ICLientsService cLientsService;
+        private readonly ICLientsService clientsService;
 
-        public ClientsController(ICLientsService _cLientsService) { cLientsService = _cLientsService; }
+        public ClientsController(ICLientsService _cLientsService) { clientsService = _cLientsService; }
 
         // GET: api/<MQTTdynsecController>/clients
         [HttpGet("clients")]
@@ -20,7 +20,7 @@ namespace DynSec.API.Controllers.DynSec
         {
             try
             {
-                return Ok(await cLientsService.GetList(verbose));
+                return Ok(await clientsService.GetList(verbose));
             }
             catch (DynSecProtocolTimeoutException e)
             {
@@ -39,7 +39,7 @@ namespace DynSec.API.Controllers.DynSec
         {
             try
             {
-                return Ok(await cLientsService.Get(client));
+                return Ok(await clientsService.Get(client));
             }
             catch (DynSecProtocolTimeoutException e)
             {
@@ -57,7 +57,7 @@ namespace DynSec.API.Controllers.DynSec
         {
             try
             {
-                return Ok(await cLientsService.CreateClient(newclient, password));
+                return Ok(await clientsService.CreateClient(newclient, password));
             }
             catch (DynSecProtocolTimeoutException e)
             {
@@ -75,7 +75,7 @@ namespace DynSec.API.Controllers.DynSec
         {
             try
             {
-                return Ok(await cLientsService.DeleteClient(client));
+                return Ok(await clientsService.DeleteClient(client));
             }
             catch (DynSecProtocolTimeoutException e)
             {
