@@ -26,7 +26,7 @@ RUN npm ci
 RUN npm run build # --prod
 
 
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-noble AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0-noble-chiseled AS runtime
 
 COPY --from=aspnetbuild /app /app
 COPY --from=nodebuild /build/dist/dyn-sec.web/browser /app/wwwroot
