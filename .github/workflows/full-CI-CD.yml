@@ -13,6 +13,7 @@ on:
 
 jobs:
   build-dotnet:
+    name: Build .NET solution
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,6 +33,7 @@ jobs:
           path: app
 
   build-angular:
+    name: Build Angular client app
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -53,7 +55,8 @@ jobs:
           name: angular-build
           path: DynSec.Web/dist/dyn-sec.web/browser
 
-  build-docker:
+  publish-to-docker-hub:
+    name: Publish Docker image to Docker Hub
     needs: [build-dotnet, build-angular] # Docker job depends on .NET and Angular
     runs-on: ubuntu-latest
     permissions:
