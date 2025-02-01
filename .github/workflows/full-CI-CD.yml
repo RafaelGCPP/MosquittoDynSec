@@ -89,7 +89,7 @@ jobs:
 
 
       - name: Get timestamp
-        if: github.event_name=workflow_dispatch
+        if: github.event_name=='workflow_dispatch' 
         id: timestamp
         uses: nanzm/get-time-action@master
         with:
