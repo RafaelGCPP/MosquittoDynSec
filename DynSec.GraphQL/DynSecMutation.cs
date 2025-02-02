@@ -34,6 +34,11 @@ namespace DynSec.GraphQL
             await clientsService.CreateClient(newclient, password);
             return await query.GetClientAsync(newclient.UserName ?? "");
         }
+        public async Task<ClientInfoData?> ModifyClientAsync(Client client, string? password)
+        {
+            await clientsService.ModifyClient(client, password);
+            return await query.GetClientAsync(client.UserName ?? "");
+        }
         public async Task<string?> DeleteClientAsync(string client) => await clientsService.DeleteClient(client);
 
         #endregion

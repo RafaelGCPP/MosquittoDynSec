@@ -30,7 +30,7 @@ namespace DynSec.Model.Commands
         protected string UserName { get; set; }
         protected string? Password { get; set; }
 
-        public ModifyClientBuilder WithPassword(string _password) { Password = _password; return this; }
+        public ModifyClientBuilder WithPassword(string? _password) { Password = _password; return this; }
         public override ModifyClient Build()
         {
             return new ModifyClient(UserName)

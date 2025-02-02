@@ -69,6 +69,24 @@ namespace DynSec.API.Controllers.DynSec
             }
         }
 
+        // PUT: api/<MQTTdynsecController>/client
+        [HttpPut("client")]
+        public async Task<ActionResult<string>> ModifyClient(Client client, string? password)
+        {
+            try
+            {
+                return Ok(await clientsService.ModifyClient(client, password));
+            }
+            catch (DynSecProtocolTimeoutException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
         // DELETE: api/<MQTTdynsecController>/client/<client>
         [HttpDelete("client/{client}")]
         public async Task<ActionResult<string>> DeleteClient(string client)

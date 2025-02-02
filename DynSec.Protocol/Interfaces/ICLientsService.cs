@@ -10,5 +10,6 @@ namespace DynSec.Protocol.Interfaces
         Task<ClientInfoData?> Get(string client);
         Task<string?> CreateClient(Client newclient, string password);
         Task<string?> DeleteClient(string client);
+        Task<string?> ModifyClient(Client client, string? password);
     }
 }

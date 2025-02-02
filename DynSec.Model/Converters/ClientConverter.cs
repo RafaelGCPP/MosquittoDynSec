@@ -63,14 +63,14 @@ namespace DynSec.Model.Converters
                         {
                             throw new JsonException();
                         }
-                        client.Roles = JsonSerializer.Deserialize<RoleNameClass[]>(ref reader, options);
+                        client.Roles = JsonSerializer.Deserialize<RolePriority[]>(ref reader, options);
                         break;
                     case "groups":
                         if (!reader.Read() || reader.TokenType != JsonTokenType.StartArray)
                         {
                             throw new JsonException();
                         }
-                        client.Groups = JsonSerializer.Deserialize<GroupNameClass[]>(ref reader, options);
+                        client.Groups = JsonSerializer.Deserialize<GroupPriority[]>(ref reader, options);
                         break;
                     default:
                         throw new JsonException($"Invalid property: {propertyName}");
