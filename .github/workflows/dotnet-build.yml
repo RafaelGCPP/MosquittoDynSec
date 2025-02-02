@@ -23,13 +23,13 @@ jobs:
     - name: Find project files
       id: ff
       run: |
-        { echo 'project-files<<EOF'
+        { echo 'PROJECTFILES<<EOF'
           find . -maxdepth 2 -name '*.csproj' -print
           echo EOF        
         } >> $GITHUB_ENV
       
     - name: Build
-      run: dotnet build --configuration Release --property:OutputPath=${{ github.workspace }}/app/ $project-files
+      run: dotnet build --configuration Release --property:OutputPath=${{ github.workspace }}/app/ ${{ steps.ff.outputs.PROJECTFILES }}
     - name: Upload .NET artifact
       uses: actions/upload-artifact@v4
       with:
