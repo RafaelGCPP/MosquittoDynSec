@@ -8,6 +8,7 @@ on:
   push:
     branches: 
       - "main"
+      - "web-devel"
     tags: 
       - "**"
 
@@ -104,7 +105,7 @@ jobs:
           images: rafaelgcpp/mosquitto-dynsec-manager
           tags: |
             type=schedule
-            type=raw,enable=${{ github.event_name=='workflow_dispatch' }},event=workflow_dispatch, value=snapshot-${{ steps.time.outputs.timestamp }}
+            type=raw,enable=${{ github.event_name=='workflow_dispatch' }},event=workflow_dispatch, value=snapshot-${{ steps.timestamp.outputs.time }}
             type=ref,event=branch,enable=${{ github.event_name!='workflow_dispatch' }}
             type=ref,event=tag,enable=${{ github.event_name!='workflow_dispatch' }}
             type=ref,event=pr,enable=${{ github.event_name!='workflow_dispatch' }}
