@@ -27,9 +27,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{BA85
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{E4AABD69-9BCA-4433-B7AA-AFC7269A53C8}"
 	ProjectSection(SolutionItems) = preProject
-		.github\workflows\dotnet.yml = .github\workflows\dotnet.yml
-		.github\workflows\full-CI-CD.yml = .github\workflows\full-CI-CD.yml
-		.github\workflows\node.js.yml = .github\workflows\node.js.yml
+		.github\workflows\angular-build.yml = .github\workflows\angular-build.yml
+		.github\workflows\full-CI.yml = .github\workflows\full-CI.yml
+		.github\workflows\dotnet-build.yml = .github\workflows\dotnet-build.yml
 	EndProjectSection
 EndProject
 Global
