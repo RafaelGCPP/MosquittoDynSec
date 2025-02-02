@@ -104,24 +104,24 @@ jobs:
           images: rafaelgcpp/mosquitto-dynsec-manager
           tags: |
             type=schedule
-            type=raw,value=snapshot-{{ steps.time.outputs.timestamp }},event=workflow_dispatch
-            type=ref,event=branch
-            type=ref,event=tag
-            type=ref,event=pr
+            type=ref,enable=${{ github.event_name=='workflow_dispatch' }},event=branch, suffix=-snapshot-${{ steps.timestamp.outputs.time }}
+            type=ref,event=branch,enable=${{ github.event_name!='workflow_dispatch' }}, suffix=-${{ steps.timestamp.outputs.time }}
+            type=ref,event=tag,enable=${{ github.event_name!='workflow_dispatch' }}
+            type=ref,event=pr,enable=${{ github.event_name!='workflow_dispatch' }}
 
       - name: Build and push Docker image
         id: push
         uses: docker/build-push-action@v6.13.0
         with:
-          context: .
-          file: ./Dockerfile.github
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+            context: .
+            file: ./Dockerfile.github
+            push: true
+            tags: ${{ steps.meta.outputs.tags }}
+            labels: ${{ steps.meta.outputs.labels }}
 
-#      - name: Generate artifact attestation
-#        uses: actions/attest-build-provenance@v2.2.0
-#        with:
-#          subject-name: rafaelgcpp/mosquitto-dynsec-manager
-#          subject-digest: ${{ steps.push.outputs.digest }}
-#          push-to-registry: true
+      # - name: Generate artifact attestation
+      #   uses: actions/attest-build-provenance@v2.2.0
+      #   with:
+      #       subject-name: rafaelgcpp/mosquitto-dynsec-manager
+      #       subject-digest: ${{ steps.push.outputs.digest }}
+      #       push-to-registry: true
