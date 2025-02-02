@@ -15,46 +15,12 @@ jobs:
   build-dotnet:
     name: Build .NET solution
     uses: ./.github/workflows/dotnet-build.yml
-    # runs-on: ubuntu-latest
-    # steps:
-    #   - uses: actions/checkout@v4
-    #   - uses: actions/setup-dotnet@v4
-    #     with:
-    #       dotnet-version: '9.0' 
-    #   - name: Restore .NET dependencies
-    #     working-directory: .
-    #     run: dotnet restore
-    #   - name: Build .NET solution
-    #     working-directory: .
-    #     run: dotnet build --no-restore --configuration Release --property:OutputPath=${{ github.workspace }}/app/
-    #   - name: Upload .NET artifact
-    #     uses: actions/upload-artifact@v4
-    #     with:
-    #       name: dotnet-build
-    #       path: app
+
 
   build-angular:
     name: Build Angular client app
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: DynSec.Web
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22 # Your Node.js version
-          cache: 'npm'
-          cache-dependency-path: DynSec.Web/package-lock.json
-      - name: Install Angular dependencies
-        run: npm ci
-      - name: Build Angular app
-        run: npm run build 
-      - name: Upload Angular artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: angular-build
-          path: DynSec.Web/dist/dyn-sec.web/browser
+    uses: ./.github/workflows/angular-build.yml
+
 
   publish-to-docker-hub:
     name: Publish Docker image to Docker Hub
