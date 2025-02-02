@@ -12,52 +12,52 @@ on:
       - "**"
 
 jobs:
-  build-dotnet:
-    name: Build .NET solution
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: '9.0' # Your .NET version
-      - name: Restore .NET dependencies
-        working-directory: .
-        run: dotnet restore
-      - name: Build .NET solution
-        working-directory: .
-        run: dotnet build --configuration Release --property:OutputPath=${{ github.workspace }}/app/
-      - name: Upload .NET artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: dotnet-build
-          path: app
+  # build-dotnet:
+  #   name: Build .NET solution
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-dotnet@v4
+  #       with:
+  #         dotnet-version: '9.0' # Your .NET version
+  #     - name: Restore .NET dependencies
+  #       working-directory: .
+  #       run: dotnet restore
+  #     - name: Build .NET solution
+  #       working-directory: .
+  #       run: dotnet build --configuration Release --property:OutputPath=${{ github.workspace }}/app/
+  #     - name: Upload .NET artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: dotnet-build
+  #         path: app
 
-  build-angular:
-    name: Build Angular client app
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: DynSec.Web
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22 # Your Node.js version
-          cache: 'npm'
-          cache-dependency-path: DynSec.Web/package-lock.json
-      - name: Install Angular dependencies
-        run: npm ci
-      - name: Build Angular app
-        run: npm run build 
-      - name: Upload Angular artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: angular-build
-          path: DynSec.Web/dist/dyn-sec.web/browser
+  # build-angular:
+  #   name: Build Angular client app
+  #   runs-on: ubuntu-latest
+  #   defaults:
+  #     run:
+  #       working-directory: DynSec.Web
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 22 # Your Node.js version
+  #         cache: 'npm'
+  #         cache-dependency-path: DynSec.Web/package-lock.json
+  #     - name: Install Angular dependencies
+  #       run: npm ci
+  #     - name: Build Angular app
+  #       run: npm run build 
+  #     - name: Upload Angular artifact
+  #       uses: actions/upload-artifact@v4
+  #       with:
+  #         name: angular-build
+  #         path: DynSec.Web/dist/dyn-sec.web/browser
 
   publish-to-docker-hub:
     name: Publish Docker image to Docker Hub
-    needs: [build-dotnet, build-angular] # Docker job depends on .NET and Angular
+#    needs: [build-dotnet, build-angular] # Docker job depends on .NET and Angular
     runs-on: ubuntu-latest
     permissions:
       packages: write
@@ -69,17 +69,17 @@ jobs:
         with:
           sparse-checkout: Dockerfile.github 
 
-      - name: Download .NET artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: dotnet-build
-          path: app
+      # - name: Download .NET artifact
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: dotnet-build
+      #     path: app
 
-      - name: Download Angular artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: angular-build
-          path: app/wwwroot
+      # - name: Download Angular artifact
+      #   uses: actions/download-artifact@v4
+      #   with:
+      #     name: angular-build
+      #     path: app/wwwroot
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v3.3.0
@@ -104,20 +104,20 @@ jobs:
           images: rafaelgcpp/mosquitto-dynsec-manager
           tags: |
             type=schedule
-            type=raw,enable=${{ github.event_name=='workflow_dispatch' }},event=workflow_dispatch, value=snapshot-{{ steps.time.outputs.timestamp }}
-            type=ref,event=branch
-            type=ref,event=tag
-            type=ref,event=pr
+            type=raw,enable=${{ github.event_name=='workflow_dispatch' }},event=workflow_dispatch, value=snapshot-${{ steps.time.outputs.timestamp }}
+            type=ref,event=branch,enable=${{ github.event_name!='workflow_dispatch' }}
+            type=ref,event=tag,enable=${{ github.event_name!='workflow_dispatch' }}
+            type=ref,event=pr,enable=${{ github.event_name!='workflow_dispatch' }}
 
-      - name: Build and push Docker image
-        id: push
-        uses: docker/build-push-action@v6.13.0
-        with:
-          context: .
-          file: ./Dockerfile.github
-          push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+#      - name: Build and push Docker image
+#        id: push
+#        uses: docker/build-push-action@v6.13.0
+#        with:
+#          context: .
+#          file: ./Dockerfile.github
+#          push: true
+#          tags: ${{ steps.meta.outputs.tags }}
+#          labels: ${{ steps.meta.outputs.labels }}
 
 #      - name: Generate artifact attestation
 #        uses: actions/attest-build-provenance@v2.2.0
