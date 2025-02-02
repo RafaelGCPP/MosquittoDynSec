@@ -26,7 +26,7 @@ jobs:
         { echo 'PROJECTFILES<<EOF'
           find . -maxdepth 2 -name '*.csproj' -print
           echo EOF        
-        } >> $GITHUB_ENV
+        } >> $GITHUB_OUTPUT
       
     - name: Build
       run: dotnet build --configuration Release --property:OutputPath=${{ github.workspace }}/app/ ${{ steps.ff.outputs.PROJECTFILES }}
