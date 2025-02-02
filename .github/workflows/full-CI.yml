@@ -14,25 +14,24 @@ on:
 jobs:
   build-dotnet:
     name: Build .NET solution
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      # - uses: actions/setup-dotnet@v4
-      #   with:
-      #     dotnet-version: '9.0' 
-      # - name: Restore .NET dependencies
-      #   working-directory: .
-      #   run: dotnet restore
-      # - name: Build .NET solution
-      #   working-directory: .
-      #   run: dotnet build --no-restore --configuration Release --property:OutputPath=${{ github.workspace }}/app/
-      - name: Build .NET
-        uses: ./.github/workflows/dotnet-build.yml
-      - name: Upload .NET artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: dotnet-build
-          path: app
+    uses: ./.github/workflows/dotnet-build.yml
+    # runs-on: ubuntu-latest
+    # steps:
+    #   - uses: actions/checkout@v4
+    #   - uses: actions/setup-dotnet@v4
+    #     with:
+    #       dotnet-version: '9.0' 
+    #   - name: Restore .NET dependencies
+    #     working-directory: .
+    #     run: dotnet restore
+    #   - name: Build .NET solution
+    #     working-directory: .
+    #     run: dotnet build --no-restore --configuration Release --property:OutputPath=${{ github.workspace }}/app/
+    #   - name: Upload .NET artifact
+    #     uses: actions/upload-artifact@v4
+    #     with:
+    #       name: dotnet-build
+    #       path: app
 
   build-angular:
     name: Build Angular client app

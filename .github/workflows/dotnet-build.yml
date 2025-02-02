@@ -24,4 +24,9 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore --configuration Release --property:OutputPath=${{ github.workspace }}/app/
+    - name: Upload .NET artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: dotnet-build
+        path: app
       
