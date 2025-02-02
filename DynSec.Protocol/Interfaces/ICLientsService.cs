@@ -1,6 +1,8 @@
 ﻿
 using DynSec.Model;
+using DynSec.Model.Commands;
 using DynSec.Model.Responses;
+using DynSec.Model.Responses.TopLevel;
 
 namespace DynSec.Protocol.Interfaces
 {
@@ -11,5 +13,7 @@ namespace DynSec.Protocol.Interfaces
         Task<string?> CreateClient(Client newclient, string password);
         Task<string?> DeleteClient(string client);
         Task<string?> ModifyClient(Client client, string? password);
+        Task<string?> EnableClient(string client);
+        Task<string?> DisableClient(string client);
     }
 }

@@ -40,6 +40,8 @@ namespace DynSec.GraphQL
             return await query.GetClientAsync(client.UserName ?? "");
         }
         public async Task<string?> DeleteClientAsync(string client) => await clientsService.DeleteClient(client);
+        public async Task<string?> EnableClientAsync(string client) => await clientsService.EnableClient(client);
+        public async Task<string?> DisableClientAsync(string client) => await clientsService.DisableClient(client);
 
         #endregion
         #region ACLs

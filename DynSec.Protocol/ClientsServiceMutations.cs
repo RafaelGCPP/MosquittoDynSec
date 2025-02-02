@@ -52,5 +52,19 @@ namespace DynSec.Protocol
             var result = await ExecuteCommand<GeneralResponse>(cmd);
             return commandDoneString;
         }
+
+        public async Task<string?> EnableClient(string client)
+        {
+            var cmd = new EnableClient(client);
+            var result = await ExecuteCommand<GeneralResponse>(cmd);
+            return commandDoneString;
+        }
+
+        public async Task<string?> DisableClient(string client)
+        {
+            var cmd = new DisableClient(client);
+            var result = await ExecuteCommand<GeneralResponse>(cmd);
+            return commandDoneString;
+        }
     }
 }
