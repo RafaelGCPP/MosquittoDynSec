@@ -105,7 +105,7 @@ jobs:
           tags: |
             type=schedule
             type=ref,enable=${{ github.event_name=='workflow_dispatch' }},event=branch, suffix=-snapshot-${{ steps.timestamp.outputs.time }}
-            type=ref,event=branch,enable=${{ github.event_name!='workflow_dispatch' }}
+            type=ref,event=branch,enable=${{ github.event_name!='workflow_dispatch' }}, suffix=-${{ steps.timestamp.outputs.time }}
             type=ref,event=tag,enable=${{ github.event_name!='workflow_dispatch' }}
             type=ref,event=pr,enable=${{ github.event_name!='workflow_dispatch' }}
 
