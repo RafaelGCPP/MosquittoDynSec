@@ -16,7 +16,6 @@ jobs:
     name: Build .NET solution
     uses: ./.github/workflows/dotnet-build.yml
 
-
   build-angular:
     name: Build Angular client app
     uses: ./.github/workflows/angular-build.yml
