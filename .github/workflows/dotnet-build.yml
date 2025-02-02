@@ -20,13 +20,13 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-    - name: Find projects
+    - name: Find project files
       id: ff
-      uses: jeertmans/filesfinder@latest
+      uses: jeertmans/filesfinder@v0.5.1
       with:
-        args: "*.csproj"
+        arqs: "*.csproj"
     - name: Build
-      run: dotnet build --no-restore --configuration Release --property:OutputPath=${{ github.workspace }}/app/ ${{ steps.ff.outputs.files }}
+      run: dotnet build --configuration Release --property:OutputPath=${{ github.workspace }}/app/ 
     - name: Upload .NET artifact
       uses: actions/upload-artifact@v4
       with:
