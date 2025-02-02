@@ -104,7 +104,7 @@ jobs:
           images: rafaelgcpp/mosquitto-dynsec-manager
           tags: |
             type=schedule
-            type=raw,enable=github.event_name=='workflow_dispatch',event=workflow_dispatch, value=snapshot-{{ steps.time.outputs.timestamp }}
+            type=raw,enable=${{ github.event_name=='workflow_dispatch' }},event=workflow_dispatch, value=snapshot-{{ steps.time.outputs.timestamp }}
             type=ref,event=branch
             type=ref,event=tag
             type=ref,event=pr
