@@ -23,9 +23,9 @@ jobs:
     - name: Find project files
       id: ff
       run: |
-        { echo project-files << EOF
+        { echo 'project-files<<EOF'
           find . -maxdepth 2 -name '*.csproj' -print
-          EOF        
+          echo EOF        
         } >> $GITHUB_ENV
       
     - name: Build
