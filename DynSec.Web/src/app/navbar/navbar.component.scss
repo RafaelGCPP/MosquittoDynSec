@@ -1,0 +1,27 @@
+:host {
+    background: var(--mat-sys-primary-container);
+    color: var(--mat-sys-on-primary-container);
+    border: 1px solid var(--mat-sys-outline-variant);
+    font: var(--mat-sys-body-large);
+}
+
+.dynsec-navbar {
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  padding: 0em 0em;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  display: inline;
+  width: 100%;
+}
+
+.right-align {
+  float: right;
+  display: flex;
+
+}
+.left-align {
+  float: left;
+  display: inline;
+}
