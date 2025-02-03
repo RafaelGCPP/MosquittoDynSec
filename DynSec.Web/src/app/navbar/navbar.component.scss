@@ -6,11 +6,22 @@
 }
 
 .dynsec-navbar {
-    background-color: var(--mat-sys-primary-container);
-    color: var(--mat-sys-on-primary-container);
-    padding: 0.5em 2.5em;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    display: inline-block;
+  background-color: var(--mat-sys-primary-container);
+  color: var(--mat-sys-on-primary-container);
+  padding: 0em 0em;
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+  display: inline;
+  width: 100%;
+}
+
+.right-align {
+  float: right;
+  display: flex;
+
+}
+.left-align {
+  float: left;
+  display: inline;
 }
