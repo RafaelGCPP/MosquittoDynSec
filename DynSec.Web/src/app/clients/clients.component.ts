@@ -19,6 +19,7 @@ export class ClientsComponent {
 
   ngAfterViewInit() {
     this.navbarSubscription = this.navbarSvc.subscribe(this.sidenav);
+    this.navbarSvc.openSidenav();
   }
 
   ngOnDestroy() {
