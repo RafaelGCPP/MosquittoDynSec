@@ -7,13 +7,10 @@
 
 .dynsec-navbar {
   background-color: var(--mat-sys-primary-container);
-  color: var(--mat-sys-on-primary-container);
-  padding: 0em 0em;
-  position: fixed;
-  top: 0;
-  overflow: hidden;
-  display: inline;
+  color: var(--mat-sys-on-primary-container);  
+  margin-top: -24px;
   width: 100%;
+  float: inline-start;
 }
 
 .right-align {
