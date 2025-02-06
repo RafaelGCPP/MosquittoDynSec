@@ -7,7 +7,7 @@ namespace DynSec.Protocol
     {
         public static IServiceCollection AddDynamicSecurityProtocol(this IServiceCollection services)
         {
-            services.AddSingleton<IDynamicSecurityHandler, DynamicSecurityRpc>();
+            services.AddSingleton<IDynamicSecurityRpc, DynamicSecurityRpc>();
             services.AddSingleton<ICLientsService, ClientsService>();
             services.AddSingleton<IRolesService, RolesService>();
             services.AddSingleton<IGroupsService, GroupsService>();
