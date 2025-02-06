@@ -1,6 +1,8 @@
-﻿using DynSec.Model.Commands.TopLevel;
+﻿using DynSec.Model.Commands.Abstract;
+using DynSec.Model.Commands.TopLevel;
 using DynSec.Model.Responses.Abstract;
 using DynSec.Model.Responses.TopLevel;
+using DynSec.Protocol.Interfaces;
 using Microsoft.Extensions.Logging;
 using MQTTnet;
 using MQTTnet.Extensions.Rpc;
@@ -12,15 +14,15 @@ using System.Text.Unicode;
 
 namespace DynSec.Protocol
 {
-    public class DynamicSecurityRpc
+    public class DynamicSecurityRpc: IDynamicSecurityHandler
     {
         private readonly IMqttClient client;
         private readonly MqttClientOptions options;
-        private readonly ILogger<DynamicSecurityHandler> logger;
+        private readonly ILogger<DynamicSecurityRpc> logger;
         private readonly MqttRpcClientOptions mqttRpcClientOptions;
-        //private readonly TimeSpan timeout = TimeSpan.FromSeconds(10);
+        private object transmitting = new object();
 
-        public DynamicSecurityRpc(IMqttClient mqttClient, MqttClientOptions? mqttOptions, ILogger<DynamicSecurityHandler> _logger)
+        public DynamicSecurityRpc(IMqttClient mqttClient, MqttClientOptions? mqttOptions, ILogger<DynamicSecurityRpc> _logger)
         {
             client = mqttClient;
             options = mqttOptions ?? new();
@@ -53,6 +55,38 @@ namespace DynSec.Protocol
                 return response;
             }
         }
+
+        public Task<AbstractResponse> ExecuteCommand(AbstractCommand cmd)
+        {
+            TimeSpan _timeout = TimeSpan.FromSeconds(10);
+
+            var cmds = new CommandsList(new List<AbstractCommand>
+            {
+                cmd
+            });
+
+            ResponseList? responseList;
+
+            // Here we force synchronization, as we don't want to send another command
+            // before we receive the response for the previous one. Also, we want to
+            // avoid disconnection by session takeover from the next command.
+
+            lock (transmitting)
+            {
+                var responseListTask = ExecuteAsync(_timeout, cmds);
+                responseListTask.Wait();
+                responseList = responseListTask.Result;
+            }
+            var response = responseList.Responses?.First() ?? new GeneralResponse
+            {
+                Command = cmd.Command,
+                Error = "No response received"
+            };
+
+            return Task.FromResult(response);
+        }
+
+
     }
 
     public sealed class DynSecTopicStrategy : IMqttRpcClientTopicGenerationStrategy
