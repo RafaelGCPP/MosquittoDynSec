@@ -72,6 +72,13 @@ namespace DynSec.Model.Converters
                         }
                         client.Groups = JsonSerializer.Deserialize<GroupPriority[]>(ref reader, options);
                         break;
+                    case "disabled":
+                        if (!reader.Read() || reader.TokenType != JsonTokenType.True && reader.TokenType != JsonTokenType.False)
+                        {
+                            throw new JsonException();
+                        }
+                        client.Disabled = reader.GetBoolean();
+                        break;
                     default:
                         throw new JsonException($"Invalid property: {propertyName}");
 

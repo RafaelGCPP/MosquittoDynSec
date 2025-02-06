@@ -11,7 +11,8 @@ const PROXY_CONFIG = [
   {
     context: [
       "/graphql",
-      "/scalar"
+      "/scalar",
+      "/health"
     ],
     target,
     secure: false

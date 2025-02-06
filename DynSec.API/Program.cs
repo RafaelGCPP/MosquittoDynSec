@@ -1,6 +1,7 @@
 using DynSec.GraphQL;
 using DynSec.MQTT;
 using DynSec.Protocol;
+using Microsoft.AspNetCore.Builder;
 using Scalar.AspNetCore;
 using Serilog;
 
@@ -41,6 +42,7 @@ namespace DynSec.API
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+            builder.Services.AddHealthChecks();
 
             var app = builder.Build();
 
@@ -62,6 +64,8 @@ namespace DynSec.API
 
             app.UseHttpsRedirection();
             app.MapDynSecGraphQL();
+            app.MapHealthChecks("/health");
+
             app.MapControllers();
 
             app.UseAuthorization();
