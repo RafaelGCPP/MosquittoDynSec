@@ -56,7 +56,7 @@ jobs:
 
       - name: Get timestamp
         id: timestamp
-        uses: nanzm/get-time-action@1.0
+        uses: nanzm/get-time-action@v2.0
         with:
             timeZone: UTC-3
             format: 'YYYYMMDD-HHmmss'
