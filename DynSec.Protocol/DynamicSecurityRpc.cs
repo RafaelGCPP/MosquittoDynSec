@@ -22,48 +22,42 @@ namespace DynSec.Protocol
         private readonly MqttRpcClientOptions mqttRpcClientOptions;
         private object transmitting = new object();
 
-        public DynamicSecurityRpc(IMqttClient mqttClient, MqttClientOptions? mqttOptions, ILogger<DynamicSecurityRpc> _logger)
+        private JsonSerializerOptions jsonoptions = new JsonSerializerOptions
+        {
+            Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin),
+            DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+            PropertyNameCaseInsensitive = true,
+        };
+
+        public DynamicSecurityRpc(IMqttClient mqttClient, MqttClientOptions mqttOptions, ILogger<DynamicSecurityRpc> _logger)
         {
             client = mqttClient;
-            options = mqttOptions ?? new();
+            options = mqttOptions;
             logger = _logger;
             mqttRpcClientOptions = new MqttRpcClientOptions()
             {
                 TopicGenerationStrategy = new DynSecTopicStrategy()
             };
-            
+
         }
 
         public async Task<ResponseList> ExecuteAsync(TimeSpan timeout, CommandsList commands)
         {
-            var mqttFactory = new MqttClientFactory();
 
             await client.ConnectAsync(options);
 
-            using (var rpcClient = mqttFactory.CreateMqttRpcClient(client, mqttRpcClientOptions))
-            {
-                var data = await rpcClient.ExecuteAsync(timeout, "", commands.AsJSON(), MqttQualityOfServiceLevel.AtMostOnce);
+            using MqttRpcClient rpcClient = new(client, mqttRpcClientOptions);
+            byte[] data = await rpcClient.ExecuteAsync(timeout, "", commands.AsJSON(), MqttQualityOfServiceLevel.AtMostOnce);
+            ResponseList response = JsonSerializer.Deserialize<ResponseList>(data, jsonoptions) ?? new();
 
-                var jsonoptions = new JsonSerializerOptions
-                {
-                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.BasicLatin),
-                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-                    PropertyNameCaseInsensitive = true,
-                };
-                ResponseList response = JsonSerializer.Deserialize<ResponseList>(data, jsonoptions) ?? new();
-
-                return response;
-            }
+            return response;
         }
 
         public Task<AbstractResponse> ExecuteCommand(AbstractCommand cmd)
         {
             TimeSpan _timeout = TimeSpan.FromSeconds(10);
 
-            var cmds = new CommandsList(new List<AbstractCommand>
-            {
-                cmd
-            });
+            CommandsList cmds = new([cmd]);
 
             ResponseList? responseList;
 

@@ -22,12 +22,13 @@ namespace DynSec.MQTT
             if (mqttConfig.Tls)
                 mqttClientOptionsBuilder = mqttClientOptionsBuilder.WithTlsOptions(new MqttClientTlsOptionsBuilder().Build());
 
-            var mqttClientOptions = mqttClientOptionsBuilder
-                .WithClientId(mqttConfig.ClientId)
+            mqttClientOptionsBuilder = mqttClientOptionsBuilder
+                .WithClientId($"{mqttConfig.ClientId}.{Guid.CreateVersion7()}")
                 .WithCleanSession(true)
                 .WithProtocolVersion(MQTTnet.Formatter.MqttProtocolVersion.V500)
-                .WithNoKeepAlive()
-                .Build();
+                .WithNoKeepAlive();
+
+            MqttClientOptions mqttClientOptions = mqttClientOptionsBuilder.Build();
 
             services.AddSingleton(mqttClientOptions);
         }
