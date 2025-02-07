@@ -10,7 +10,9 @@
     <ng-container matColumnDef="disableButton">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let client">
-        <button mat-icon-button><mat-icon> {{client.disabled?"block":"check"}}</mat-icon></button>
+        <button mat-icon-button (click)="disableClient(client.userName,!client.disabled)">
+        <mat-icon> {{client.disabled?"block":"check"}}</mat-icon>
+        </button>
       </td>
     </ng-container>
 

@@ -20,6 +20,16 @@ gql`query {
   }
 }`;
 
+const enableUserMutation =
+gql`mutation EnableClient($userName: String!) {
+  enableClient(client:$userName)
+}`;
+
+const disableUserMutation =
+gql`mutation DisableClient($userName: String!) {
+  disableClient(client:$userName)
+}`;
+
 @Component({
   selector: 'dynsec-clients-list',
   imports: [MatTableModule, MatButtonModule, MatIconModule,MatSnackBarModule],
@@ -61,6 +71,35 @@ export class ClientsListComponent {
           }
         }
       );
+  }
+
+  disableClient(username: string, disabled: boolean) {
+    if (disabled) {
+      this.apollo.mutate({
+        mutation: disableUserMutation,
+        variables: {
+          userName: username
+        },
+        refetchQueries: [{
+          query: clientslistQuery,
+          fetchPolicy: 'network-only',
+          variables: {},
+        }]
+      }).subscribe();
+    } else {
+      this.apollo.mutate({
+        mutation: enableUserMutation,
+        variables: {
+          userName: username
+        },
+        refetchQueries: [{
+          query: clientslistQuery,
+          fetchPolicy: 'network-only',
+          variables: {},
+        }]
+      }).subscribe();
+    }
+
   }
 
   getClientList() {
