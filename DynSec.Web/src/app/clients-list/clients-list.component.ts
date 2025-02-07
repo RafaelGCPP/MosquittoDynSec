@@ -1,42 +1,28 @@
-import { Component, ViewChild } from '@angular/core';
-import { Apollo, gql } from 'apollo-angular';
-import { catchError, map, of, Subscription } from 'rxjs';
-import { Client } from '../model/client';
-import { MatTable, MatTableModule } from '@angular/material/table';
 import { HttpClient } from '@angular/common/http';
+import { Component, ViewChild } from '@angular/core';
+import { MatTable, MatTableModule } from '@angular/material/table';
+import { Apollo, gql } from 'apollo-angular';
+import { catchError, map, of, retry, retryWhen, Subscription } from 'rxjs';
+import { Client } from '../model/client';
 
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-
-
+import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 
 const clientslistQuery =
 gql`query {
   clientsList {
     totalCount
     clients {
-      ...clientdata
+      userName
+      disabled
     }
   }
-}
-
-fragment clientdata on Client {
-      textDescription
-      textName
-      userName
-      roles {
-        roleName
-        priority
-      }
-      groups {
-        groupName
-        priority
-      }
 }`;
 
 @Component({
   selector: 'dynsec-clients-list',
-  imports: [MatTableModule, MatButtonModule, MatIconModule],
+  imports: [MatTableModule, MatButtonModule, MatIconModule,MatSnackBarModule],
   templateUrl: './clients-list.component.html',
   styleUrl: './clients-list.component.scss'
 })
@@ -46,31 +32,35 @@ export class ClientsListComponent {
   loading: boolean = true;
   clients: Client[]=[];
 
-  displayedColumns: string[] = ['userName', 'textName','textDescription', 'editButton'];
+  displayedColumns: string[] = ['userName','disableButton'];
 
-  constructor(private readonly apollo: Apollo, private readonly http:HttpClient) { }
+  constructor(private readonly apollo: Apollo, private readonly http: HttpClient, private readonly snack:MatSnackBar) { }
   @ViewChild(MatTable)
     table!: MatTable<Client>;
 
   ngOnInit() {
-    this.http.get('/health', { responseType: "text" }).pipe
-      (
-        map(
-          (response: any) => {
+    this.http.get('/health', { responseType: "text" })
+      .pipe(
+        retry({
+          count: 5, delay: 1000
+        }),
+      )
+      .subscribe(
+        {
+          next: (response: any) => {
             this.getClientList();
-            return "";
+          },
+          error: (error: any) => {
+            console.error("Backend not available: " + error)
+            this.snack.open("Backend not available.", "Close", {
+              duration: 5000
+            });
+          },
+          complete: () => {
+            console.log("Backend healthy!");
           }
-        ),
-        catchError(
-          error => {
-            console.error("Error in health check: " + error);
-            console.error("Backend is not ready!");
-            return of("");
-          }
-        )
-    ).subscribe();
-    
-
+        }
+      );
   }
 
   getClientList() {

@@ -4,7 +4,7 @@ using DynSec.Protocol.Interfaces;
 
 namespace DynSec.Protocol
 {
-    public partial class RolesService(IDynamicSecurityHandler _handler) : BaseService(_handler), IRolesService
+    public partial class RolesService(IDynamicSecurityRpc _handler) : BaseService(_handler), IRolesService
     {
         public async Task<RoleListData?> GetList(bool? verbose)
         {

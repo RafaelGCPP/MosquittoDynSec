@@ -5,7 +5,7 @@ using DynSec.Protocol.Interfaces;
 
 namespace DynSec.Protocol
 {
-    public partial class GroupsService(IDynamicSecurityHandler _handler) : BaseService(_handler), IGroupsService
+    public partial class GroupsService(IDynamicSecurityRpc _handler) : BaseService(_handler), IGroupsService
     {
         public async Task<GroupListData?> GetList(bool? verbose)
         {

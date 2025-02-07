@@ -1,0 +1,26 @@
+
+
+.mat-mdc-header-cell {
+  padding: 0 0.5em;
+}
+
+.mat-mdc-cell {
+  padding: 0 0.5em;
+}
+
+.mat-column-userName {
+  width: 8em;
+}
+
+.mat-column-textName {
+  width: 20em;
+}
+
+.mat-column-textDescription {
+  width: max-content;
+}
+
+.mat-column-editButton, .mat-column-disableButton {
+  width: 48px;
+  align-content: center;
+}

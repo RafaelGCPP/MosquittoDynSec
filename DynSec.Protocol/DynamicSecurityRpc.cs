@@ -14,7 +14,7 @@ using System.Text.Unicode;
 
 namespace DynSec.Protocol
 {
-    public class DynamicSecurityRpc : IDynamicSecurityHandler
+    public class DynamicSecurityRpc: IDynamicSecurityRpc
     {
         private readonly IMqttClient client;
         private readonly MqttClientOptions options;

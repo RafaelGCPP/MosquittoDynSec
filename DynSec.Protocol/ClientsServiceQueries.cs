@@ -4,7 +4,7 @@ using DynSec.Protocol.Interfaces;
 
 namespace DynSec.Protocol
 {
-    public partial class ClientsService(IDynamicSecurityHandler _handler) : BaseService(_handler), ICLientsService
+    public partial class ClientsService(IDynamicSecurityRpc _handler) : BaseService(_handler), ICLientsService
     {
         public async Task<ClientListData?> GetList(bool? verbose)
         {
