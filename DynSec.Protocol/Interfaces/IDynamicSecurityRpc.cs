@@ -6,7 +6,7 @@ using DynSec.Model.Responses.TopLevel;
 namespace DynSec.Protocol.Interfaces
 {
 
-    public interface IDynamicSecurityHandler
+    public interface IDynamicSecurityRpc
     {
         Task<AbstractResponse> ExecuteCommand(AbstractCommand cmd);
     }

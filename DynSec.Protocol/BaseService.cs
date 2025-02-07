@@ -10,8 +10,8 @@ namespace DynSec.Protocol
     {
         protected const string commandDoneString = "Done";
 
-        protected readonly IDynamicSecurityHandler dynSec;
-        protected BaseService(IDynamicSecurityHandler _handler) { dynSec = _handler; }
+        protected readonly IDynamicSecurityRpc dynSec;
+        protected BaseService(IDynamicSecurityRpc _handler) { dynSec = _handler; }
         protected DynSecProtocolException SelectException(string? error)
         {
             if (error is null) return new DynSecProtocolException(error);

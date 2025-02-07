@@ -6,7 +6,7 @@ using DynSec.Protocol.Interfaces;
 
 namespace DynSec.Protocol
 {
-    public class ACLService(IDynamicSecurityHandler _handler) : BaseService(_handler), IACLService
+    public class ACLService(IDynamicSecurityRpc _handler) : BaseService(_handler), IACLService
     {
         public async Task<DefaultACLAccessData?> GetDefault()
         {

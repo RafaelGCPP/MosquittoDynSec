@@ -7,18 +7,10 @@
       <th mat-header-cell *matHeaderCellDef> Username </th>
       <td mat-cell *matCellDef="let client"> {{client.userName}} </td>
     </ng-container>
-    <ng-container matColumnDef="textName">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
-      <td mat-cell *matCellDef="let client"> {{client.textName}} </td>
-    </ng-container>
-    <ng-container matColumnDef="textDescription">
-      <th mat-header-cell *matHeaderCellDef> Description </th>
-      <td mat-cell *matCellDef="let client"> {{client.textDescription}} </td>
-    </ng-container>
-    <ng-container matColumnDef="editButton">
+    <ng-container matColumnDef="disableButton">
       <th mat-header-cell *matHeaderCellDef> </th>
       <td mat-cell *matCellDef="let client">
-        <button mat-icon-button><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button><mat-icon> {{client.disabled?"block":"check"}}</mat-icon></button>
       </td>
     </ng-container>
 
