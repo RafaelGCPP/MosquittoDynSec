@@ -4,11 +4,15 @@
   <table mat-table [dataSource]="clients" class="mat-elevation-z8">
 
     <ng-container matColumnDef="userName">
-      <th mat-header-cell *matHeaderCellDef> Username </th>
-      <td mat-cell *matCellDef="let client"> {{client.userName}} </td>
+      <th mat-header-cell *matHeaderCellDef>Username</th>
+      <td mat-cell *matCellDef="let client">
+        <button mat-button>
+          {{client.userName}}
+        </button>
+      </td>
     </ng-container>
     <ng-container matColumnDef="disableButton">
-      <th mat-header-cell *matHeaderCellDef> </th>
+      <th mat-header-cell *matHeaderCellDef>Enabled</th>
       <td mat-cell *matCellDef="let client">
         <button mat-icon-button (click)="disableClient(client.userName,!client.disabled)">
         <mat-icon> {{client.disabled?"block":"check"}}</mat-icon>
