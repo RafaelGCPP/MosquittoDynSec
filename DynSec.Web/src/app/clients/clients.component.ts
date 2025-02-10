@@ -1,14 +1,19 @@
 import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenav, MatSidenavModule } from '@angular/material/sidenav';
-import { Subscription } from 'rxjs';
-import { ClientsListComponent } from '../clients-list/clients-list.component';
-import { NavBarService } from '../navbar/navbar.service';
 import { RouterOutlet } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { ClientsListComponent } from './clients-list/clients-list.component';
+import { NavBarService } from '../navbar/navbar.service';
 
 @Component({
   selector: 'dynsec-clients',
-  imports: [RouterOutlet, MatSidenavModule, MatButtonModule, ClientsListComponent],
+  imports: [
+    RouterOutlet,
+    MatSidenavModule,
+    MatButtonModule,
+    ClientsListComponent
+  ],
   templateUrl: './clients.component.html',
   styleUrl: './clients.component.scss'
 })
