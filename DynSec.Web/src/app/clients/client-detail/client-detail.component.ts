@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NavBarService } from '../../navbar/navbar.service';
+import { ClientsGraphqlService } from '../clients.graphql.service';
 
 @Component({
   selector: 'dynsec-client-detail',
@@ -11,7 +12,13 @@ import { NavBarService } from '../../navbar/navbar.service';
 export class ClientDetailComponent {
 
   userName = '';
-  constructor(private route: ActivatedRoute, private navBar: NavBarService)
+  data: any;
+  strdata = '';
+  constructor(
+    private readonly route: ActivatedRoute,
+    private readonly navBar: NavBarService,
+    private readonly graphql: ClientsGraphqlService
+  )
   {
     
   }
@@ -23,6 +30,11 @@ export class ClientDetailComponent {
         this.userName = userName;
         this.navBar.closeSidenav();
       }
+    });
+
+    this.graphql.getClient(this.userName).subscribe(result => {
+      this.data = result.data;
+      this.strdata = JSON.stringify(result.data);
     });
   }
 

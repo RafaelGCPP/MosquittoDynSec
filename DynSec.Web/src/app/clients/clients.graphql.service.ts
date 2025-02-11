@@ -2,10 +2,9 @@ import { Injectable } from "@angular/core";
 import { gql } from "@apollo/client/core";
 import { Apollo } from "apollo-angular";
 
-export const clientslistQuery =
+const clientslistQuery =
   gql`query {
   clientsList {
-    totalCount
     clients {
       userName
       disabled
@@ -13,12 +12,42 @@ export const clientslistQuery =
   }
 }`;
 
-export const enableUserMutation =
+const clientQuery =
+  gql`query Client($userName: String!) {
+  client(client: $userName) {
+    client {
+      disabled
+      textDescription
+      textName
+      userName
+      groups {
+        groupName
+        priority
+      }
+      roles {
+        priority
+        roleName
+      }
+    }
+  }
+  rolesList {
+    roles {
+      roleName
+    }
+  }
+  groupsList {
+    groups {
+      groupName
+    }
+  }
+}`;
+
+const enableUserMutation =
   gql`mutation EnableClient($userName: String!) {
   enableClient(client:$userName)
 }`;
 
-export const disableUserMutation =
+const disableUserMutation =
   gql`mutation DisableClient($userName: String!) {
   disableClient(client:$userName)
 }`;
@@ -33,30 +62,61 @@ export class ClientsGraphqlService {
       })
       .valueChanges;
   }
+
+  getClient(userName: string) {
+    return this.apollo
+      .watchQuery<any>({
+        query: clientQuery,
+        variables: {
+          userName: userName
+        }
+      })
+      .valueChanges;
+  }
+
   enableClient(userName: string) {
     return this.apollo.mutate({
       mutation: enableUserMutation,
       variables: {
         userName: userName
       },
-      refetchQueries: [{
-        query: clientslistQuery,
-        fetchPolicy: 'network-only',
-        variables: {},
-      }]
+      refetchQueries: [
+        {
+          query: clientslistQuery,
+          fetchPolicy: 'network-only',
+          variables: {},
+        },
+        {
+          query: clientQuery,
+          fetchPolicy: 'network-only',
+          variables: {
+            userName: userName
+          }
+        }
+      ]
     });
   }
+
   disableClient(userName: string) {
     return this.apollo.mutate({
       mutation: disableUserMutation,
       variables: {
         userName: userName
       },
-      refetchQueries: [{
-        query: clientslistQuery,
-        fetchPolicy: 'network-only',
-        variables: {},
-      }]
+      refetchQueries: [
+        {
+          query: clientslistQuery,
+          fetchPolicy: 'network-only',
+          variables: {},
+        },
+        {
+          query: clientQuery,
+          fetchPolicy: 'network-only',
+          variables: {
+            userName: userName
+          }
+        }
+      ]
     });
   }
 }
