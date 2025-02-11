@@ -3,11 +3,12 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { Subscription } from 'rxjs';
 import { NavBarService } from './navbar.service';
+import { RouterLink } from '@angular/router';
 
 
 @Component({
   selector: 'dynsec-navbar',
-  imports: [MatButtonModule, MatIconModule],
+  imports: [MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })

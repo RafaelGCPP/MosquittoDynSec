@@ -11,6 +11,8 @@ using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Unicode;
+using System.Timers;
+using Timer = System.Timers.Timer;
 
 namespace DynSec.Protocol
 {
@@ -21,6 +23,7 @@ namespace DynSec.Protocol
         private readonly ILogger<DynamicSecurityRpc> logger;
         private readonly MqttRpcClientOptions mqttRpcClientOptions;
         private object transmitting = new object();
+        private Timer disconnectTimer;
 
         private JsonSerializerOptions jsonoptions = new JsonSerializerOptions
         {
@@ -38,13 +41,32 @@ namespace DynSec.Protocol
             {
                 TopicGenerationStrategy = new DynSecTopicStrategy()
             };
+            disconnectTimer = new Timer(TimeSpan.FromSeconds(60));
+            disconnectTimer.Elapsed += AutoDisconnect;
+            disconnectTimer.AutoReset = false;
+            disconnectTimer.Stop();
+        }
 
+        private void AutoDisconnect (object? sender, ElapsedEventArgs e)
+        {
+            if (client.IsConnected)
+            {
+                client.DisconnectAsync().Wait();
+                logger.LogInformation("MQTT client disconnected due to inactivity");
+            }
         }
 
         public async Task<ResponseList> ExecuteAsync(TimeSpan timeout, CommandsList commands)
         {
-
-            await client.ConnectAsync(options);
+            disconnectTimer.Stop();
+            
+            if (!client.IsConnected)
+            {
+                logger.LogInformation("Connecting MQTT client");
+                await client.ConnectAsync(options);
+                logger.LogInformation("MQTT client connected");
+            }
+            disconnectTimer.Start();
 
             using MqttRpcClient rpcClient = new(client, mqttRpcClientOptions);
             byte[] data = await rpcClient.ExecuteAsync(timeout, "", commands.AsJSON(), MqttQualityOfServiceLevel.AtMostOnce);

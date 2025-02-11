@@ -1,0 +1,27 @@
+
+
+<div style="margin:5%">
+  <table mat-table [dataSource]="clients" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="userName">
+      <th mat-header-cell *matHeaderCellDef>Username</th>
+      <td mat-cell *matCellDef="let client">
+        <a mat-button routerLink="{{client.userName}}">
+          {{client.userName}}
+        </a>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="disableButton">
+      <th mat-header-cell *matHeaderCellDef>Enabled</th>
+      <td mat-cell *matCellDef="let client">
+        <button mat-icon-button (click)="disableClient(client.userName,!client.disabled)">
+        <mat-icon> {{client.disabled?"block":"check"}}</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+</div>
