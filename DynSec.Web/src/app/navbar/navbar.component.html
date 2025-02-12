@@ -1,16 +1,16 @@
-<nav class="dynsec-navbar">
-  <div style="width:90%; margin-left:5%">
-    <div class="left-align">
-      <button mat-icon-button style="vertical-align: bottom;" (click)="toggleSidenav()">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <a mat-button routerLink="/clients">Clients</a>
-      <a mat-button routerLink="roles">Roles</a>
-      <a mat-button routerLink="groups">Groups</a>
-    </div>
+<mat-toolbar class="dynsec-navbar">
 
-    <div class="right-align">
-      <a mat-button>Eclipse Mosquitto&trade; Dynamic Security Manager</a>
-    </div>
+  <div class="left-align">
+    <button mat-icon-button style="vertical-align: bottom;" (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <a mat-button routerLink="/clients" (click)="this.openSidenav()">Clients</a>
+    <a mat-button routerLink="roles">Roles</a>
+    <a mat-button routerLink="groups">Groups</a>
   </div>
-</nav>
+  <div class="center-block"></div>
+  <div class="right-align">
+    <a mat-button>Eclipse Mosquitto&trade; Dynamic Security Manager</a>
+  </div>
+
+</mat-toolbar>

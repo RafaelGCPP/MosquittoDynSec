@@ -4,11 +4,17 @@ import { MatIconModule } from '@angular/material/icon';
 import { Subscription } from 'rxjs';
 import { NavBarService } from './navbar.service';
 import { RouterLink } from '@angular/router';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 
 @Component({
   selector: 'dynsec-navbar',
-  imports: [MatButtonModule, MatIconModule, RouterLink],
+  imports: [
+    MatButtonModule,
+    MatIconModule,
+    RouterLink,
+    MatToolbarModule,
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
 })
@@ -28,6 +34,9 @@ export class NavbarComponent {
     this.navbarSvc.toggleSidenav();
   }
 
+  openSidenav() {
+    this.navbarSvc.openSidenav();
+  }
   ngOnDestroy() {
     this.svcSubscription.unsubscribe();
   }

@@ -1,2 +1,16 @@
-<p>client-detail works!</p>
-<p>{{strdata}}</p>
+<form class="client-form">
+  <mat-form-field class="example-full-width">
+    <mat-label>User name</mat-label>
+    <input matInput value="{{client.userName}}">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Full name</mat-label>
+    <input matInput placeholder="Add full name for the client" value="{{client.textName}}">
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Add client description" value="{{client.textDescription}}">
+  </mat-form-field>
+</form>

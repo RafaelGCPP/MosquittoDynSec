@@ -1,10 +1,12 @@
-<mat-drawer-container class="dynsec-clients-container">
-  <mat-drawer #drawer class="dynsec-clients-sidenav" mode="side">
-    <dynsec-clients-list></dynsec-clients-list>
-  </mat-drawer>
 
-  <div class="dynsec-clients-sidenav-content">
-    <router-outlet></router-outlet>
-  </div>
+  <mat-drawer-container class="dynsec-clients-container">
+    <mat-drawer #drawer class="dynsec-clients-sidenav" mode="side">
+      <dynsec-clients-list></dynsec-clients-list>
+    </mat-drawer>
 
-</mat-drawer-container>
+    <div class="dynsec-clients-sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+
+  </mat-drawer-container>
+
