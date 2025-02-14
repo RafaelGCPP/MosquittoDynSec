@@ -46,12 +46,7 @@ export class ClientsListComponent {
   }
 
   disableClient(username: string, disabled: boolean) {
-    if (disabled) {
-      this.graphql.disableClient(username).subscribe();
-    } else {
-      this.graphql.enableClient(username).subscribe();
-    }
-
+    this.graphql.setState(username, !disabled);
   }
 
   getClientList() {

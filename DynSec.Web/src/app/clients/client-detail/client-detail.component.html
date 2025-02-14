@@ -1,16 +1,26 @@
 <form class="client-form">
-  <mat-form-field class="example-full-width">
-    <mat-label>User name</mat-label>
-    <input matInput value="{{client.userName}}">
-  </mat-form-field>
 
-  <mat-form-field class="example-full-width">
+
+  <div class="client-form-row">
+    <mat-form-field class="client-row-left">
+      <mat-label>User name</mat-label>
+      <input matInput readonly value="{{client.userName}}">
+    </mat-form-field>
+    <mat-form-field class="client-row-left">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput value="{{client.password}}">
+    </mat-form-field>
+    <div class="client-row-center"></div>
+    <mat-slide-toggle class="client-row-right" name="enabled" [checked]="!client.disabled" (click)="toggleUserState()">Enabled</mat-slide-toggle>
+  </div>
+
+  <mat-form-field>
     <mat-label>Full name</mat-label>
-    <input matInput placeholder="Add full name for the client" value="{{client.textName}}">
+    <input matInput placeholder="Add full name for the client" name="textName" [(ngModel)]="client.textName">
   </mat-form-field>
 
-  <mat-form-field class="example-full-width">
+  <mat-form-field>
     <mat-label>Description</mat-label>
-    <input matInput placeholder="Add client description" value="{{client.textDescription}}">
+    <input matInput placeholder="Add client description" name="textDesc" [(ngModel)]="client.textDescription">
   </mat-form-field>
 </form>

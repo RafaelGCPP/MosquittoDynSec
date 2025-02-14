@@ -1,3 +1,29 @@
+:host {
+    width: 100%;
+}
 .client-form {
+  display: flex;
+  flex-direction: column;
+
+  width: 90%;
+}
+
+.client-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.client-row-left {
+    justify-self:start;
+}
+
+.client-row-center {
+  flex: 1;
+}
+
+.client-row-right {
+  justify-self: end;
 
 }
