@@ -1,2 +1,26 @@
-<p>client-detail works!</p>
-<p>{{strdata}}</p>
+<form class="client-form">
+
+
+  <div class="client-form-row">
+    <mat-form-field class="client-row-left">
+      <mat-label>User name</mat-label>
+      <input matInput readonly name="clientUsername" [(ngModel)]="client.userName">
+    </mat-form-field>
+    <mat-form-field class="client-row-left">
+      <mat-label>Password</mat-label>
+      <input type="password" matInput name="clientPassword" [(ngModel)]="client.password">
+    </mat-form-field>
+    <div class="client-row-center"></div>
+    <mat-slide-toggle class="client-row-right" name="enabled" [checked]="!client.disabled" (click)="toggleUserState()">Enabled</mat-slide-toggle>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Full name</mat-label>
+    <input matInput placeholder="Add full name for the client" name="textName" [(ngModel)]="client.textName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Add client description" name="textDesc" [(ngModel)]="client.textDescription">
+  </mat-form-field>
+</form>

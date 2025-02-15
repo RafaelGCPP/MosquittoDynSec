@@ -8,4 +8,5 @@ export  interface Client {
   disabled?: boolean;
   roles?: Role[];
   groups?: Group[];
+  password?: string;
 };

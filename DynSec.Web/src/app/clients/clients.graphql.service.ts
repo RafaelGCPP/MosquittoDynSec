@@ -74,6 +74,14 @@ export class ClientsGraphqlService {
       .valueChanges;
   }
 
+  setState(userName: string, enabled: boolean) {
+    if (enabled) {
+      this.enableClient(userName).subscribe();
+    } else {
+      this.disableClient(userName).subscribe();
+    }
+  }
+
   enableClient(userName: string) {
     return this.apollo.mutate({
       mutation: enableUserMutation,

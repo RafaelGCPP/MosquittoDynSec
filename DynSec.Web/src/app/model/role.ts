@@ -1,4 +1,7 @@
 export interface Role {
   roleName: string;
-  priority: number;
+  textName?: string;
+  textDescription?: string;
+  priority?: number;
+  acLs?: any[];
 }

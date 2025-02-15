@@ -1,59 +1,53 @@
 import { Component, ViewChild } from '@angular/core';
+import { Role } from '../../model/role';
+import { RolesGraphqlService } from '../roles.graphql.service';
+import { AppHealthCheckService } from '../../app.health.service';
 import { MatTable, MatTableModule } from '@angular/material/table';
-import { Subscription } from 'rxjs';
-import { Client } from '../../model/client';
-
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterLink } from '@angular/router';
-import { AppHealthCheckService } from '../../app.health.service';
-import { ClientsGraphqlService } from '../clients.graphql.service';
+import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'dynsec-clients-list',
+  selector: 'dynsec-roles-list',
   imports: [
     MatTableModule,
     MatButtonModule,
     MatIconModule,
     RouterLink
   ],
-  templateUrl: './clients-list.component.html',
-  styleUrl: './clients-list.component.scss'
+  templateUrl: './roles-list.component.html',
+  styleUrl: './roles-list.component.scss'
 })
-export class ClientsListComponent {
+export class RolesListComponent {
 
+  roles: Role[] = [];
   private querySubscription!: Subscription;
+  displayedColumns: string[] = ['roleName'];
   loading: boolean = true;
-  clients: Client[]=[];
-
-  displayedColumns: string[] = ['userName','disableButton'];
 
   constructor(
-    private readonly graphql: ClientsGraphqlService,
+    private readonly graphql: RolesGraphqlService,
     private readonly healthCheck: AppHealthCheckService
   ) { }
 
 
   @ViewChild(MatTable)
-    table!: MatTable<Client>;
+  table!: MatTable<Role>;
 
   ngOnInit() {
     this.healthCheck.checkBackend(
       (data: string) => {
-        this.getClientList();
+        this.getRolesList();
       }
     );
   }
 
-  disableClient(username: string, disabled: boolean) {
-    this.graphql.setState(username, !disabled);
-  }
-
-  getClientList() {
-    this.querySubscription = this.graphql.getClientList().
+  getRolesList() {
+    this.querySubscription = this.graphql.getRolesList().
       subscribe(({ data, loading }) => {
         this.loading = loading;
-        this.clients = data.clientsList.clients;
+        this.roles = data.rolesList.roles;
         this.table.renderRows();
       });
   }
@@ -61,5 +55,4 @@ export class ClientsListComponent {
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
   }
-
 }

@@ -1,0 +1,21 @@
+<form class="role-form">
+  <div class="role-form-row">
+    <mat-form-field class="role-row-left">
+      <mat-label>Role name</mat-label>
+      <input matInput readonly name="roleName" [(ngModel)]="role.roleName">
+    </mat-form-field>
+
+    <div class="role-row-center"></div>
+    <div class="role-row-right"></div>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Full name</mat-label>
+    <input matInput placeholder="Add full name for the role" name="textName" [(ngModel)]="role.textName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Add role description" name="textDesc" [(ngModel)]="role.textDescription">
+  </mat-form-field>
+</form>
