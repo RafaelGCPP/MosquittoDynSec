@@ -23,4 +23,56 @@
     <mat-label>Description</mat-label>
     <input matInput placeholder="Add client description" name="textDesc" [(ngModel)]="client.textDescription">
   </mat-form-field>
+
+  <div style="height:3em"></div>
+
+  <div class="client-form-row">
+    <div class="client-row-left">
+
+      <div class="client-form-row">
+
+        <mat-form-field class="client-row-left">
+          <mat-label>Role</mat-label>
+          <mat-select>
+            @for (role of allRoles; track role) {
+            <mat-option [value]="role">{{role}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="client-row-left client-role-priority">
+          <mat-label>Priority</mat-label>
+          <input matInput placeholder="Priority" name="priority" [(ngModel)]="newRolePriority">
+        </mat-form-field>
+
+        <div class="client-row-center"></div>
+        <div class="client-row-right">
+          <button mat-icon-button><mat-icon>add_circle</mat-icon></button>
+        </div>
+      </div>
+    </div>
+
+    <div class="client-row-center"></div>
+    <div class="client-row-right">
+      <div class="client-form-row">
+
+        <mat-form-field class="client-row-left">
+          <mat-label>Group</mat-label>
+          <mat-select>
+            @for (group of allGroups; track group) {
+            <mat-option [value]="group">{{group}}</mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="client-row-left client-role-priority">
+          <mat-label>Priority</mat-label>
+          <input matInput placeholder="Priority" name="priority" [(ngModel)]="newGroupPriority">
+        </mat-form-field>
+
+        <div class="client-row-center"></div>
+        <div class="client-row-right">
+          <button mat-icon-button><mat-icon>add_circle</mat-icon></button>
+        </div>
+      </div>
+    </div>
+  </div>
 </form>

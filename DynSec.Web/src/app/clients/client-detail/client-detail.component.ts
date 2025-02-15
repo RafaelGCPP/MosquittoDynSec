@@ -9,6 +9,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { Client } from '../../model/client';
 import { Subscription } from 'rxjs';
+import { MatSelectModule } from '@angular/material/select';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'dynsec-client-detail',
@@ -16,7 +19,10 @@ import { Subscription } from 'rxjs';
     FormsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss'
@@ -35,6 +41,8 @@ export class ClientDetailComponent {
   };
   allGroups: string[] = [];
   allRoles: string[] = [];
+  newRolePriority: number = 0;
+  newGroupPriority: number = 0;
   private querySubscription!: Subscription;
   private paramSubscription!: Subscription;
 

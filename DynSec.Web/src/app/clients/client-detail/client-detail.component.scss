@@ -1,10 +1,10 @@
 :host {
-    width: 100%;
+  width: 100%;
 }
+
 .client-form {
   display: flex;
   flex-direction: column;
-
   width: 90%;
   margin: 0 5%;
 }
@@ -17,7 +17,7 @@
 }
 
 .client-row-left {
-    justify-self:start;
+  justify-self: start;
 }
 
 .client-row-center {
@@ -26,5 +26,8 @@
 
 .client-row-right {
   justify-self: end;
+}
 
+.client-role-priority {
+  width: 5rem;
 }
