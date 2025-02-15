@@ -1,0 +1,29 @@
+:host {
+  width: 100%;
+}
+
+.group-form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 5%;
+}
+
+.group-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.group-row-left {
+  justify-self: start;
+}
+
+.group-row-center {
+  flex: 1;
+}
+
+.group-row-right {
+  justify-self: end;
+}

@@ -69,11 +69,8 @@ export class ClientDetailComponent {
   }
 
   toggleUserState() {
-    if (this.client.disabled) {
-      this.graphql.enableClient(this.userName).subscribe();
-      return;
-    }
-    this.graphql.disableClient(this.userName).subscribe();
+    const enable: boolean = this.client.disabled ? true : false;
+    this.graphql.setState(this.userName, enable);
   }
 
   ngOnDestroy() {
