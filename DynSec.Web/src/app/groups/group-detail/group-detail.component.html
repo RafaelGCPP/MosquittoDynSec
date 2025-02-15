@@ -1,0 +1,21 @@
+<form class="group-form">
+  <div class="group-form-row">
+    <mat-form-field class="group-row-left">
+      <mat-label>Role name</mat-label>
+      <input matInput readonly name="groupName" [(ngModel)]="group.groupName">
+    </mat-form-field>
+
+    <div class="group-row-center"></div>
+    <div class="group-row-right"></div>
+  </div>
+
+  <mat-form-field>
+    <mat-label>Full name</mat-label>
+    <input matInput placeholder="Add full name for the group" name="textName" [(ngModel)]="group.textName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Description</mat-label>
+    <input matInput placeholder="Add group description" name="textDesc" [(ngModel)]="group.textDescription">
+  </mat-form-field>
+</form>

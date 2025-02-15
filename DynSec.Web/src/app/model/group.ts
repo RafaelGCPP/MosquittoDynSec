@@ -1,4 +1,6 @@
 export interface Group {
   groupName: string;
-  priority: number;
+  priority?: number;
+  textName?: string;
+  textDescription?: string;
 }
