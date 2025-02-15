@@ -12,31 +12,18 @@ const roleslistQuery =
 }`;
 
 const roleQuery =
-  gql`query Client($userName: String!) {
-  client(client: $userName) {
-    client {
-      disabled
+  gql`query Role($roleName: String!) {
+  role(role: $roleName) {
+    role {
+      roleName
       textDescription
       textName
-      userName
-      groups {
-        groupName
+      acLs {
+        aclType
+        allow
         priority
+        topic
       }
-      roles {
-        priority
-        roleName
-      }
-    }
-  }
-  rolesList {
-    roles {
-      roleName
-    }
-  }
-  groupsList {
-    groups {
-      groupName
     }
   }
 }`;
@@ -52,12 +39,12 @@ export class RolesGraphqlService {
       .valueChanges;
   }
 
-  getRole(userName: string) {
+  getRole(roleName: string) {
     return this.apollo
       .watchQuery<any>({
         query: roleQuery,
         variables: {
-          userName: userName
+          roleName: roleName
         }
       })
       .valueChanges;

@@ -1,0 +1,29 @@
+:host {
+  width: 100%;
+}
+
+.role-form {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  margin: 0 5%;
+}
+
+.role-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.role-row-left {
+  justify-self: start;
+}
+
+.role-row-center {
+  flex: 1;
+}
+
+.role-row-right {
+  justify-self: end;
+}

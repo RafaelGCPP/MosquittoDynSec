@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { Client } from '../../model/client';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'dynsec-client-detail',
@@ -34,31 +35,33 @@ export class ClientDetailComponent {
   };
   allGroups: string[] = [];
   allRoles: string[] = [];
+  private querySubscription!: Subscription;
+  private paramSubscription!: Subscription;
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly navBar: NavBarService,
     private readonly graphql: ClientsGraphqlService
-  )
-  {
+  ) {
   }
 
   ngOnInit() {
-    this.route.paramMap.subscribe(params => {
+    this.paramSubscription = this.route.paramMap.subscribe(params => {
       let userName = params.get('userName');
       if (userName) {
-        this.userName = userName;        
+        this.userName = userName;
         this.navBar.closeSidenav();
       }
     });
 
-    this.graphql.getClient(this.userName).subscribe(result => {
+    this.querySubscription = this.graphql.getClient(this.userName).subscribe(result => {
       this.client = this.addPassword(result.data.client.client);
       this.allRoles = result.data.rolesList.roles.map((x: any) => x.roleName);
       this.allGroups = result.data.groupsList.groups.map((x: any) => x.groupName);
     });
   }
 
-  addPassword(client: any) : Client {
+  private addPassword(client: any): Client {
     return {
       ...client,
       password: ''
@@ -73,4 +76,8 @@ export class ClientDetailComponent {
     this.graphql.disableClient(this.userName).subscribe();
   }
 
+  ngOnDestroy() {
+    this.querySubscription.unsubscribe();
+    this.paramSubscription.unsubscribe();
+  }
 }

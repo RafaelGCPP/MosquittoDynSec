@@ -4,11 +4,11 @@
   <div class="client-form-row">
     <mat-form-field class="client-row-left">
       <mat-label>User name</mat-label>
-      <input matInput readonly value="{{client.userName}}">
+      <input matInput readonly name="clientUsername" [(ngModel)]="client.userName">
     </mat-form-field>
     <mat-form-field class="client-row-left">
       <mat-label>Password</mat-label>
-      <input type="password" matInput value="{{client.password}}">
+      <input type="password" matInput name="clientPassword" [(ngModel)]="client.password">
     </mat-form-field>
     <div class="client-row-center"></div>
     <mat-slide-toggle class="client-row-right" name="enabled" [checked]="!client.disabled" (click)="toggleUserState()">Enabled</mat-slide-toggle>
