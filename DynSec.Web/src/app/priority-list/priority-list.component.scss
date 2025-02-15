@@ -1,0 +1,22 @@
+.priority-list-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.priority-list-row-left {
+  justify-self: start;
+}
+
+.priority-list-row-center {
+  flex: 1;
+}
+
+.priority-list-row-right {
+  justify-self: end;
+}
+
+.priority-list-role-priority {
+  width: 5rem;
+}
