@@ -30,6 +30,10 @@ const clientQuery =
       }
     }
   }
+}`;
+
+const rolesAndGroupsQuery =
+  gql`query {
   rolesList {
     roles {
       roleName
@@ -71,6 +75,14 @@ export class ClientsGraphqlService {
           userName: userName
         }
       })
+      .valueChanges;
+  }
+
+  getRolesAndGroups() {
+    return this.apollo
+      .watchQuery<any>({
+        query: rolesAndGroupsQuery,
+       })
       .valueChanges;
   }
 

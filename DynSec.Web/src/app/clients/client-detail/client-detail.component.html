@@ -1,17 +1,22 @@
 <form class="client-form">
 
-
   <div class="client-form-row">
     <mat-form-field class="client-row-left">
       <mat-label>User name</mat-label>
-      <input matInput readonly name="clientUsername" [(ngModel)]="client.userName">
+      <input matInput [readonly]="mode=='edit'" name="clientUsername" [(ngModel)]="client.userName">
     </mat-form-field>
     <mat-form-field class="client-row-left">
       <mat-label>Password</mat-label>
       <input type="password" matInput name="clientPassword" [(ngModel)]="client.password">
     </mat-form-field>
     <div class="client-row-center"></div>
-    <mat-slide-toggle class="client-row-right" name="enabled" [checked]="!client.disabled" (click)="toggleUserState()">Enabled</mat-slide-toggle>
+    <mat-slide-toggle class="client-row-right"
+                      name="enabled"
+                      [checked]="(!client.disabled) || (mode=='new')"
+                      [disabled]="mode=='new'"
+                      (click)="toggleUserState()">
+      Enabled
+    </mat-slide-toggle>
   </div>
 
   <mat-form-field>
@@ -37,5 +42,13 @@
     <div class="client-row-right">
       <dynsec-priority-list [(selectedValues)]="selectedGroups" [allValues]="allGroups" name="Group" />
     </div>
+  </div>
+
+  <div style="height:5em"></div>
+
+  <div class="client-form-row">
+    <div class="client-row-left"></div>
+    <div class="client-row-center"></div>
+    <button class="client-row-right" mat-flat-button color="primary" (click)="saveClient()">Save</button>
   </div>
 </form>

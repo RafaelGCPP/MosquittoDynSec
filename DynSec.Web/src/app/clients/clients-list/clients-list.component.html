@@ -15,7 +15,7 @@
       <th mat-header-cell *matHeaderCellDef>Enabled</th>
       <td mat-cell *matCellDef="let client">
         <button mat-icon-button (click)="disableClient(client.userName,!client.disabled)">
-        <mat-icon> {{client.disabled?"block":"check"}}</mat-icon>
+          <mat-icon> {{client.disabled?"block":"check"}}</mat-icon>
         </button>
       </td>
     </ng-container>
@@ -23,5 +23,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-
-</div>
+  <div style="height:3em;"></div>
+  <div style="display: flex; justify-content: center">
+    <div style="flex:1"></div>
+    <button mat-flat-button style="flex:2" routerLink="new">New client</button>
+    <div style="flex:1"></div>
+  </div>

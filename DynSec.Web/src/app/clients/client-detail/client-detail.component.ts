@@ -31,6 +31,7 @@ import { ItemPriority, PriorityListComponent } from '../../priority-list/priorit
 })
 export class ClientDetailComponent {
 
+  mode = '';
   userName = '';
   data: any;
   client: Client = {
@@ -46,6 +47,7 @@ export class ClientDetailComponent {
   newRolePriority: number = 0;
   newGroupPriority: number = 0;
   private querySubscription!: Subscription;
+  private rolesAndGroupsSubscription!: Subscription;
   private paramSubscription!: Subscription;
 
   selectedRoles: ItemPriority[] = [];
@@ -67,9 +69,16 @@ export class ClientDetailComponent {
       }
     });
 
-    this.querySubscription = this.graphql.getClient(this.userName).subscribe(result => {
-      this.client = this.addPassword(result.data.client.client);
+    if (this.userName === '') {
+      this.mode = 'new';
+    } else {
+      this.mode = 'edit';
+      this.querySubscription = this.graphql.getClient(this.userName).subscribe(result => {
+        this.client = this.addPassword(result.data.client.client);
+      });
+    }
 
+    this.rolesAndGroupsSubscription = this.graphql.getRolesAndGroups().subscribe(result => {
       this.allRoles = result.data.rolesList.roles.map((x: any) => x.roleName);
       this.allGroups = result.data.groupsList.groups.map((x: any) => x.groupName);
       this.updateSelectedItems();
@@ -79,7 +88,7 @@ export class ClientDetailComponent {
   private updateSelectedItems() {
     this.selectedRoles = [];
     this.selectedGroups = [];
-    
+
     if (this.client.roles) {
       this.selectedRoles = this.client.roles.map(
         (role) =>
@@ -101,6 +110,10 @@ export class ClientDetailComponent {
     };
   }
 
+  saveClient() {
+    console.log("changed!");
+  }
+
   toggleUserState() {
     const enable: boolean = this.client.disabled ? true : false;
     this.graphql.setState(this.userName, enable);
@@ -109,5 +122,6 @@ export class ClientDetailComponent {
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
     this.paramSubscription.unsubscribe();
+    this.rolesAndGroupsSubscription.unsubscribe();
   }
 }
