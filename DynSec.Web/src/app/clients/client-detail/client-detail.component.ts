@@ -52,10 +52,17 @@ export class ClientDetailComponent {
     });
 
     this.graphql.getClient(this.userName).subscribe(result => {
-      this.client = result.data.client.client;
+      this.client = this.addPassword(result.data.client.client);
       this.allRoles = result.data.rolesList.roles.map((x: any) => x.roleName);
       this.allGroups = result.data.groupsList.groups.map((x: any) => x.groupName);
     });
+  }
+
+  addPassword(client: any) : Client {
+    return {
+      ...client,
+      password: ''
+    };
   }
 
   toggleUserState() {
