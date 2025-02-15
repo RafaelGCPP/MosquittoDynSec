@@ -30,51 +30,12 @@
 
   <div class="client-form-row">
     <div class="client-row-left">
-
-      <div class="client-form-row">
-
-        <mat-form-field class="client-row-left">
-          <mat-label>Role</mat-label>
-          <mat-select>
-            @for (role of allRoles; track role) {
-            <mat-option [value]="role">{{role}}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="client-row-left client-role-priority">
-          <mat-label>Priority</mat-label>
-          <input matInput placeholder="Priority" name="priority" [(ngModel)]="newRolePriority">
-        </mat-form-field>
-
-        <div class="client-row-center"></div>
-        <div class="client-row-right">
-          <button mat-icon-button><mat-icon>add_circle</mat-icon></button>
-        </div>
-      </div>
+      <dynsec-priority-list [(selectedValues)]="selectedRoles" [allValues]="allRoles" name="Role" />
     </div>
 
     <div class="client-row-center"></div>
     <div class="client-row-right">
-      <div class="client-form-row">
-
-        <mat-form-field class="client-row-left">
-          <mat-label>Group</mat-label>
-          <mat-select>
-            @for (group of allGroups; track group) {
-            <mat-option [value]="group">{{group}}</mat-option>
-            }
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field class="client-row-left client-role-priority">
-          <mat-label>Priority</mat-label>
-          <input matInput placeholder="Priority" name="priority" [(ngModel)]="newGroupPriority">
-        </mat-form-field>
-
-        <div class="client-row-center"></div>
-        <div class="client-row-right">
-          <button mat-icon-button><mat-icon>add_circle</mat-icon></button>
-        </div>
-      </div>
+      <dynsec-priority-list [(selectedValues)]="selectedGroups" [allValues]="allGroups" name="Group" />
     </div>
   </div>
 </form>

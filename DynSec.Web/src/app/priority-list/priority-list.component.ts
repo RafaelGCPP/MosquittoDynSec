@@ -66,21 +66,26 @@ export class PriorityListComponent {
         return list;
       }
     );
-    
+    this.newItem = '';
+    this.newPriority = 0;
     this.table.renderRows();
   }
 
   removeItem(item: string) {
+
     this.selectedValues.update(
       (list) => {
         if (!list) return [];
         const index = list.findIndex((value) => value.name === item);
         if (index !== -1) {
+          this.newItem = item;
+          this.newPriority = list[index].priority;
           list.splice(index, 1);
         }
         return list;
       }
     );
+    
     this.table.renderRows();
 
   }

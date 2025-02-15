@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs';
 import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { PriorityListComponent } from '../../priority-list/priority-list.component';
+import { ItemPriority, PriorityListComponent } from '../../priority-list/priority-list.component';
 
 @Component({
   selector: 'dynsec-client-detail',
@@ -48,6 +48,9 @@ export class ClientDetailComponent {
   private querySubscription!: Subscription;
   private paramSubscription!: Subscription;
 
+  selectedRoles: ItemPriority[] = [];
+  selectedGroups: ItemPriority[] = [];
+
   constructor(
     private readonly route: ActivatedRoute,
     private readonly navBar: NavBarService,
@@ -66,9 +69,29 @@ export class ClientDetailComponent {
 
     this.querySubscription = this.graphql.getClient(this.userName).subscribe(result => {
       this.client = this.addPassword(result.data.client.client);
+
       this.allRoles = result.data.rolesList.roles.map((x: any) => x.roleName);
       this.allGroups = result.data.groupsList.groups.map((x: any) => x.groupName);
+      this.updateSelectedItems();
     });
+  }
+
+  private updateSelectedItems() {
+    this.selectedRoles = [];
+    this.selectedGroups = [];
+    
+    if (this.client.roles) {
+      this.selectedRoles = this.client.roles.map(
+        (role) =>
+          ({ name: role.roleName, priority: (role.priority) ? (role.priority) : 0 })
+      );
+    }
+    if (this.client.groups) {
+      this.selectedGroups = this.client.groups.map(
+        (group) =>
+          ({ name: group.groupName, priority: (group.priority) ? (group.priority) : 0 })
+      );
+    }
   }
 
   private addPassword(client: any): Client {
