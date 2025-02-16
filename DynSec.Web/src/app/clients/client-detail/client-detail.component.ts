@@ -1,17 +1,18 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { NavBarService } from '../../navbar/navbar.service';
-import { ClientsGraphqlService } from '../clients.graphql.service';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavBarService } from '../../navbar/navbar.service';
+import { ClientsGraphqlService } from '../clients.graphql.service';
 
-import { Client } from '../../model/client';
-import { Subscription } from 'rxjs';
-import { MatSelectModule } from '@angular/material/select';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSelectModule } from '@angular/material/select';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Subscription } from 'rxjs';
+import { Client } from '../../model/client';
 import { ItemPriority, PriorityListComponent } from '../../priority-list/priority-list.component';
 
 @Component({
@@ -63,7 +64,9 @@ export class ClientDetailComponent {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly navBar: NavBarService,
-    private readonly graphql: ClientsGraphqlService
+    private readonly graphql: ClientsGraphqlService,
+    private readonly snack: MatSnackBar,
+    private readonly router: Router
   ) {
   }
 
@@ -159,7 +162,21 @@ export class ClientDetailComponent {
     console.log(this.mode);
 
     if (this.mode === 'new') {
-      
+      if ((changeset.userName === '') || (!changeset.password) || (changeset.password === '')) {
+        console.error("Invalid input: missing username and/or password");
+
+        this.snack.open("Username and password must be supplied.", "Close", {
+          duration: 15000
+        });
+
+        return;
+      }
+      const password: string = changeset.password;
+      delete changeset.password;
+      this.graphql.createClient(changeset, password);
+      this.mode = 'edit';
+      this.userName = changeset.userName;
+      this.updateView(this.userName);
     } else {
       this.graphql.updateClient(changeset, changeset.password);
     }
