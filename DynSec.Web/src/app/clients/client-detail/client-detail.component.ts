@@ -34,6 +34,7 @@ export class ClientDetailComponent {
   mode = '';
   userName = '';
   data: any;
+
   client: Client = {
     userName: '',
     password: '',
@@ -42,10 +43,16 @@ export class ClientDetailComponent {
     roles: [],
     groups: []
   };
+  originalClient: Client = {
+    ...this.client
+  };
   allGroups: string[] = [];
   allRoles: string[] = [];
   newRolePriority: number = 0;
   newGroupPriority: number = 0;
+  rolesChanged: boolean = false;
+  groupsChanged: boolean = false;
+
   private querySubscription!: Subscription;
   private rolesAndGroupsSubscription!: Subscription;
   private paramSubscription!: Subscription;
@@ -63,11 +70,17 @@ export class ClientDetailComponent {
   ngOnInit() {
     this.paramSubscription = this.route.paramMap.subscribe(params => {
       let userName = params.get('userName');
-      if (userName) {
-        this.userName = userName;
-        this.navBar.closeSidenav();
-      }
+      this.updateView(userName);
+      console.log("Loading client detail for " + userName);
     });
+
+  }
+
+  private updateView(userName: string | null) {
+
+    if (userName) {
+      this.userName = userName;
+    }
 
     if (this.userName === '') {
       this.mode = 'new';
@@ -75,6 +88,11 @@ export class ClientDetailComponent {
       this.mode = 'edit';
       this.querySubscription = this.graphql.getClient(this.userName).subscribe(result => {
         this.client = this.addPassword(result.data.client.client);
+        this.rolesChanged = false;
+        this.groupsChanged = false;
+        this.originalClient = {
+          ...this.client
+        };
       });
     }
 
@@ -83,6 +101,8 @@ export class ClientDetailComponent {
       this.allGroups = result.data.groupsList.groups.map((x: any) => x.groupName);
       this.updateSelectedItems();
     });
+
+    this.navBar.closeSidenav();
   }
 
   private updateSelectedItems() {
@@ -110,8 +130,39 @@ export class ClientDetailComponent {
     };
   }
 
+  private createChangeset() {
+    const changeset: any = { userName: this.client.userName };
+    if (this.client.textName !== this.originalClient.textName) {
+      changeset.textName = this.client.textName;
+    }
+    if (this.client.textDescription !== this.originalClient.textDescription) {
+      changeset.textDescription = this.client.textDescription;
+    }
+    if (this.client.password !== this.originalClient.password) {
+      changeset.password = this.client.password;
+    }
+    if (this.rolesChanged) {
+      changeset.roles = this.selectedRoles.map((item) => ({ roleName: item.name, priority: item.priority }));
+    }
+    if (this.groupsChanged) {
+      changeset.groups = this.selectedGroups.map((item) => ({ groupName: item.name, priority: item.priority }));
+    }
+
+    return changeset;
+  }
+
   saveClient() {
     console.log("changed!");
+    const changeset = this.createChangeset();
+
+    console.log(changeset);
+    console.log(this.mode);
+
+    if (this.mode === 'new') {
+      //this.graphql.createClient(this.createChangeset());
+    } else {
+      this.graphql.updateClient(changeset, changeset.password);
+    }
   }
 
   toggleUserState() {

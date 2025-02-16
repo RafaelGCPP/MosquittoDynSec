@@ -35,12 +35,18 @@
 
   <div class="client-form-row">
     <div class="client-row-left">
-      <dynsec-priority-list [(selectedValues)]="selectedRoles" [allValues]="allRoles" name="Role" />
+      <dynsec-priority-list [(selectedValues)]="selectedRoles"
+                            [allValues]="allRoles"
+                            (modified)="rolesChanged=true"
+                            name="Role" />
     </div>
 
     <div class="client-row-center"></div>
     <div class="client-row-right">
-      <dynsec-priority-list [(selectedValues)]="selectedGroups" [allValues]="allGroups" name="Group" />
+      <dynsec-priority-list [(selectedValues)]="selectedGroups"
+                            [allValues]="allGroups"
+                            (modified)="groupsChanged=true"
+                            name="Group" />
     </div>
   </div>
 

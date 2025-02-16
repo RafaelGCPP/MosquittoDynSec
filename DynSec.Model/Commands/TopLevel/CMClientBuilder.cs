@@ -24,6 +24,12 @@ namespace DynSec.Model.Commands.TopLevel
             });
             return this;
         }
+
+        public CMClientBuilder AddEmptyRoleSet()
+        {
+            Roles ??= new();
+            return this;
+        }
         public CMClientBuilder AddGroup(string groupName, int priority)
         {
             Groups ??= new();
@@ -32,6 +38,12 @@ namespace DynSec.Model.Commands.TopLevel
                 GroupName = groupName,
                 Priority = priority
             });
+            return this;
+        }
+
+        public CMClientBuilder AddEmptyGroupSet()
+        {
+            Groups ??= new();
             return this;
         }
 

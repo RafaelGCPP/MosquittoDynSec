@@ -1,6 +1,7 @@
 ﻿using DynSec.Model;
 using DynSec.Model.Commands;
 using DynSec.Model.Responses.TopLevel;
+using DynSec.Protocol.Exceptions;
 using DynSec.Protocol.Interfaces;
 using System.Net;
 
@@ -10,7 +11,12 @@ namespace DynSec.Protocol
     {
         public async Task<string?> CreateClient(Client newclient, string password)
         {
-            var builder = new CreateClientBuilder(newclient.UserName ?? "", password)
+            if (newclient.UserName == null)
+            {
+                throw new DynSecProtocolInvalidParameterException("Client username is required");
+            }
+
+            var builder = new CreateClientBuilder(newclient.UserName, password)          
                 .WithTextDescription(newclient.TextDescription ?? "")
                 .WithTextName(newclient.TextName ?? "");
 
@@ -29,20 +35,50 @@ namespace DynSec.Protocol
 
         public async Task<string?> ModifyClient(Client client, string? password)
         {
-            var builder = new ModifyClientBuilder(client.UserName ?? "")
-                .WithPassword(password)
-                .WithTextDescription(client.TextDescription ?? "")
-                .WithTextName(client.TextName ?? "");
+            if (client.UserName == null)
+            {
+                throw new DynSecProtocolInvalidParameterException("Client username is required");
+            }
 
-            foreach (var role in client.Roles ?? [])
+            var builder = new ModifyClientBuilder(client.UserName).WithPassword(password);
+
+            if (client.TextDescription != null)
             {
-                builder.AddRole(role.RoleName ?? "", role.Priority);
+                builder = (ModifyClientBuilder)builder.WithTextDescription(client.TextDescription);
             }
-            foreach (var group in client.Groups ?? [])
+            if (client.TextName != null)
             {
-                builder.AddRole(group.GroupName ?? "", group.Priority);
+                builder = (ModifyClientBuilder)builder.WithTextName(client.TextName);
             }
-            var result = await ExecuteCommand<GeneralResponse>(builder.Build());
+
+            if (client.Roles != null)
+            {
+                if (client.Roles.Length == 0)
+                {
+                    builder = (ModifyClientBuilder)builder.AddEmptyRoleSet();
+                }
+
+                foreach (var role in client.Roles)
+                {
+                    builder = (ModifyClientBuilder)builder.AddRole(role.RoleName, role.Priority);
+                }
+            }
+
+            if (client.Groups != null)
+            {
+                if (client.Groups.Length == 0)
+                {
+                    builder = (ModifyClientBuilder)builder.AddEmptyGroupSet();
+                }
+                foreach (var group in client.Groups)
+                {
+                    builder = (ModifyClientBuilder)builder.AddGroup(group.GroupName, group.Priority);
+                }
+            }
+
+
+            var command = builder.Build();
+            var result = await ExecuteCommand<GeneralResponse>(command);
             return commandDoneString;
         }
 

@@ -56,6 +56,11 @@ const disableUserMutation =
   disableClient(client:$userName)
 }`;
 
+const updateClientMutation =
+gql`mutation UpdateClient($client: ClientInput!, $password: String) {
+  modifyClient(client: $client, password: $password)
+}`;
+
 @Injectable({ providedIn: 'root', })
 export class ClientsGraphqlService {
   constructor(private readonly apollo: Apollo) { }
@@ -138,5 +143,29 @@ export class ClientsGraphqlService {
         }
       ]
     });
+  }
+
+  updateClient(client: any, password: string) {
+    return this.apollo.mutate({
+      mutation: updateClientMutation,
+      variables: {
+        client: client,
+        password: password
+      },
+      refetchQueries: [
+        {
+          query: clientslistQuery,
+          fetchPolicy: 'network-only',
+          variables: {},
+        },
+        {
+          query: clientQuery,
+          fetchPolicy: 'network-only',
+          variables: {
+            userName: client.userName
+          }
+        }
+      ]
+    }).subscribe();
   }
 }
