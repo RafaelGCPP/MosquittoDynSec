@@ -61,6 +61,11 @@ gql`mutation UpdateClient($client: ClientInput!, $password: String) {
   modifyClient(client: $client, password: $password)
 }`;
 
+const createClientMutation =
+gql`mutation NewClient($client: ClientInput!, $password: String!) {
+  createClient(newclient: $client, password: $password) 
+}`
+
 @Injectable({ providedIn: 'root', })
 export class ClientsGraphqlService {
   constructor(private readonly apollo: Apollo) { }
@@ -92,16 +97,11 @@ export class ClientsGraphqlService {
   }
 
   setState(userName: string, enabled: boolean) {
-    if (enabled) {
-      this.enableClient(userName).subscribe();
-    } else {
-      this.disableClient(userName).subscribe();
-    }
-  }
+    
+    const mutation = (enabled) ? enableUserMutation : disableUserMutation;
 
-  enableClient(userName: string) {
     return this.apollo.mutate({
-      mutation: enableUserMutation,
+      mutation: mutation,
       variables: {
         userName: userName
       },
@@ -119,35 +119,21 @@ export class ClientsGraphqlService {
           }
         }
       ]
-    });
+    }).subscribe();
   }
 
-  disableClient(userName: string) {
-    return this.apollo.mutate({
-      mutation: disableUserMutation,
-      variables: {
-        userName: userName
-      },
-      refetchQueries: [
-        {
-          query: clientslistQuery,
-          fetchPolicy: 'network-only',
-          variables: {},
-        },
-        {
-          query: clientQuery,
-          fetchPolicy: 'network-only',
-          variables: {
-            userName: userName
-          }
-        }
-      ]
-    });
-  }
-
+  
   updateClient(client: any, password: string) {
+    return this.runMutation(updateClientMutation, client, password);
+  }
+
+  createClient(client: any, password: string) {
+    return this.runMutation(createClientMutation, client, password);
+  }
+
+  private runMutation(mutation: any, client: any, password: string) {
     return this.apollo.mutate({
-      mutation: updateClientMutation,
+      mutation: mutation,
       variables: {
         client: client,
         password: password

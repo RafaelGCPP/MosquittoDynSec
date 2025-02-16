@@ -159,7 +159,7 @@ export class ClientDetailComponent {
     console.log(this.mode);
 
     if (this.mode === 'new') {
-      //this.graphql.createClient(this.createChangeset());
+      
     } else {
       this.graphql.updateClient(changeset, changeset.password);
     }
