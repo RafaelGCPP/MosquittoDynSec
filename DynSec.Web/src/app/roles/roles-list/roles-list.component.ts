@@ -23,7 +23,7 @@ export class RolesListComponent {
 
   roles: Role[] = [];
   private querySubscription!: Subscription;
-  displayedColumns: string[] = ['roleName'];
+  displayedColumns: string[] = ['roleName', 'buttons'];
   loading: boolean = true;
 
   constructor(
