@@ -18,6 +18,7 @@ import { Client } from '../../model/client';
 import { ItemPriority, PriorityListComponent } from '../../priority-list/priority-list.component';
 
 import { MatDialog, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle, MAT_DIALOG_DATA, MatDialogActions } from '@angular/material/dialog'; 
+import { DeleteDialog } from '../../delete-dialog/delete-dialog';
 
 @Component({
   selector: 'dynsec-client-detail',
@@ -206,8 +207,8 @@ export class ClientDetailComponent {
   }
 
   deleteClient() {
-    const dialogRef = this.dialog.open(ClientDeleteDialog, {
-      data: { userName: this.userName },
+    const dialogRef = this.dialog.open(DeleteDialog, {
+      data: { name: this.userName, itemType:'client' },
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -242,36 +243,3 @@ export class ClientDetailComponent {
     this.rolesAndGroupsSubscription.unsubscribe();
   }
 }
-
-
-export interface DialogData {
-  userName: string;
-}
-
-@Component({
-  selector: 'dynsec-client-delete-dialog',
-  templateUrl: 'client-delete-dialog.html',
-  imports: [
-    MatFormFieldModule,
-    MatInputModule,
-    FormsModule,
-    MatButtonModule,
-    MatDialogTitle,
-    MatDialogContent,
-    MatDialogActions,
-  ],
-})
-export class ClientDeleteDialog {
-  private readonly dialogRef = inject(MatDialogRef<ClientDeleteDialog>)
-  readonly data = inject<DialogData>(MAT_DIALOG_DATA);
-  confirmationString = '';
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-  confirm(): void {
-    if (this.confirmationString === this.data.userName) {
-      this.dialogRef.close('confirm');
-    }
-  }
-}
-
