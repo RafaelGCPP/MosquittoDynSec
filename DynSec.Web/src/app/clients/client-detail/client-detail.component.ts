@@ -11,11 +11,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApolloError } from '@apollo/client/core';
 import { Subscription } from 'rxjs';
 import { Client } from '../../model/client';
 import { ItemPriority, PriorityListComponent } from '../../priority-list/priority-list.component';
-import { ApolloError } from '@apollo/client/core';
-import { GraphQLFormattedError } from 'graphql';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   selector: 'dynsec-client-detail',
@@ -27,7 +27,8 @@ import { GraphQLFormattedError } from 'graphql';
     MatSelectModule,
     MatButtonModule,
     MatIconModule,
-    PriorityListComponent
+    PriorityListComponent,
+    MatTooltip
   ],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss'

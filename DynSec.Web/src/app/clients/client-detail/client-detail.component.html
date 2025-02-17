@@ -1,6 +1,23 @@
 <form class="client-form">
 
   <div class="client-form-row">
+    <div class="client-row-left"></div>
+    <div class="client-row-center"></div>
+
+    <button mat-icon-button class="client-row-right" matTooltip="Save"><mat-icon>save</mat-icon></button>
+    <button mat-icon-button
+            class="client-row-right" 
+            (click)="toggleUserState()"
+            [disabled]="mode=='new'"
+            [disabledInteractive]="mode=='new'"
+            [matTooltip]="client.disabled?'Enable':'Disable'">
+      <mat-icon>{{client.disabled?"block":"check"}}</mat-icon>
+    </button>
+    <button mat-icon-button class="client-row-right" matTooltip="Delete"><mat-icon>delete</mat-icon></button>
+
+  </div>
+
+  <div class="client-form-row">
     <mat-form-field class="client-row-left">
       <mat-label>User name</mat-label>
       <input matInput [readonly]="mode=='edit'" name="clientUsername" [(ngModel)]="client.userName">
@@ -10,13 +27,7 @@
       <input type="password" matInput name="clientPassword" [(ngModel)]="client.password">
     </mat-form-field>
     <div class="client-row-center"></div>
-    <mat-slide-toggle class="client-row-right"
-                      name="enabled"
-                      [checked]="(!client.disabled) || (mode=='new')"
-                      [disabled]="mode=='new'"
-                      (click)="toggleUserState()">
-      Enabled
-    </mat-slide-toggle>
+    <div class="client-row-right"></div>
   </div>
 
   <mat-form-field>
@@ -48,13 +59,5 @@
                             (modified)="groupsChanged=true"
                             name="Group" />
     </div>
-  </div>
-
-  <div style="height:5em"></div>
-
-  <div class="client-form-row">
-    <div class="client-row-left"></div>
-    <div class="client-row-center"></div>
-    <button class="client-row-right" mat-flat-button color="primary" (click)="saveClient()">Save</button>
-  </div>
+  </div>  
 </form>
