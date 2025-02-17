@@ -73,6 +73,11 @@ export class ClientDetailComponent {
   private readonly router = inject(Router);
   private readonly dialog = inject(MatDialog);
 
+  defaultAction = {
+    next: console.log,
+    error: this.displayError
+  }
+
   ngOnInit() {
     this.paramSubscription = this.route.paramMap.subscribe(params => {
       let userName = params.get('userName');
@@ -158,11 +163,7 @@ export class ClientDetailComponent {
   }
 
   saveClient() {
-    console.log("changed!");
     const changeset = this.createChangeset();
-
-    console.log(changeset);
-    console.log(this.mode);
 
     if (this.mode === 'new') {
       if ((changeset.userName === '') || (!changeset.password) || (changeset.password === '')) {
@@ -194,37 +195,14 @@ export class ClientDetailComponent {
       this.graphql.createClient(changeset, password, action);
 
     } else {
-      const action = {
-        next: (data: any) => {
-          console.log(data);
-        },
-        error: (error: ApolloError) => {
-          console.error(error);
-          console.error('Mutation error: ', error.message);
-          this.snack.open(`${error.message}`, "Close", {
-            duration: 15000
-          });
-        }
-      }
-      this.graphql.updateClient(changeset, changeset.password, action);
+      this.graphql.updateClient(changeset, changeset.password, this.defaultAction);
     }
   }
 
   toggleUserState() {
     const enable: boolean = this.client.disabled ? true : false;
-    const action = {
-      next: (data: any) => {
-        console.log(data);
-      },
-      error: (error: ApolloError) => {
-        console.error(error);
-        console.error('Mutation error: ', error.message);
-        this.snack.open(`${error.message}`, "Close", {
-          duration: 15000
-        });
-      }
-    }
-    this.graphql.setState(this.userName, enable, action);
+
+    this.graphql.setState(this.userName, enable, this.defaultAction);
   }
 
   deleteClient() {
@@ -241,16 +219,18 @@ export class ClientDetailComponent {
             this.graphql.refresh();
             this.navBar.openSidenav();
           },
-          error: (error: ApolloError) => {
-            console.error(error);
-            console.error('Mutation error: ', error.message);
-            this.snack.open(`${error.message}`, "Close", {
-              duration: 15000
-            });
-          }
+          error: this.displayError 
         }
         this.graphql.deleteClient(this.userName, action);
       }
+    });
+  }
+
+  displayError(error: ApolloError) {
+    console.error(error);
+    console.error('Mutation error: ', error.message);
+    this.snack.open(`${error.message}`, "Close", {
+      duration: 15000
     });
   }
 
