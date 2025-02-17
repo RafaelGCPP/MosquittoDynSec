@@ -1,0 +1,35 @@
+.acl-list-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.acl-list-row-left {
+  justify-self: start;
+}
+
+.acl-list-row-center {
+  flex: 1;
+}
+
+.acl-list-row-right {
+  justify-self: end;
+}
+
+.acl-list-role-priority {
+  width: 5rem;
+}
+
+.mat-column-priority {
+  width: 3rem;
+}
+
+.mat-column-allow {
+  width: 48px;
+}
+
+
+.mat-column-buttons {
+  width: 48px;
+}

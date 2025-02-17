@@ -52,6 +52,10 @@ export class RolesListComponent {
       });
   }
 
+  refresh() {
+    this.graphql.refresh();
+  }
+
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
   }

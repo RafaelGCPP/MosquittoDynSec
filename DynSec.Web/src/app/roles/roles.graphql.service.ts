@@ -50,5 +50,7 @@ export class RolesGraphqlService {
       .valueChanges;
   }
 
-  
+  refresh() {
+    this.apollo.client.resetStore();
+  }
 }
