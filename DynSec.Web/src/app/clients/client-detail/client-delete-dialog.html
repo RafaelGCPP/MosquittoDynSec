@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Confirmation</h2>
+<mat-dialog-content>
+  <p>Deleting a client is irreversible. To confirm please type <b>{{data.userName}}</b> below then press Ok.</p>
+  <mat-form-field>
+    <mat-label>Client</mat-label>
+    <input matInput [(ngModel)]="confirmationString" />
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button [disabled]="!(confirmationString === data.userName)" (click)="confirm()">Ok</button>
+  <button mat-button (click)="onNoClick()" cdkFocusInitial>Cancel</button>
+</mat-dialog-actions>

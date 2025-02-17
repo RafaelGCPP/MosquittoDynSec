@@ -66,6 +66,10 @@ const createClientMutation =
   gql`mutation NewClient($client: ClientInput!, $password: String!) {
   createClient(newclient: $client, password: $password) 
 }`
+const deleteClientMutation =
+  gql`mutation DeleteClient($userName: String!) {
+  deleteClient(client: $userName)
+}`
 
 @Injectable({ providedIn: 'root', })
 export class ClientsGraphqlService {
@@ -102,7 +106,7 @@ export class ClientsGraphqlService {
       .valueChanges;
   }
 
-  setState(userName: string, enabled: boolean, actions?:any) {
+  setState(userName: string, enabled: boolean, actions?: any) {
 
     const mutation = (enabled) ? enableUserMutation : disableUserMutation;
 
@@ -161,25 +165,24 @@ export class ClientsGraphqlService {
     }).subscribe(actions);
   }
 
+  deleteClient(userName: string, actions?: any) {
+    return this.apollo.mutate({
+      mutation: deleteClientMutation,
+      variables: {
+        userName: userName
+      },
+      refetchQueries: [
+        {
+          query: clientslistQuery,
+          fetchPolicy: 'network-only',
+          variables: {},
+        },
+      ]
+    }).subscribe(actions);
+  }
+
   refresh() {
     this.apollo.client.resetStore();
   }
 }
 
-      /*
-      {
-      next: (data) => {
-        console.log('Mutation returned:', data);
-      },
-      error: (error: ApolloError) => {
-        const extension = error.graphQLErrors[0].extensions;
-        if (extension) {
-          const message = extension['message'];
-
-          console.log('Mutation error', message);
-          this.snack.open(`${message}`, "Close", {
-            duration: 5000
-          });
-        };
-      }
-    }*/

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, Inject, InjectionToken } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -11,11 +11,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTooltip } from '@angular/material/tooltip';
 import { ApolloError } from '@apollo/client/core';
 import { Subscription } from 'rxjs';
 import { Client } from '../../model/client';
 import { ItemPriority, PriorityListComponent } from '../../priority-list/priority-list.component';
-import { MatTooltip } from '@angular/material/tooltip';
+
+import { MatDialog, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle, MAT_DIALOG_DATA, MatDialogActions } from '@angular/material/dialog'; 
 
 @Component({
   selector: 'dynsec-client-detail',
@@ -64,14 +66,12 @@ export class ClientDetailComponent {
   selectedRoles: ItemPriority[] = [];
   selectedGroups: ItemPriority[] = [];
 
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly navBar: NavBarService,
-    private readonly graphql: ClientsGraphqlService,
-    private readonly snack: MatSnackBar,
-    private readonly router: Router
-  ) {
-  }
+  private readonly route = inject(ActivatedRoute);
+  private readonly navBar = inject(NavBarService);
+  private readonly graphql = inject(ClientsGraphqlService);
+  private readonly snack = inject(MatSnackBar);
+  private readonly router = inject(Router);
+  private readonly dialog = inject(MatDialog);
 
   ngOnInit() {
     this.paramSubscription = this.route.paramMap.subscribe(params => {
@@ -196,7 +196,7 @@ export class ClientDetailComponent {
     } else {
       const action = {
         next: (data: any) => {
-          console.log(data);          
+          console.log(data);
         },
         error: (error: ApolloError) => {
           console.error(error);
@@ -227,6 +227,33 @@ export class ClientDetailComponent {
     this.graphql.setState(this.userName, enable, action);
   }
 
+  deleteClient() {
+    const dialogRef = this.dialog.open(ClientDeleteDialog, {
+      data: { userName: this.userName },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        const action = {
+          next: (data: any) => {
+            console.log(data);
+            this.router.navigateByUrl('/clients');
+            this.graphql.refresh();
+            this.navBar.openSidenav();
+          },
+          error: (error: ApolloError) => {
+            console.error(error);
+            console.error('Mutation error: ', error.message);
+            this.snack.open(`${error.message}`, "Close", {
+              duration: 15000
+            });
+          }
+        }
+        this.graphql.deleteClient(this.userName, action);
+      }
+    });
+  }
+
   ngOnDestroy() {
     if (this.mode != 'new') {
       this.querySubscription.unsubscribe();
@@ -235,3 +262,36 @@ export class ClientDetailComponent {
     this.rolesAndGroupsSubscription.unsubscribe();
   }
 }
+
+
+export interface DialogData {
+  userName: string;
+}
+
+@Component({
+  selector: 'dynsec-client-delete-dialog',
+  templateUrl: 'client-delete-dialog.html',
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+  ],
+})
+export class ClientDeleteDialog {
+  private readonly dialogRef = inject(MatDialogRef<ClientDeleteDialog>)
+  readonly data = inject<DialogData>(MAT_DIALOG_DATA);
+  confirmationString = '';
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+  confirm(): void {
+    if (this.confirmationString === this.data.userName) {
+      this.dialogRef.close('confirm');
+    }
+  }
+}
+

@@ -4,16 +4,28 @@
     <div class="client-row-left"></div>
     <div class="client-row-center"></div>
 
-    <button mat-icon-button class="client-row-right" matTooltip="Save"><mat-icon>save</mat-icon></button>
     <button mat-icon-button
-            class="client-row-right" 
+            class="client-row-right"
+            matTooltip="Save"
+            (click)="saveClient()">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-icon-button
+            class="client-row-right"
             (click)="toggleUserState()"
             [disabled]="mode=='new'"
             [disabledInteractive]="mode=='new'"
             [matTooltip]="client.disabled?'Enable':'Disable'">
       <mat-icon>{{client.disabled?"block":"check"}}</mat-icon>
     </button>
-    <button mat-icon-button class="client-row-right" matTooltip="Delete"><mat-icon>delete</mat-icon></button>
+    <button mat-icon-button
+            class="client-row-right"
+            [disabled]="mode=='new'"
+            [disabledInteractive]="mode=='new'"
+            (click)="deleteClient()"
+            matTooltip="Delete">
+      <mat-icon>delete</mat-icon>
+    </button>
 
   </div>
 
@@ -59,5 +71,5 @@
                             (modified)="groupsChanged=true"
                             name="Group" />
     </div>
-  </div>  
+  </div>
 </form>
