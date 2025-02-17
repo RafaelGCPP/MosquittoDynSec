@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { gql } from "@apollo/client/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ApolloError, gql } from "@apollo/client/core";
 import { Apollo } from "apollo-angular";
 
 const clientslistQuery =
@@ -57,18 +58,23 @@ const disableUserMutation =
 }`;
 
 const updateClientMutation =
-gql`mutation UpdateClient($client: ClientInput!, $password: String) {
+  gql`mutation UpdateClient($client: ClientInput!, $password: String) {
   modifyClient(client: $client, password: $password)
 }`;
 
 const createClientMutation =
-gql`mutation NewClient($client: ClientInput!, $password: String!) {
+  gql`mutation NewClient($client: ClientInput!, $password: String!) {
   createClient(newclient: $client, password: $password) 
 }`
 
 @Injectable({ providedIn: 'root', })
 export class ClientsGraphqlService {
-  constructor(private readonly apollo: Apollo) { }
+  constructor(
+    private readonly apollo: Apollo,
+    private readonly snack: MatSnackBar
+  ) { }
+
+
   getClientList() {
     return this.apollo
       .watchQuery<any>({
@@ -92,12 +98,12 @@ export class ClientsGraphqlService {
     return this.apollo
       .watchQuery<any>({
         query: rolesAndGroupsQuery,
-       })
+      })
       .valueChanges;
   }
 
-  setState(userName: string, enabled: boolean) {
-    
+  setState(userName: string, enabled: boolean, actions?:any) {
+
     const mutation = (enabled) ? enableUserMutation : disableUserMutation;
 
     return this.apollo.mutate({
@@ -119,10 +125,10 @@ export class ClientsGraphqlService {
           }
         }
       ]
-    }).subscribe();
+    }).subscribe(actions);
   }
 
-  
+
   updateClient(client: any, password: string) {
     return this.runMutation(updateClientMutation, client, password);
   }
@@ -131,7 +137,7 @@ export class ClientsGraphqlService {
     return this.runMutation(createClientMutation, client, password);
   }
 
-  private runMutation(mutation: any, client: any, password: string) {
+  private runMutation(mutation: any, client: any, password: string, actions?: any) {
     return this.apollo.mutate({
       mutation: mutation,
       variables: {
@@ -152,6 +158,28 @@ export class ClientsGraphqlService {
           }
         }
       ]
-    }).subscribe();
+    }).subscribe(actions);
+  }
+
+  refresh() {
+    this.apollo.client.resetStore();
   }
 }
+
+      /*
+      {
+      next: (data) => {
+        console.log('Mutation returned:', data);
+      },
+      error: (error: ApolloError) => {
+        const extension = error.graphQLErrors[0].extensions;
+        if (extension) {
+          const message = extension['message'];
+
+          console.log('Mutation error', message);
+          this.snack.open(`${message}`, "Close", {
+            duration: 5000
+          });
+        };
+      }
+    }*/

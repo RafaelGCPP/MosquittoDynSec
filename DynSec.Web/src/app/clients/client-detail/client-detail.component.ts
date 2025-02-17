@@ -174,9 +174,9 @@ export class ClientDetailComponent {
       const password: string = changeset.password;
       delete changeset.password;
       this.graphql.createClient(changeset, password);
-      this.mode = 'edit';
-      this.userName = changeset.userName;
-      this.updateView(this.userName);
+
+      this.router.navigate([`../${changeset.userName}`], {relativeTo: this.route});
+
     } else {
       this.graphql.updateClient(changeset, changeset.password);
     }
@@ -188,7 +188,9 @@ export class ClientDetailComponent {
   }
 
   ngOnDestroy() {
-    this.querySubscription.unsubscribe();
+    if (this.mode != 'new') {
+      this.querySubscription.unsubscribe();
+    }
     this.paramSubscription.unsubscribe();
     this.rolesAndGroupsSubscription.unsubscribe();
   }

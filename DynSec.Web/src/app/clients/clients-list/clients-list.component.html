@@ -25,7 +25,9 @@
   </table>
   <div style="height:3em;"></div>
   <div style="display: flex; justify-content: center">
-    <div style="flex:1"></div>
-    <button mat-flat-button style="flex:2" routerLink="new">New client</button>
-    <div style="flex:1"></div>
+    <!--div style="flex:1"></div-->
+    <button mat-flat-button style="flex:1" routerLink="new">New client</button>
+    <button mat-flat-button style="flex:1" (click)="refresh()">Refresh</button>
+
+    <!--div style="flex:1"></div-->
   </div>

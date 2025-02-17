@@ -58,6 +58,10 @@ export class ClientsListComponent {
       });
   }
 
+  refresh() {
+    this.graphql.refresh();
+  }
+
   ngOnDestroy() {
     this.querySubscription.unsubscribe();
   }
