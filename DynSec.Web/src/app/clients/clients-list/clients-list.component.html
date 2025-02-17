@@ -10,24 +10,32 @@
           {{client.userName}}
         </a>
       </td>
+      <td mat-footer-cell *matFooterCellDef>Add client:</td>
     </ng-container>
     <ng-container matColumnDef="disableButton">
-      <th mat-header-cell *matHeaderCellDef>Enabled</th>
+      <th mat-header-cell *matHeaderCellDef>
+        <button mat-icon-button (click)="refresh()"><mat-icon>refresh</mat-icon></button>
+      </th>
       <td mat-cell *matCellDef="let client">
         <button mat-icon-button (click)="disableClient(client.userName,!client.disabled)">
           <mat-icon> {{client.disabled?"block":"check"}}</mat-icon>
+        </button>
+      </td>
+      <td mat-footer-cell *matFooterCellDef>
+        <button mat-icon-button routerLink="new">
+          <mat-icon>add_circle</mat-icon>
         </button>
       </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
-  <div style="height:3em;"></div>
-  <div style="display: flex; justify-content: center">
-    <!--div style="flex:1"></div-->
-    <button mat-flat-button style="flex:1" routerLink="new">New client</button>
-    <button mat-flat-button style="flex:1" (click)="refresh()">Refresh</button>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns;"></tr>
 
-    <!--div style="flex:1"></div-->
-  </div>
+  </table>
+  <!--<div style="height:3em;"></div>
+  <div style="display: flex; justify-content: center">
+    <div style="flex:1"></div>
+    <button mat-flat-button style="flex:1" routerLink="new">New client</button>
+    <div style="flex:1"></div>
+  </div>-->

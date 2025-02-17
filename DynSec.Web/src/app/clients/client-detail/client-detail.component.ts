@@ -14,6 +14,8 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Subscription } from 'rxjs';
 import { Client } from '../../model/client';
 import { ItemPriority, PriorityListComponent } from '../../priority-list/priority-list.component';
+import { ApolloError } from '@apollo/client/core';
+import { GraphQLFormattedError } from 'graphql';
 
 @Component({
   selector: 'dynsec-client-detail',
@@ -173,18 +175,55 @@ export class ClientDetailComponent {
       }
       const password: string = changeset.password;
       delete changeset.password;
-      this.graphql.createClient(changeset, password);
 
-      this.router.navigate([`../${changeset.userName}`], {relativeTo: this.route});
+      const action = {
+        next: (data: any) => {
+          console.log(data);
+          this.router.navigate([`../${changeset.userName}`], { relativeTo: this.route });
+        },
+        error: (error: ApolloError) => {
+          console.error(error);
+          console.error('Mutation error: ', error.message);
+          this.snack.open(`${error.message}`, "Close", {
+            duration: 15000
+          });
+        }
+      }
+
+      this.graphql.createClient(changeset, password, action);
 
     } else {
-      this.graphql.updateClient(changeset, changeset.password);
+      const action = {
+        next: (data: any) => {
+          console.log(data);          
+        },
+        error: (error: ApolloError) => {
+          console.error(error);
+          console.error('Mutation error: ', error.message);
+          this.snack.open(`${error.message}`, "Close", {
+            duration: 15000
+          });
+        }
+      }
+      this.graphql.updateClient(changeset, changeset.password, action);
     }
   }
 
   toggleUserState() {
     const enable: boolean = this.client.disabled ? true : false;
-    this.graphql.setState(this.userName, enable);
+    const action = {
+      next: (data: any) => {
+        console.log(data);
+      },
+      error: (error: ApolloError) => {
+        console.error(error);
+        console.error('Mutation error: ', error.message);
+        this.snack.open(`${error.message}`, "Close", {
+          duration: 15000
+        });
+      }
+    }
+    this.graphql.setState(this.userName, enable, action);
   }
 
   ngOnDestroy() {

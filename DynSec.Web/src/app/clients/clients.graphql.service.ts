@@ -129,12 +129,12 @@ export class ClientsGraphqlService {
   }
 
 
-  updateClient(client: any, password: string) {
-    return this.runMutation(updateClientMutation, client, password);
+  updateClient(client: any, password: string, actions?: any) {
+    return this.runMutation(updateClientMutation, client, password, actions);
   }
 
-  createClient(client: any, password: string) {
-    return this.runMutation(createClientMutation, client, password);
+  createClient(client: any, password: string, actions?: any) {
+    return this.runMutation(createClientMutation, client, password, actions);
   }
 
   private runMutation(mutation: any, client: any, password: string, actions?: any) {
