@@ -1,4 +1,36 @@
 
+<div class="acl-list-form-row">
+
+  <mat-form-field class="acl-list-row-left">
+    <mat-label>Permission</mat-label>
+    <mat-select>
+      @for (value of aclTypes; track value) {
+      <mat-option [value]="value">{{value}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="acl-list-row-left acl-list-role-priority">
+    <mat-label>Topic</mat-label>
+    <input matInput placeholder="Topic" name="topic">
+  </mat-form-field>
+
+
+  <mat-checkbox class="example-margin">Allow</mat-checkbox>
+
+
+  <mat-form-field class="acl-list-row-left acl-list-role-priority">
+    <mat-label>Priority</mat-label>
+    <input matInput type="number" placeholder="Priority" name="priority">
+  </mat-form-field>
+
+  <div class="acl-list-row-center"></div>
+  <div class="acl-list-row-right">
+    <button mat-icon-button (click)="addItem()"><mat-icon>add_circle</mat-icon></button>
+  </div>
+</div>
+
+
 
 <div>
   <mat-table [dataSource]="selectedValues()" class="mat-elevation-z8">

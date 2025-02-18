@@ -6,7 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTable, MatTableModule } from '@angular/material/table';
-import { Acl } from '../../model/acl';
+import { Acl, ACLtype } from '../../model/acl';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @Component({
   selector: 'dynsec-acl-list',
@@ -18,7 +19,8 @@ import { Acl } from '../../model/acl';
     MatButtonModule,
     MatIconModule,
     MatTable,
-    MatTableModule,    
+    MatTableModule,
+    MatCheckboxModule,
   ],
   templateUrl: './acl-list.component.html',
   styleUrl: './acl-list.component.scss'
@@ -26,5 +28,8 @@ import { Acl } from '../../model/acl';
 export class AclListComponent {
   displayedColumns = ['permission','topic', 'allow', 'priority', 'buttons'];
   selectedValues = model<Acl[]>([]);
+  aclTypes = Object.values(ACLtype);
 
+  addItem() {
+  }
 }
