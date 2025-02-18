@@ -1,20 +1,11 @@
 
-.mat-mdc-header-cell {
-  padding: 0 0.5em;
+
+.mat-column-roleName {
+  flex: 1 1 auto;
 }
 
-.mat-mdc-cell {
-  padding: 0 0.5em;
-}
-
-.mat-mdc-footer-cell {
-  padding: 0 0.5em;
-}
-
-.mat-column-userName {
-  width: auto;
-}
-
-.mat-column-disableButton {
-  width: 48px;
+.mat-column-buttons {
+  flex-basis: 48px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }

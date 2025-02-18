@@ -21,15 +21,32 @@
   width: 5rem;
 }
 
+.mat-column-permission {
+  flex: 2;
+}
+
+.mat-column-topic {
+  flex: 4;
+}
+
 .mat-column-priority {
-  width: 3rem;
+  flex-basis: 5em;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
 }
 
 .mat-column-allow {
-  width: 48px;
+  flex-basis: 5em;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content:center;
+  
 }
 
-
 .mat-column-buttons {
-  width: 48px;
+  flex-basis: 48px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
 }

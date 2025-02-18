@@ -22,9 +22,14 @@
 }
 
 .mat-column-priority {
-  width: 5rem;
+  flex-basis: 5rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
 }
 
 .mat-column-removeButton {
-  width: 48px;
+  flex-basis: 48px;
+  flex-grow: 0;
+  flex-shrink: 0;
 }
