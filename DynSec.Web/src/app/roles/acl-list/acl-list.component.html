@@ -3,7 +3,7 @@
 
   <mat-form-field class="mat-column-permission">
     <mat-label>Permission</mat-label>
-    <mat-select>
+    <mat-select [(ngModel)]="newValue.aclType">
       @for (value of aclTypes; track value) {
       <mat-option [value]="value">{{value}}</mat-option>
       }
@@ -12,16 +12,23 @@
 
   <mat-form-field class="mat-column-topic">
     <mat-label>Topic</mat-label>
-    <input matInput placeholder="Topic or pattern" name="topic">
+    <input matInput placeholder="Topic or pattern" name="topic" [(ngModel)]="newValue.topic">
   </mat-form-field>
 
 
-  <mat-checkbox class="mat-column-allow">Allow</mat-checkbox>
+  <!--<mat-checkbox class="mat-column-allow">Allow</mat-checkbox>-->
+  <mat-form-field class="mat-column-allow">
+    <mat-label>Action</mat-label>
+    <mat-select [(ngModel)]="newValue.allow">
+      <mat-option value="true">Allow</mat-option>
+      <mat-option value="false">Block</mat-option>
+    </mat-select>
+  </mat-form-field>
 
 
   <mat-form-field class="mat-column-priority">
     <mat-label>Priority</mat-label>
-    <input matInput type="number" placeholder="0" name="priority">
+    <input matInput type="number" placeholder="0" name="priority" [(ngModel)]="newValue.priority">
   </mat-form-field>
 
   <div class="mat-column-buttons">
@@ -61,7 +68,9 @@
     <ng-container matColumnDef="buttons">
       <mat-header-cell mat-header-cell *matHeaderCellDef></mat-header-cell>
       <mat-cell mat-cell *matCellDef="let role">
-        <button mat-icon-button><mat-icon>remove_circle</mat-icon></button>
+        <button mat-icon-button (click)="removeItem(role)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
       </mat-cell>
     </ng-container>
 

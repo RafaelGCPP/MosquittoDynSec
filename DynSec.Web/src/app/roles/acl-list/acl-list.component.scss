@@ -2,7 +2,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 1em;
+  gap: 5px;
 }
 
 .mat-column-permission {
@@ -14,14 +14,14 @@
 }
 
 .mat-column-priority {
-  flex-basis: 5em;
+  flex-basis: 7em;
   flex-grow: 0;
   flex-shrink: 0;
   justify-content: center;
 }
 
 .mat-column-allow {
-  flex-basis: 5em;
+  flex-basis: 7em;
   flex-grow: 0;
   flex-shrink: 0;
   justify-content:center;
