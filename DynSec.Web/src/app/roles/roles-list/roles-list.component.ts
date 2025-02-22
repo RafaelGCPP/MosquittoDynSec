@@ -23,7 +23,7 @@ export class RolesListComponent {
 
   roles: Role[] = [];
   private querySubscription!: Subscription;
-  displayedColumns: string[] = ['roleName'];
+  displayedColumns: string[] = ['roleName', 'buttons'];
   loading: boolean = true;
 
   constructor(
@@ -50,6 +50,10 @@ export class RolesListComponent {
         this.roles = data.rolesList.roles;
         this.table.renderRows();
       });
+  }
+
+  refresh() {
+    this.graphql.refresh();
   }
 
   ngOnDestroy() {

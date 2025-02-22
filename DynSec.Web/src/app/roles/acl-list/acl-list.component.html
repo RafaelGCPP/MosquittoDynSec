@@ -1,0 +1,81 @@
+
+<div class="acl-list-form-row">
+
+  <mat-form-field class="mat-column-permission">
+    <mat-label>Permission</mat-label>
+    <mat-select [(ngModel)]="newValue.aclType">
+      @for (value of aclTypes; track value) {
+      <mat-option [value]="value">{{value}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field class="mat-column-topic">
+    <mat-label>Topic</mat-label>
+    <input matInput placeholder="Topic or pattern" name="topic" [(ngModel)]="newValue.topic">
+  </mat-form-field>
+
+
+  <!--<mat-checkbox class="mat-column-allow">Allow</mat-checkbox>-->
+  <mat-form-field class="mat-column-allow">
+    <mat-label>Action</mat-label>
+    <mat-select [(ngModel)]="newValue.allow">
+      <mat-option value="true">Allow</mat-option>
+      <mat-option value="false">Block</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+
+  <mat-form-field class="mat-column-priority">
+    <mat-label>Priority</mat-label>
+    <input matInput type="number" placeholder="0" name="priority" [(ngModel)]="newValue.priority">
+  </mat-form-field>
+
+  <div class="mat-column-buttons">
+    <button mat-icon-button (click)="addItem()"><mat-icon>add_circle</mat-icon></button>
+  </div>
+</div>
+
+
+
+<div>
+  <mat-table [dataSource]="selectedValues()" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="permission">
+      <mat-header-cell *matHeaderCellDef>Permission</mat-header-cell>
+      <mat-cell *matCellDef="let acl">{{acl.aclType}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="topic">
+      <mat-header-cell *matHeaderCellDef>Topic</mat-header-cell>
+      <mat-cell *matCellDef="let acl">{{acl.topic}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="allow">
+      <mat-header-cell *matHeaderCellDef>Allowed</mat-header-cell>
+      <mat-cell *matCellDef="let acl">
+        <mat-icon>{{acl.allow?"check":"block"}}</mat-icon>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="priority">
+      <mat-header-cell mat-header-cell *matHeaderCellDef>Priority</mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let acl">
+        {{acl.priority}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="buttons">
+      <mat-header-cell mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell mat-cell *matCellDef="let role">
+        <button mat-icon-button (click)="removeItem(role)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+
+</div>

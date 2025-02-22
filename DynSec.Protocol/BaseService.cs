@@ -18,6 +18,7 @@ namespace DynSec.Protocol
 
             if (error == "Task Cancelled") return new DynSecProtocolTimeoutException(error);
             if (error.Contains("not found")) return new DynSecProtocolNotFoundException(error);
+            if (error.Contains("already exists")) return new DynSecProtocolDuplicatedException(error);
 
             return new DynSecProtocolException(error);
         }

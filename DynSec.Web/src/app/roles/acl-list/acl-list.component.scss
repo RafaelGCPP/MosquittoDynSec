@@ -1,0 +1,36 @@
+.acl-list-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 5px;
+}
+
+.mat-column-permission {
+  flex: 2;
+}
+
+.mat-column-topic {
+  flex: 4;
+}
+
+.mat-column-priority {
+  flex-basis: 7em;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.mat-column-allow {
+  flex-basis: 7em;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content:center;
+  
+}
+
+.mat-column-buttons {
+  flex-basis: 64px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
+}

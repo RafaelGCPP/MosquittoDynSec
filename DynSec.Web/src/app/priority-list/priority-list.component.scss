@@ -1,0 +1,35 @@
+.priority-list-form-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 1em;
+}
+
+.priority-list-row-left {
+  justify-self: start;
+}
+
+.priority-list-row-center {
+  flex: 1;
+}
+
+.priority-list-row-right {
+  justify-self: end;
+}
+
+.priority-list-role-priority {
+  width: 5rem;
+}
+
+.mat-column-priority {
+  flex-basis: 5rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
+}
+
+.mat-column-removeButton {
+  flex-basis: 64px;
+  flex-grow: 0;
+  flex-shrink: 0;
+}

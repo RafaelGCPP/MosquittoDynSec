@@ -12,7 +12,9 @@ export const appConfig: ApplicationConfig = {
   providers: [
     provideAnimations(),
     provideZoneChangeDetection({ eventCoalescing: true }),
-    provideRouter(routes), provideHttpClient(), provideApollo(() => {
+    provideRouter(routes),
+    provideHttpClient(),
+    provideApollo(() => {
       const httpLink = inject(HttpLink);
 
       return {

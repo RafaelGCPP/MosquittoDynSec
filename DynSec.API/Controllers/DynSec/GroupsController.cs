@@ -25,7 +25,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await groupService.GetList(verbose));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -43,7 +43,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await groupService.Get(group));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -61,7 +61,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await groupService.GetAnonymous());
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }

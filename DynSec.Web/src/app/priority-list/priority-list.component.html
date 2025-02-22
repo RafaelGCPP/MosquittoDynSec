@@ -1,0 +1,44 @@
+<div class="priority-list-form-row">
+
+  <mat-form-field class="priority-list-row-left">
+    <mat-label>{{name()}}</mat-label>
+    <mat-select [(ngModel)]="newItem">
+      @for (value of availableOptions(); track value) {
+      <mat-option [value]="value">{{value}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field class="priority-list-row-left priority-list-role-priority">
+    <mat-label>Priority</mat-label>
+    <input matInput type="number" placeholder="Priority" name="priority" [(ngModel)]="newPriority">
+  </mat-form-field>
+
+  <div class="priority-list-row-center"></div>
+  <div class="priority-list-row-right">
+    <button mat-icon-button (click)="addItem()"><mat-icon>add_circle</mat-icon></button>
+  </div>
+</div>
+
+
+<div>
+  <mat-table [dataSource]="selectedValues()" class="mat-elevation-z8">
+    <ng-container matColumnDef="itemName">
+      <mat-header-cell *matHeaderCellDef>{{name()}}</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{item.name}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="priority">
+      <mat-header-cell *matHeaderCellDef>Priority</mat-header-cell>
+      <mat-cell *matCellDef="let item">{{item.priority}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="removeButton">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let item">
+        <button mat-icon-button (click)="removeItem(item.name)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

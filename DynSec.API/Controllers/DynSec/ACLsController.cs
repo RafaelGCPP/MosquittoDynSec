@@ -22,7 +22,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await aclsService.GetDefault());
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -38,7 +38,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await aclsService.SetDefault(data));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }

@@ -1,4 +1,26 @@
 <form class="role-form">
+
+  <div class="role-form-row">
+    <div class="role-row-left"></div>
+    <div class="role-row-center"></div>
+
+    <button mat-icon-button
+            class="role-row-right"
+            matTooltip="Save"
+            (click)="saveRole()">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-icon-button
+            class="role-row-right"
+            [disabled]="mode=='new'"
+            [disabledInteractive]="mode=='new'"
+            (click)="deleteRole()"
+            matTooltip="Delete">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  </div>
+
   <div class="role-form-row">
     <mat-form-field class="role-row-left">
       <mat-label>Role name</mat-label>
@@ -18,4 +40,9 @@
     <mat-label>Description</mat-label>
     <input matInput placeholder="Add role description" name="textDesc" [(ngModel)]="role.textDescription">
   </mat-form-field>
+
+  <div style="height:3em"></div>
+
+  <dynsec-acl-list name="aclControl"
+                   [(selectedValues)]="selectedAcls"></dynsec-acl-list>
 </form>

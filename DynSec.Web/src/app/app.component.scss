@@ -1,7 +1,14 @@
-:host {
-    
+
+.app-main-container {
+  display: flex;
+  flex-direction: column;
+  height:100%
 }
 
-.dynsec-main-content {
-    height: 90vh;
+.app-navbar {
+  flex: 0 0 auto;
+}
+
+.app-content {
+  flex: 1 1 auto;
 }

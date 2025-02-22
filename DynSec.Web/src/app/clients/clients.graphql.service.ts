@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { gql } from "@apollo/client/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { ApolloError, gql } from "@apollo/client/core";
 import { Apollo } from "apollo-angular";
 
 const clientslistQuery =
@@ -30,6 +31,10 @@ const clientQuery =
       }
     }
   }
+}`;
+
+const rolesAndGroupsQuery =
+  gql`query {
   rolesList {
     roles {
       roleName
@@ -52,9 +57,28 @@ const disableUserMutation =
   disableClient(client:$userName)
 }`;
 
+const updateClientMutation =
+  gql`mutation UpdateClient($client: ClientInput!, $password: String) {
+  modifyClient(client: $client, password: $password)
+}`;
+
+const createClientMutation =
+  gql`mutation NewClient($client: ClientInput!, $password: String!) {
+  createClient(newclient: $client, password: $password) 
+}`
+const deleteClientMutation =
+  gql`mutation DeleteClient($userName: String!) {
+  deleteClient(client: $userName)
+}`
+
 @Injectable({ providedIn: 'root', })
 export class ClientsGraphqlService {
-  constructor(private readonly apollo: Apollo) { }
+  constructor(
+    private readonly apollo: Apollo,
+    private readonly snack: MatSnackBar
+  ) { }
+
+
   getClientList() {
     return this.apollo
       .watchQuery<any>({
@@ -74,17 +98,20 @@ export class ClientsGraphqlService {
       .valueChanges;
   }
 
-  setState(userName: string, enabled: boolean) {
-    if (enabled) {
-      this.enableClient(userName).subscribe();
-    } else {
-      this.disableClient(userName).subscribe();
-    }
+  getRolesAndGroups() {
+    return this.apollo
+      .watchQuery<any>({
+        query: rolesAndGroupsQuery,
+      })
+      .valueChanges;
   }
 
-  enableClient(userName: string) {
+  setState(userName: string, enabled: boolean, actions?: any) {
+
+    const mutation = (enabled) ? enableUserMutation : disableUserMutation;
+
     return this.apollo.mutate({
-      mutation: enableUserMutation,
+      mutation: mutation,
       variables: {
         userName: userName
       },
@@ -102,14 +129,24 @@ export class ClientsGraphqlService {
           }
         }
       ]
-    });
+    }).subscribe(actions);
   }
 
-  disableClient(userName: string) {
+
+  updateClient(client: any, password: string, actions?: any) {
+    return this.runMutation(updateClientMutation, client, password, actions);
+  }
+
+  createClient(client: any, password: string, actions?: any) {
+    return this.runMutation(createClientMutation, client, password, actions);
+  }
+
+  private runMutation(mutation: any, client: any, password: string, actions?: any) {
     return this.apollo.mutate({
-      mutation: disableUserMutation,
+      mutation: mutation,
       variables: {
-        userName: userName
+        client: client,
+        password: password
       },
       refetchQueries: [
         {
@@ -121,10 +158,31 @@ export class ClientsGraphqlService {
           query: clientQuery,
           fetchPolicy: 'network-only',
           variables: {
-            userName: userName
+            userName: client.userName
           }
         }
       ]
-    });
+    }).subscribe(actions);
+  }
+
+  deleteClient(userName: string, actions?: any) {
+    return this.apollo.mutate({
+      mutation: deleteClientMutation,
+      variables: {
+        userName: userName
+      },
+      refetchQueries: [
+        {
+          query: clientslistQuery,
+          fetchPolicy: 'network-only',
+          variables: {},
+        },
+      ]
+    }).subscribe(actions);
+  }
+
+  refresh() {
+    this.apollo.client.resetStore();
   }
 }
+

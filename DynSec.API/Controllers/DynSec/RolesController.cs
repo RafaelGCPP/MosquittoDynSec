@@ -21,7 +21,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await rolesService.GetList(verbose));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -39,7 +39,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await rolesService.Get(role));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }

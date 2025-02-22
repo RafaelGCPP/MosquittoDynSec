@@ -22,7 +22,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await clientsService.GetList(verbose));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -41,7 +41,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await clientsService.Get(client));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -59,7 +59,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await clientsService.CreateClient(newclient, password));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -77,7 +77,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await clientsService.ModifyClient(client, password));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -95,7 +95,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await clientsService.DeleteClient(client));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -113,7 +113,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await clientsService.EnableClient(client));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
@@ -132,7 +132,7 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return Ok(await clientsService.DisableClient(client));
             }
-            catch (DynSecProtocolTimeoutException e)
+            catch (DynSecProtocolInvalidParameterException e)
             {
                 return StatusCode(504, e.Message);
             }
