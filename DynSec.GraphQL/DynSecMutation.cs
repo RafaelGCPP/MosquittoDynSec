@@ -40,6 +40,7 @@ namespace DynSec.GraphQL
         #region Roles
         public async Task<string?> CreateRoleAsync(RoleACL newrole) => await rolesService.CreateRole(newrole);
         public async Task<string?> ModifyRoleAsync(RoleACL role) => await rolesService.ModifyRole(role);
+        public async Task<string?> DeleteRoleAsync(string role) => await rolesService.DeleteRole(role);
 
         #endregion
 

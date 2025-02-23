@@ -85,6 +85,25 @@ namespace DynSec.API.Controllers.DynSec
                 return NotFound(e.Message);
             }
         }
+
+        // POST: api/<MQTTdynsecController>/role/<role>/delete
+        [HttpPost("role/{role}/delete")]
+        public async Task<ActionResult<string>> DeleteRole(string role)
+        {
+            try
+            {
+                return Ok(await rolesService.DeleteRole(role));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
     }
 }
 

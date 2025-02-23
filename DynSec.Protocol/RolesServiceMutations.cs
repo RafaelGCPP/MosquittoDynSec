@@ -64,5 +64,16 @@ namespace DynSec.Protocol
             var result = await ExecuteCommand<GeneralResponse>(builder.Build());
             return commandDoneString;
         }
+
+        public async Task<string?> DeleteRole(string role)
+        {
+            if (role == null)
+            {
+                throw new DynSecProtocolInvalidParameterException("Role name is required");
+            }
+            var cmd = new DeleteRole(role);
+            var result = await ExecuteCommand<GeneralResponse>(cmd);
+            return commandDoneString;
+        }
     }
 }

@@ -9,5 +9,6 @@ namespace DynSec.Protocol.Interfaces
         Task<RoleInfoData?> Get(string role);
         Task<string?> CreateRole(RoleACL newrole);
         Task<string?> ModifyRole(RoleACL role);
+        Task<string?> DeleteRole(string role);
     }
 }
