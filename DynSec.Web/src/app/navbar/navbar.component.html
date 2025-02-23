@@ -5,8 +5,9 @@
       <mat-icon>menu</mat-icon>
     </button>
     <a mat-button routerLink="/clients" (click)="this.openSidenav()">Clients</a>
-    <a mat-button routerLink="roles">Roles</a>
-    <a mat-button routerLink="groups">Groups</a>
+    <a mat-button routerLink="/roles" (click)="this.openSidenav()">Roles</a>
+    <a mat-button routerLink="/groups" (click)="this.openSidenav()">Groups</a>
+    <a mat-button routerLink="/defaultAcl" (click)="this.openSidenav()">Default ACL</a>
   </div>
   <div class="center-block"></div>
   <div class="right-align">
