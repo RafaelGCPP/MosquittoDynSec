@@ -75,5 +75,26 @@ namespace DynSec.Protocol
             var result = await ExecuteCommand<GeneralResponse>(cmd);
             return commandDoneString;
         }
+
+        public async Task<string?> AddClientRole(string role, string client)
+        {
+            if (role == null || client == null)
+            {
+                throw new DynSecProtocolInvalidParameterException("Role and client names are required");
+            }
+            var cmd = new AddClientRole(role, client);
+            var result = await ExecuteCommand<GeneralResponse>(cmd);
+            return commandDoneString;
+        }
+        public async Task<string?> RemoveClientRole(string role, string client)
+        {
+            if (role == null || client == null)
+            {
+                throw new DynSecProtocolInvalidParameterException("Role and client names are required");
+            }
+            var cmd = new RemoveClientRole(role, client);
+            var result = await ExecuteCommand<GeneralResponse>(cmd);
+            return commandDoneString;
+        }
     }
 }

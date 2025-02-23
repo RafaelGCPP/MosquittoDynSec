@@ -104,6 +104,42 @@ namespace DynSec.API.Controllers.DynSec
             }
         }
 
+        // POST: api/<MQTTdynsecController>/role/<role>/client/<client>/add
+        [HttpPost("role/{role}/client/{client}/add")]
+        public async Task<ActionResult<string>> AddClientRole(string role, string client)
+        {
+            try
+            {
+                return Ok(await rolesService.AddClientRole(role, client));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+        // POST: api/<MQTTdynsecController>/role/<role>/client/<client>/remove
+        [HttpPost("role/{role}/client/{client}/remove")]
+        public async Task<ActionResult<string>> RemoveClientRole(string role, string client)
+        {
+            try
+            {
+                return Ok(await rolesService.RemoveClientRole(role, client));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
     }
 }
 

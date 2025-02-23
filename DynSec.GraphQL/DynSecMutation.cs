@@ -41,6 +41,8 @@ namespace DynSec.GraphQL
         public async Task<string?> CreateRoleAsync(RoleACL newrole) => await rolesService.CreateRole(newrole);
         public async Task<string?> ModifyRoleAsync(RoleACL role) => await rolesService.ModifyRole(role);
         public async Task<string?> DeleteRoleAsync(string role) => await rolesService.DeleteRole(role);
+        public async Task<string?> AddClientRoleAsync(string role, string client) => await rolesService.AddClientRole(role, client);
+        public async Task<string?> RemoveClientRoleAsync(string role, string client) => await rolesService.RemoveClientRole(role, client);
 
         #endregion
 
