@@ -13,6 +13,10 @@ import { Role } from '../../model/role';
 import { NavBarService } from '../../navbar/navbar.service';
 import { RolesGraphqlService } from '../roles.graphql.service';
 import { AclListComponent } from '../acl-list/acl-list.component';
+import { ApolloError } from '@apollo/client/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog, MatDialogActions } from '@angular/material/dialog';
+import { DeleteDialog } from '../../delete-dialog/delete-dialog';
 
 @Component({
   selector: 'dynsec-role-detail',
@@ -24,7 +28,7 @@ import { AclListComponent } from '../acl-list/acl-list.component';
     MatButtonModule,
     MatIconModule,
     MatTooltipModule,
-    AclListComponent
+    AclListComponent,
   ],
   templateUrl: './role-detail.component.html',
   styleUrl: './role-detail.component.scss'
@@ -35,7 +39,7 @@ export class RoleDetailComponent {
     roleName: '',
     textName: '',
     textDescription: '',
-    acLs:[]
+    acLs: []
   }
   selectedAcls: Acl[] = [];
 
@@ -46,9 +50,15 @@ export class RoleDetailComponent {
   private readonly router = inject(Router);
   private readonly navBar = inject(NavBarService);
   private readonly graphql = inject(RolesGraphqlService);
+  private readonly snack = inject(MatSnackBar);
+  private readonly dialog = inject(MatDialog);
 
   mode = 'edit';
 
+  defaultAction = {
+    next: console.log,
+    error: this.displayError
+  }
 
   ngOnInit() {
     this.paramSubscription = this.route.paramMap.subscribe(params => {
@@ -82,18 +92,92 @@ export class RoleDetailComponent {
     }
   }
 
-  private normalizeRole(role: any):Role {
+  private normalizeRole(role: any): Role {
     return {
       ...role,
     };
   }
 
+  updateAcls() {
+    this.role.acLs = this.selectedAcls.map
+      (acl => {
+        return {
+          aclType: acl.aclType,
+          topic: acl.topic,
+          allow: acl.allow,
+          priority: acl.priority
+        };
+      });
+  }
+
   saveRole() {
+    if (this.mode === 'edit') {
+      this.role = {
+        roleName: this.roleName,
+        textDescription: this.role.textDescription,
+        textName: this.role.textName,
+        acLs: this.selectedAcls.map
+          (acl => {
+            return {
+              aclType: acl.aclType,
+              topic: acl.topic,
+              allow: acl.allow,
+              priority: acl.priority
+            };
+          }),
+      };
+
+      this.graphql.updateRole(this.role, this.defaultAction);
+    } else {
+      const actions = {
+        next: (data: any) => {
+          console.log(data);
+          this.router.navigate([`../${this.role.roleName}`], { relativeTo: this.route });
+        },
+        error: (error: ApolloError) => {
+          console.error(error);
+          console.error('Mutation error: ', error.message);
+          this.snack.open(`${error.message}`, "Close", {
+            duration: 15000
+          });
+
+        }
+      };
+      this.graphql.createRole(this.role, actions);
+    }
 
   }
 
   deleteRole() {
+    const dialogRef = this.dialog.open(DeleteDialog, {
+      data: { name: this.roleName, itemType: 'role' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        const action = {
+          next: (data: any) => {
+            console.log(data);
+            this.router.navigateByUrl('/roles');
+            this.graphql.refresh();
+            this.navBar.openSidenav();
+          },
+          error: this.displayError
+        }
+        this.graphql.deleteRole (this.roleName, action);
+      }
+    });
   }
+
+
+  displayError(error: ApolloError) {
+    console.error(error);
+    console.error('Mutation error: ', error.message);
+    this.snack.open(`${error.message}`, "Close", {
+      duration: 15000
+    });
+  }
+
 
   ngOnDestroy() {
     if (this.mode === 'edit') {

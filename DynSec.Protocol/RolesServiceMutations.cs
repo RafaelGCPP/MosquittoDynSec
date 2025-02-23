@@ -11,7 +11,7 @@ namespace DynSec.Protocol
           
         public async Task<string?> CreateRole(RoleACL newrole)
         {
-            if (newrole.RoleName == null)
+            if ((newrole.RoleName == null) || (newrole.RoleName==""))
             {
                 throw new DynSecProtocolInvalidParameterException("Role name is required");
             }
@@ -78,7 +78,7 @@ namespace DynSec.Protocol
 
         public async Task<string?> AddClientRole(string role, string client)
         {
-            if (role == null || client == null)
+            if (role == "" || client == "")
             {
                 throw new DynSecProtocolInvalidParameterException("Role and client names are required");
             }
@@ -88,7 +88,7 @@ namespace DynSec.Protocol
         }
         public async Task<string?> RemoveClientRole(string role, string client)
         {
-            if (role == null || client == null)
+            if (role == "" || client == "")
             {
                 throw new DynSecProtocolInvalidParameterException("Role and client names are required");
             }
@@ -98,7 +98,7 @@ namespace DynSec.Protocol
         }
         public async Task<string?> AddRoleACL(string role, ACLDefinition acl)
         {
-            if (role == null || acl == null)
+            if (role == "")
             {
                 throw new DynSecProtocolInvalidParameterException("Role and ACL definition are required");
             }
@@ -108,7 +108,7 @@ namespace DynSec.Protocol
         }
         public async Task<string?> RemoveRoleACL(string role, ACLDefinition acl)
         {
-            if (role == null || acl == null)
+            if (role == "" )
             {
                 throw new DynSecProtocolInvalidParameterException("Role and ACL definition are required");
             }
