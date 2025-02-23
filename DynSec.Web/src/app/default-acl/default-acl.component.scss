@@ -1,0 +1,30 @@
+:host {
+  width: 100%;
+}
+
+.dynsec-default-acl-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.default-acl-table {
+  display: flex;
+  flex-direction: column;
+  margin: 0 5%;
+}
+
+
+.mat-column-permission {
+  flex-basis: 30em;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+
+.mat-column-allow {
+  flex-basis: 64px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  justify-content: center;
+}

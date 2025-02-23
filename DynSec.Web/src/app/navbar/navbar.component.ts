@@ -37,6 +37,11 @@ export class NavbarComponent {
   openSidenav() {
     this.navbarSvc.openSidenav();
   }
+
+  closeSidenav() {
+    this.navbarSvc.closeSidenav();
+  }
+
   ngOnDestroy() {
     this.svcSubscription.unsubscribe();
   }

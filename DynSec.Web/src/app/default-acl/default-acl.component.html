@@ -1,0 +1,29 @@
+
+
+<div class="dynsec-default-acl-content">
+
+  <div class="default-acl-table">
+    <mat-table [dataSource]="defaultAcl" class="mat-elevation-z8">
+      <ng-container matColumnDef="permission">
+        <mat-header-cell *matHeaderCellDef>Permission</mat-header-cell>
+        <mat-cell *matCellDef="let acl">{{acl.aclType}}</mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="allow">
+        <mat-header-cell *matHeaderCellDef>Allowed</mat-header-cell>
+        <mat-cell *matCellDef="let acl">
+          <mat-icon>{{acl.allow?"check":"block"}}</mat-icon>
+        </mat-cell>
+      </ng-container>
+
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
+</div>
+
+
+
+
+
