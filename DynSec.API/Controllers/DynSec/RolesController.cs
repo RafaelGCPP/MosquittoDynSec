@@ -1,4 +1,5 @@
-﻿using DynSec.Model.Responses;
+﻿using DynSec.Model;
+using DynSec.Model.Responses;
 using DynSec.Protocol.Exceptions;
 using DynSec.Protocol.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,42 @@ namespace DynSec.API.Controllers.DynSec
             try
             {
                 return Ok(await rolesService.Get(role));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+        // POST: api/<MQTTdynsecController>/role
+        [HttpPost("role")]
+        public async Task<ActionResult<string>> CreateRole(RoleACL newrole)
+        {
+            try
+            {
+                return Ok(await rolesService.CreateRole(newrole));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolDuplicatedException e)
+            {
+                return StatusCode(409, e.Message);
+            }
+        }
+
+        // POST: api/<MQTTdynsecController>/role/modify
+        [HttpPost("role/modify")]
+        public async Task<ActionResult<string>> ModifyRole(RoleACL role)
+        {
+            try
+            {
+                return Ok(await rolesService.ModifyRole(role));
             }
             catch (DynSecProtocolInvalidParameterException e)
             {

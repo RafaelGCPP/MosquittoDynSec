@@ -24,6 +24,11 @@ namespace DynSec.Model.Commands.TopLevel
             return this;
         }
 
+        public CMRoleBuilder AddEmptyACLSet()
+        {
+            ACLs = [];
+            return this;
+        }
         public abstract AbstractCommand Build();
     }
 }
