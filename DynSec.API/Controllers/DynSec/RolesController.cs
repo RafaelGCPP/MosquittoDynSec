@@ -140,6 +140,42 @@ namespace DynSec.API.Controllers.DynSec
             }
         }
 
+        // POST: api/<MQTTdynsecController>/role/<role>/acl/add
+        [HttpPost("role/{role}/acl/add")]
+        public async Task<ActionResult<string>> AddRoleACL(string role, ACLDefinition acl)
+        {
+            try
+            {
+                return Ok(await rolesService.AddRoleACL(role, acl));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+        // POST: api/<MQTTdynsecController>/role/<role>/acl/remove
+        [HttpPost("role/{role}/acl/remove")]
+        public async Task<ActionResult<string>> RemoveRoleACL(string role, ACLDefinition acl)
+        {
+            try
+            {
+                return Ok(await rolesService.RemoveRoleACL(role, acl));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
     }
 }
 

@@ -10,7 +10,10 @@ namespace DynSec.Protocol.Interfaces
         Task<string?> CreateRole(RoleACL newrole);
         Task<string?> ModifyRole(RoleACL role);
         Task<string?> DeleteRole(string role);
-        Task<string?> AddClientRole(string role, string client)
-        Task<string?> RemoveClientRole(string role, string client)
+        Task<string?> AddClientRole(string role, string client);
+        Task<string?> RemoveClientRole(string role, string client);
+        Task<string?> AddRoleACL(string role, ACLDefinition acl);
+        Task<string?> RemoveRoleACL(string role, ACLDefinition acl);
+
     }
 }

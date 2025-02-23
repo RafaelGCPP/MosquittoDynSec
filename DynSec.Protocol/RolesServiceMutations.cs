@@ -96,5 +96,25 @@ namespace DynSec.Protocol
             var result = await ExecuteCommand<GeneralResponse>(cmd);
             return commandDoneString;
         }
+        public async Task<string?> AddRoleACL(string role, ACLDefinition acl)
+        {
+            if (role == null || acl == null)
+            {
+                throw new DynSecProtocolInvalidParameterException("Role and ACL definition are required");
+            }
+            var cmd = new AddRoleACL(role, acl.ACLType, acl.Topic, acl.Priority, acl.Allow);
+            var result = await ExecuteCommand<GeneralResponse>(cmd);
+            return commandDoneString;
+        }
+        public async Task<string?> RemoveRoleACL(string role, ACLDefinition acl)
+        {
+            if (role == null || acl == null)
+            {
+                throw new DynSecProtocolInvalidParameterException("Role and ACL definition are required");
+            }
+            var cmd = new RemoveRoleACL(role, acl.ACLType, acl.Topic);
+            var result = await ExecuteCommand<GeneralResponse>(cmd);
+            return commandDoneString;
+        }
     }
 }
