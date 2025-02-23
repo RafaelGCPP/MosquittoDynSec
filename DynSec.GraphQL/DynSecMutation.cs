@@ -50,11 +50,7 @@ namespace DynSec.GraphQL
 
         #region ACLs
 
-        public async Task<DefaultACLAccessData?> SetDefaultACLsAsync(List<DefaultACL> data)
-        {
-            await aclService.SetDefault(data);
-            return await query.GetDefaultACLAsync();
-        }
+        public async Task<string?> SetDefaultACLsAsync(List<DefaultACL> data) => await aclService.SetDefault(data);
         #endregion
     }
 }

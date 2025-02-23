@@ -12,7 +12,9 @@
       <ng-container matColumnDef="allow">
         <mat-header-cell *matHeaderCellDef>Allowed</mat-header-cell>
         <mat-cell *matCellDef="let acl">
-          <mat-icon>{{acl.allow?"check":"block"}}</mat-icon>
+          <button mat-icon-button (click)="togglePermission(acl.aclType)">
+            <mat-icon>{{acl.allow?"check":"block"}}</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
 

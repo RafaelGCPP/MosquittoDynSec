@@ -16,8 +16,7 @@ interface DefaultAcl {
   imports: [
     MatTableModule,
     MatButtonModule,
-    MatIconModule,
-    RouterLink
+    MatIconModule    
   ],
   templateUrl: './default-acl.component.html',
   styleUrl: './default-acl.component.scss'
@@ -36,10 +35,28 @@ export class DefaultAclComponent {
       }
     );
   }
+
   getDefaultAcl() {
     this.graphql.getDefaultAcl().subscribe(
       ({ data, loading }) => {
         this.defaultAcl = data.defaultACL.acLs;
       });
+  }
+
+  togglePermission(permission: string) {
+    const newAcl = this.defaultAcl.map(
+      (acl) => {
+        return {
+          aclType: acl.aclType,
+          allow: (acl.aclType === permission) ? !acl.allow : acl.allow
+        }
+      }
+    );
+
+    this.graphql.setDefaultAcl(newAcl);
+  }
+
+  setDefaultAcl() {
+
   }
 }
