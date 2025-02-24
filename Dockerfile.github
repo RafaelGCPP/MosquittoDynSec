@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/aspnet:9.0-noble-chiseled AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0.2-noble-chiseled AS runtime
 
 COPY /app /app
 WORKDIR /app
