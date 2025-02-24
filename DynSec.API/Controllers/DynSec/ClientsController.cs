@@ -63,9 +63,9 @@ namespace DynSec.API.Controllers.DynSec
             {
                 return StatusCode(504, e.Message);
             }
-            catch (DynSecProtocolNotFoundException e)
+            catch (DynSecProtocolDuplicatedException e)
             {
-                return NotFound(e.Message);
+                return StatusCode(409, e.Message);
             }
         }
 

@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using MQTTnet;
 using MQTTnet.Extensions.Rpc;
 using MQTTnet.Protocol;
+using System.Collections;
 using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -70,6 +71,9 @@ namespace DynSec.Protocol
 
             using MqttRpcClient rpcClient = new(client, mqttRpcClientOptions);
             byte[] data = await rpcClient.ExecuteAsync(timeout, "", commands.AsJSON(), MqttQualityOfServiceLevel.AtMostOnce);
+            logger.LogDebug("Command: {command}", commands.AsJSON());
+            logger.LogDebug("Response: {response}", System.Text.Encoding.UTF8.GetString(data));
+
             ResponseList response = JsonSerializer.Deserialize<ResponseList>(data, jsonoptions) ?? new();
 
             return response;

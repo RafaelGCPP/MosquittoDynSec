@@ -24,7 +24,7 @@
   <div class="role-form-row">
     <mat-form-field class="role-row-left">
       <mat-label>Role name</mat-label>
-      <input matInput readonly name="roleName" [(ngModel)]="role.roleName">
+      <input matInput [readonly]="mode==='edit'" name="roleName" [(ngModel)]="role.roleName">
     </mat-form-field>
 
     <div class="role-row-center"></div>
@@ -44,5 +44,6 @@
   <div style="height:3em"></div>
 
   <dynsec-acl-list name="aclControl"
-                   [(selectedValues)]="selectedAcls"></dynsec-acl-list>
+                   [(selectedValues)]="selectedAcls"
+                   (modified)="updateAcls()"></dynsec-acl-list>
 </form>

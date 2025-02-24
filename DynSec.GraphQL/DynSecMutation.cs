@@ -36,13 +36,21 @@ namespace DynSec.GraphQL
         public async Task<string?> DisableClientAsync(string client) => await clientsService.DisableClient(client);
 
         #endregion
+
+        #region Roles
+        public async Task<string?> CreateRoleAsync(RoleACL newrole) => await rolesService.CreateRole(newrole);
+        public async Task<string?> ModifyRoleAsync(RoleACL role) => await rolesService.ModifyRole(role);
+        public async Task<string?> DeleteRoleAsync(string role) => await rolesService.DeleteRole(role);
+        public async Task<string?> AddClientRoleAsync(string role, string client) => await rolesService.AddClientRole(role, client);
+        public async Task<string?> RemoveClientRoleAsync(string role, string client) => await rolesService.RemoveClientRole(role, client);
+        public async Task<string?> AddRoleACLAsync(string role, ACLDefinition acl) => await rolesService.AddRoleACL(role, acl);
+        public async Task<string?> RemoveRoleACLAsync(string role, ACLDefinition acl) => await rolesService.RemoveRoleACL(role, acl);
+
+        #endregion
+
         #region ACLs
 
-        public async Task<DefaultACLAccessData?> SetDefaultACLsAsync(List<DefaultACL> data)
-        {
-            await aclService.SetDefault(data);
-            return await query.GetDefaultACLAsync();
-        }
+        public async Task<string?> SetDefaultACLsAsync(List<DefaultACL> data) => await aclService.SetDefault(data);
         #endregion
     }
 }

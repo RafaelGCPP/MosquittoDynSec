@@ -46,6 +46,7 @@ export class AclListComponent {
       priority: this.newValue.priority
     };
     this.selectedValues.update((acls) => [...acls, acl]);
+    this.modified.emit();
   }
 
   removeItem(acl: Acl) {
@@ -57,6 +58,6 @@ export class AclListComponent {
     }
     
     this.selectedValues.update((acls)=> acls.filter(a => a !== acl));
-   
+    this.modified.emit();
   }
 }
