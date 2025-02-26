@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/dotnet/sdk:9.0-noble AS aspnetbuild
+FROM mcr.microsoft.com/dotnet/sdk:9.0.2-noble AS aspnetbuild
 
 RUN apt update
 RUN apt upgrade -y

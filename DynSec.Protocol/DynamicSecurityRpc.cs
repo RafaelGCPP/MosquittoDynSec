@@ -13,6 +13,7 @@ using System.Text.Json;
 using System.Text.Json.Serialization;
 using System.Text.Unicode;
 using System.Timers;
+using System.Transactions;
 using Timer = System.Timers.Timer;
 
 namespace DynSec.Protocol
@@ -23,8 +24,8 @@ namespace DynSec.Protocol
         private readonly MqttClientOptions options;
         private readonly ILogger<DynamicSecurityRpc> logger;
         private readonly MqttRpcClientOptions mqttRpcClientOptions;
-        private object transmitting = new object();
-        private Timer disconnectTimer;
+        private readonly SemaphoreSlim transmitting=new(1,1);
+        private readonly Timer disconnectTimer;
 
         private JsonSerializerOptions jsonoptions = new JsonSerializerOptions
         {
@@ -79,7 +80,7 @@ namespace DynSec.Protocol
             return response;
         }
 
-        public Task<AbstractResponse> ExecuteCommand(AbstractCommand cmd)
+        public async Task<AbstractResponse> ExecuteCommand(AbstractCommand cmd)
         {
             TimeSpan _timeout = TimeSpan.FromSeconds(10);
 
@@ -91,11 +92,15 @@ namespace DynSec.Protocol
             // before we receive the response for the previous one. Also, we want to
             // avoid disconnection by session takeover from the next command.
 
-            lock (transmitting)
+
+            await transmitting.WaitAsync();
+            try
             {
-                var responseListTask = ExecuteAsync(_timeout, cmds);
-                responseListTask.Wait();
-                responseList = responseListTask.Result;
+                responseList = await ExecuteAsync(_timeout, cmds);
+            }
+            finally
+            {
+                transmitting.Release();
             }
             var response = responseList.Responses?.First() ?? new GeneralResponse
             {
@@ -103,7 +108,7 @@ namespace DynSec.Protocol
                 Error = "No response received"
             };
 
-            return Task.FromResult(response);
+            return response;
         }
 
 

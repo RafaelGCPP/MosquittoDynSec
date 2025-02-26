@@ -13,6 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		Dockerfile = Dockerfile
 		Dockerfile.github = Dockerfile.github
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DynSec.Model", "DynSec.Model\DynSec.Model.csproj", "{671A522F-E20C-44E8-86BD-D0A0F38DC205}"
@@ -28,8 +29,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{E4AABD69-9BCA-4433-B7AA-AFC7269A53C8}"
 	ProjectSection(SolutionItems) = preProject
 		.github\workflows\angular-build.yml = .github\workflows\angular-build.yml
-		.github\workflows\full-CI.yml = .github\workflows\full-CI.yml
 		.github\workflows\dotnet-build.yml = .github\workflows\dotnet-build.yml
+		.github\workflows\full-CI.yml = .github\workflows\full-CI.yml
 	EndProjectSection
 EndProject
 Global
@@ -69,5 +70,8 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BA857173-7E30-428E-B5AE-D61FF97AFCB9} = {609FC1C1-3F2A-436F-94C0-206BFEDC3613}
 		{E4AABD69-9BCA-4433-B7AA-AFC7269A53C8} = {BA857173-7E30-428E-B5AE-D61FF97AFCB9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A17FA9E8-4A0F-4FF3-821D-2B76A45337FC}
 	EndGlobalSection
 EndGlobal
