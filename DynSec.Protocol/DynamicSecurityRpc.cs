@@ -94,11 +94,14 @@ namespace DynSec.Protocol
 
 
             await transmitting.WaitAsync();
-
-            responseList = await ExecuteAsync(_timeout, cmds);
-
-            transmitting.Release();
-
+            try
+            {
+                responseList = await ExecuteAsync(_timeout, cmds);
+            }
+            finally
+            {
+                transmitting.Release();
+            }
             var response = responseList.Responses?.First() ?? new GeneralResponse
             {
                 Command = cmd.Command,
