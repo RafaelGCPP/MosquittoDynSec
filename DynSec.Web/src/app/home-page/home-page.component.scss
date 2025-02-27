@@ -1,0 +1,18 @@
+:host {
+  width: 100%;
+}
+
+.dynsec-home-page-content {
+  display: flex;
+  flex-direction:column;
+  height: 100%;
+  align-items: center;
+  justify-content:center;
+}
+
+.dynsec-home-page-text {
+  display: flex;
+  color: var(--mat-sys-on-primary-container);
+  width: 100%;
+  justify-content: center;
+}
