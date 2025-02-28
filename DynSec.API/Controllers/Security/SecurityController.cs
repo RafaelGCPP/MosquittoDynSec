@@ -24,10 +24,10 @@ namespace DynSec.API.Controllers.Security
         }
 
         [HttpGet("login")]
-        public ActionResult<IDictionary<string, string>> Login()
+        public ActionResult<IDictionary<string, string>> Login([FromQuery] string? returnUrl)
         {
             // Logic to initiate the authorization code flow
-            return Challenge(new AuthenticationProperties { RedirectUri = Url.Content("~/") });
+            return Challenge(new AuthenticationProperties { RedirectUri = Url.Content(returnUrl ?? "~/") });
         }
 
         [HttpPost("logout")]

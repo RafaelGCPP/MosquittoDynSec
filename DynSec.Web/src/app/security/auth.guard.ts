@@ -14,7 +14,10 @@ export class IsAuthenticatedGuard implements CanActivate {
 
     if (this.authService.isAuthenticated()) return true;
 
-    return this.router.parseUrl("/");
+    var returnUrl = encodeURI('~' + state.url);
+    this.authService.login(returnUrl);
+
+    return false;
 
   }
 }
