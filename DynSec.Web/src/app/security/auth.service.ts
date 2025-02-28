@@ -14,7 +14,7 @@ export class AuthService {
   isAuthenticated = signal(false);
   router = inject(Router);
   private readonly http = inject(HttpClient);
-  private readonly polling: any;
+  private readonly polling: Subscription;
   data: any;
 
   constructor() {
