@@ -13,10 +13,12 @@
   </div>
   <div class="center-block"></div>
   <div class="right-align">
-    <a mat-button>Eclipse Mosquitto&trade; Dynamic Security Manager</a>
+
     @if (this.authService.isAuthenticated()) {
+    <a mat-button>{{authService.getUserName()}}</a>
     <a mat-button (click)="authService.logout()">Logout</a>
     } @else {
+    <a mat-button>Eclipse Mosquitto&trade; Dynamic Security Manager</a>
     <a mat-button (click)="authService.login()">Login</a>
     }
   </div>
