@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { Subscription } from 'rxjs';
-import { NavBarService } from './navbar.service';
-import { RouterLink } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { RouterLink } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../security/auth.service';
+import { NavBarService } from './navbar.service';
 
 
 @Component({
@@ -20,12 +21,12 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 })
 export class NavbarComponent {
   svcSubscription!: Subscription;
+  private readonly navbarSvc = inject(NavBarService);
+  readonly authService = inject(AuthService);
 
-  constructor(private readonly navbarSvc: NavBarService) {
-  }
 
   ngOnInit() {
-    this.svcSubscription=this.navbarSvc.showSidenav.subscribe(show => {
+    this.svcSubscription = this.navbarSvc.showSidenav.subscribe(show => {
       console.log("Show Sidenav: ", show);
     });
   }
