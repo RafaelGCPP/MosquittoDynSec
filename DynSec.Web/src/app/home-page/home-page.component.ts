@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'dynsec-home-page',
   imports: [],
   templateUrl: './home-page.component.html',
-  styleUrl: './home-page.component.scss'
+  styleUrls: ['./home-page.component.scss']
 })
 export class HomePageComponent {
 
