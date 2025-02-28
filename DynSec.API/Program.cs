@@ -1,10 +1,12 @@
 using DynSec.GraphQL;
 using DynSec.MQTT;
 using DynSec.Protocol;
-using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Scalar.AspNetCore;
 using Serilog;
-
+using System.IdentityModel.Tokens.Jwt;
 
 namespace DynSec.API
 {
@@ -37,6 +39,37 @@ namespace DynSec.API
             builder.Services.AddControllers();
             builder.Services.AddDynSecGraphQL();
 
+            // Add Authentication
+
+            builder.Services.AddAuthentication(options =>
+            {
+                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+            })
+            .AddCookie()
+            .AddOpenIdConnect(options =>
+            {
+                var oidcConfig = builder.Configuration.GetSection("OpenIDConnectSettings");
+
+                options.Authority = oidcConfig["Authority"];
+                options.ClientId = oidcConfig["ClientId"];
+                options.ClientSecret = oidcConfig["ClientSecret"];
+
+                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+                options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+                options.ResponseType = OpenIdConnectResponseType.Code;
+                options.ResponseMode = OpenIdConnectResponseMode.Query;
+                options.UsePkce = true;
+
+                options.SaveTokens = true;
+                options.GetClaimsFromUserInfoEndpoint = true;
+
+                options.MapInboundClaims = false;
+                options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
+                options.TokenValidationParameters.RoleClaimType = "roles";
+
+            });
 
 
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
@@ -47,7 +80,8 @@ namespace DynSec.API
             var app = builder.Build();
 
             app.UseRouting();
-            
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             // Configure the HTTP request pipeline.
             //if (app.Environment.IsDevelopment())
@@ -67,10 +101,9 @@ namespace DynSec.API
             app.MapHealthChecks("/health");
 
             app.MapControllers();
-
-            app.UseAuthorization();
             app.UseStaticFiles();
             app.UseDefaultFiles();
+
 
             app.MapStaticAssets();
 

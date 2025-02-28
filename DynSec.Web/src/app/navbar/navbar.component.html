@@ -4,14 +4,23 @@
     <button mat-icon-button style="vertical-align: bottom;" (click)="toggleSidenav()">
       <mat-icon>menu</mat-icon>
     </button>
+    @if (this.authService.isAuthenticated()) {
     <a mat-button routerLink="/clients" (click)="this.openSidenav()">Clients</a>
     <a mat-button routerLink="/roles" (click)="this.openSidenav()">Roles</a>
     <a mat-button routerLink="/groups" (click)="this.openSidenav()">Groups</a>
     <a mat-button routerLink="/default-acl" (click)="this.closeSidenav()">Default ACL</a>
+    }
   </div>
   <div class="center-block"></div>
   <div class="right-align">
+
+    @if (this.authService.isAuthenticated()) {
+    <a mat-button>{{authService.getUserName()}}</a>
+    <a mat-button (click)="authService.logout()">Logout</a>
+    } @else {
     <a mat-button>Eclipse Mosquitto&trade; Dynamic Security Manager</a>
+    <a mat-button (click)="authService.login()">Login</a>
+    }
   </div>
 
 </mat-toolbar>
