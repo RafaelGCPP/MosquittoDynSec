@@ -22,10 +22,10 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22 
-          cache: 'yarn'
-          cache-dependency-path: DynSec.Web/yarn.lock
       - name: Enable Corepack
-        run: corepack enable          
+        run: corepack enable  
+      - name: Check yarn version
+        run: yarn -v
       - name: Install Angular dependencies
         run: yarn install
       - name: Build Angular app
