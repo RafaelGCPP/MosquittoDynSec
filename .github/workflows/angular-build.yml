@@ -23,7 +23,7 @@ jobs:
         with:
           node-version: 22 
           cache: 'yarn'
-          cache-dependency-path: DynSec.Web/yarn.json
+          cache-dependency-path: DynSec.Web/yarn.lock
       - name: Install Angular dependencies
         run: yarn install
       - name: Build Angular app
