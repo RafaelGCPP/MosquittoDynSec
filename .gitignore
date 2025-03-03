@@ -14,6 +14,9 @@ obj/
 /node_modules
 npm-debug.log
 yarn-error.log
+.yarn
+.pnp.loader.mjs
+.pnp.cjs
 
 # IDEs and editors
 .idea/
