@@ -3,11 +3,11 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DebuggerFlavor>LaunchJsonDebugger</DebuggerFlavor>
     <LaunchJsonTarget>{
-  "name": "localhost (Chrome)",
-  "type": "chrome",
+  "name": "localhost (Edge)",
+  "type": "edge",
   "request": "launch",
-  "url": "https://localhost:62784",
-  "webRoot": "E:\\work\\dotnet\\MosquittoDynSec\\DynSec\\DynSec.Web",
+  "url": "https://localhost:4200",
+  "webRoot": "E:\\work\\dotnet\\DynSec\\DynSec.Web",
   "env": {
     "ASPNETCORE_HTTPS_PORT": 7044,
     "ASPNETCORE_HTTP_PORT": 5045

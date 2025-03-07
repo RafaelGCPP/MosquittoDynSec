@@ -10,7 +10,7 @@
       {
         "Path": "DynSec.Web\\DynSec.Web.esproj",
         "Action": "Start",
-        "DebugTarget": "localhost (Chrome)"
+        "DebugTarget": "localhost (Edge)"
       }
     ]
   }
