@@ -86,7 +86,7 @@ namespace DynSec.API
             app.UseAuthorization();
 
             // Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
+            if (app.Environment.IsDevelopment())
             {
                 app.MapOpenApi();
                 app.MapScalarApiReference(options =>
@@ -108,8 +108,6 @@ namespace DynSec.API
 
 
             app.MapStaticAssets();
-
-
 
             app.MapFallbackToFile("/index.html");
 
