@@ -105,13 +105,13 @@ export class ClientDetailComponent {
         this.originalClient = {
           ...this.client
         };
+        this.updateSelectedItems();
       });
     }
 
     this.rolesAndGroupsSubscription = this.graphql.getRolesAndGroups().subscribe(result => {
       this.allRoles = result.data.rolesList.roles.map((x: any) => x.roleName);
       this.allGroups = result.data.groupsList.groups.map((x: any) => x.groupName);
-      this.updateSelectedItems();
     });
 
     this.navBar.closeSidenav();
