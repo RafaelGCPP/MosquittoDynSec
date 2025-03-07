@@ -24,6 +24,8 @@ namespace DynSec.API
 
             builder.Host.UseSerilog();
 
+            builder.AddServiceDefaults();
+
             // Bind configuration objects
 
             MQTTConfig mqttConfig = new();
@@ -98,7 +100,7 @@ namespace DynSec.API
 
             app.UseHttpsRedirection();
             app.MapDynSecGraphQL();
-            app.MapHealthChecks("/health");
+            //app.MapHealthChecks("/health");
 
             app.MapControllers();
             app.UseStaticFiles();
@@ -111,6 +113,7 @@ namespace DynSec.API
 
             app.MapFallbackToFile("/index.html");
 
+            app.MapDefaultEndpoints();
 
             app.Run();
         }
