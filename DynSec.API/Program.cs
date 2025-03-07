@@ -100,7 +100,6 @@ namespace DynSec.API
 
             app.UseHttpsRedirection();
             app.MapDynSecGraphQL();
-            //app.MapHealthChecks("/health");
 
             app.MapControllers();
             app.UseStaticFiles();
