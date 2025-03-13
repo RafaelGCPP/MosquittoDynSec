@@ -9,7 +9,7 @@ namespace DynSec.Model
         public string? GroupName { get; set; }
         public string? TextName { get; set; }
         public string? TextDescription { get; set; }
-        public RoleNameClass[]? Roles { get; set; }
+        public RolePriority[]? Roles { get; set; }
         public ClientNameClass[]? Clients { get; set; }
     }
 }
