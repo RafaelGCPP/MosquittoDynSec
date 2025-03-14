@@ -6,7 +6,7 @@ const groupslistQuery =
   gql`query {
   groupsList {
     groups {
-      groupsName
+      groupName
     }
   }
 }`;
