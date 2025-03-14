@@ -1,19 +1,25 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 
 namespace DynSec.GraphQL
 {
     public static class GraphQLProvider
     {
-        public static IServiceCollection AddDynSecGraphQL(this IServiceCollection services)
+        public static WebApplicationBuilder AddDynSecGraphQL(this WebApplicationBuilder builder)
         {
 
-            var hcbuilder = services.AddGraphQLServer()
+            var service = builder.Services.AddGraphQLServer()
                 .AddQueryType<DynSecQuery>()
                 .AddMutationType<DynSecMutation>()
                 .AddErrorFilter<DynSecErrorFilter>();
 
-            return services;
+            if (!builder.Environment.IsDevelopment())
+            {
+                service.DisableIntrospection();
+            }
+
+            return builder;
         }
 
         public static IApplicationBuilder MapDynSecGraphQL(this IApplicationBuilder app)

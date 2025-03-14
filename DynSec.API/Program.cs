@@ -35,11 +35,10 @@ namespace DynSec.API
             builder.Services.AddMqttClient();
             builder.Services.AddDynamicSecurityProtocol();
 
-
             // Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddDynSecGraphQL();
+            builder.AddDynSecGraphQL();
 
             // Add Authentication
 
@@ -87,7 +86,7 @@ namespace DynSec.API
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
-            {
+            {                
                 app.MapOpenApi();
                 app.MapScalarApiReference(options =>
                 {
