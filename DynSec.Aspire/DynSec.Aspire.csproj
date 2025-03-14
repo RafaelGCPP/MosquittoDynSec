@@ -12,12 +12,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Arshid.Aspire.ApiDocs.Extensions" Version="9.1.0" />
     <PackageReference Include="Aspire.Hosting.AppHost" Version="9.1.0" />
     <PackageReference Include="Aspire.Hosting.NodeJs" Version="9.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\DynSec.API\DynSec.API.csproj" />
+    <ProjectReference Include="..\DynSec.Aspire.ServiceDefaults\DynSec.Aspire.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\DynSec.GraphQL\DynSec.GraphQL.csproj" />
+    <ProjectReference Include="..\DynSec.Model\DynSec.Model.csproj" />
+    <ProjectReference Include="..\DynSec.MQTT\DynSec.MQTT.csproj" />
+    <ProjectReference Include="..\DynSec.Protocol\DynSec.Protocol.csproj" />
     <ProjectReference Include="..\DynSec.Web\DynSec.Web.esproj" />
   </ItemGroup>
 
