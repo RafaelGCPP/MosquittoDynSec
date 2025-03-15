@@ -24,6 +24,8 @@ namespace DynSec.API
 
             builder.Host.UseSerilog();
 
+            builder.AddServiceDefaults();
+
             // Bind configuration objects
 
             MQTTConfig mqttConfig = new();
@@ -33,11 +35,10 @@ namespace DynSec.API
             builder.Services.AddMqttClient();
             builder.Services.AddDynamicSecurityProtocol();
 
-
             // Add services to the container.
 
             builder.Services.AddControllers();
-            builder.Services.AddDynSecGraphQL();
+            builder.AddDynSecGraphQL();
 
             // Add Authentication
 
@@ -84,8 +85,8 @@ namespace DynSec.API
             app.UseAuthorization();
 
             // Configure the HTTP request pipeline.
-            //if (app.Environment.IsDevelopment())
-            {
+            if (app.Environment.IsDevelopment())
+            {                
                 app.MapOpenApi();
                 app.MapScalarApiReference(options =>
                 {
@@ -98,7 +99,6 @@ namespace DynSec.API
 
             app.UseHttpsRedirection();
             app.MapDynSecGraphQL();
-            app.MapHealthChecks("/health");
 
             app.MapControllers();
             app.UseStaticFiles();
@@ -107,10 +107,9 @@ namespace DynSec.API
 
             app.MapStaticAssets();
 
-
-
             app.MapFallbackToFile("/index.html");
 
+            app.MapDefaultEndpoints();
 
             app.Run();
         }

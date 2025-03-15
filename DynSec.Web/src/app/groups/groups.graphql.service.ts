@@ -6,7 +6,7 @@ const groupslistQuery =
   gql`query {
   groupsList {
     groups {
-      groupsName
+      groupName
     }
   }
 }`;
@@ -18,9 +18,32 @@ const groupQuery =
       groupName
       textDescription
       textName
+      clients {
+        userName
+      }
+      roles {
+        roleName
+        priority
+      }
     }
   }
 }`;
+
+const rolesAndClientsQuery =
+  gql`query {
+  rolesList {
+    roles {
+      roleName
+    }
+  }
+  clientsList {
+    clients {
+      userName
+      disabled
+    }
+  }
+}`;
+
 
 @Injectable({ providedIn: 'root', })
 export class GroupsGraphqlService {
@@ -44,5 +67,11 @@ export class GroupsGraphqlService {
       .valueChanges;
   }
 
-  
+  getRolesAndClients() {
+    return this.apollo
+      .watchQuery<any>({
+        query: rolesAndClientsQuery,
+      })
+      .valueChanges;
+  }
 }

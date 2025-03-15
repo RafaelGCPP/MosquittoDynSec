@@ -63,7 +63,7 @@ namespace DynSec.Model.Converters
                         {
                             throw new JsonException();
                         }
-                        group.Roles = JsonSerializer.Deserialize<RoleNameClass[]>(ref reader, options);
+                        group.Roles = JsonSerializer.Deserialize<RolePriority[]>(ref reader, options);
                         break;
                     case "clients":
                         if (!reader.Read() || reader.TokenType != JsonTokenType.StartArray)
