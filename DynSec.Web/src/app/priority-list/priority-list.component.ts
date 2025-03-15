@@ -1,4 +1,4 @@
-import { Component, computed, input, model, output, ViewChild } from '@angular/core';
+import { booleanAttribute, Component, computed, input, model, output, ViewChild } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -34,6 +34,7 @@ export class PriorityListComponent {
   selectedValues = model<ItemPriority[]>([]);
   allValues = input.required<string[]>();
   name = input.required<string>();
+  hidePriority = input(false, { transform: booleanAttribute });
   modified = output<void>();
   newPriority: string = '0';
 
@@ -41,7 +42,14 @@ export class PriorityListComponent {
 
   @ViewChild(MatTable)
   table!: MatTable<ItemPriority>;
-  displayedColumns = ['itemName', 'priority', 'removeButton'];
+  displayedColumns = ['itemName', 'priority', 'removeButton']
+
+  ngOnInit() {
+    console.log("Hide: ",this.hidePriority());
+    if (this.hidePriority()) {
+      this.displayedColumns = ['itemName', 'removeButton']
+    }  
+  }
 
   availableOptions() {
     const selectedValues = this.selectedValues();

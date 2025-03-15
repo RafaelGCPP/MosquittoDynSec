@@ -8,11 +8,12 @@
       }
     </mat-select>
   </mat-form-field>
+  @if (!hidePriority()) {
   <mat-form-field class="priority-list-row-left priority-list-role-priority">
     <mat-label>Priority</mat-label>
     <input matInput type="number" placeholder="Priority" name="priority" [(ngModel)]="newPriority">
   </mat-form-field>
-
+  }
   <div class="priority-list-row-center"></div>
   <div class="priority-list-row-right">
     <button mat-icon-button (click)="addItem()"><mat-icon>add_circle</mat-icon></button>
