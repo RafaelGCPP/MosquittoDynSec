@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { GroupsGraphqlService } from '../groups.graphql.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NavBarService } from '../../navbar/navbar.service';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -9,6 +9,12 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { Group } from '../../model/group';
 import { Subscription } from 'rxjs';
 import { ItemPriority, PriorityListComponent } from '../../priority-list/priority-list.component';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ApolloError } from '@apollo/client/errors';
+import { DeleteDialog } from '../../delete-dialog/delete-dialog';
 
 @Component({
   selector: 'dynsec-group-detail',
@@ -17,6 +23,8 @@ import { ItemPriority, PriorityListComponent } from '../../priority-list/priorit
     MatFormFieldModule,
     MatInputModule,
     MatSlideToggleModule,
+    MatButtonModule,
+    MatIconModule,
     PriorityListComponent
   ],
   templateUrl: './group-detail.component.html',
@@ -29,8 +37,11 @@ export class GroupDetailComponent {
     textName: '',
     textDescription: '',
     roles: [],
-    clients:[]
-  }
+    clients: []
+  };
+  originalGroup: Group = {
+    ...this.group
+  };
   mode = 'new';
   rolesChanged: boolean = false;
   clientsChanged: boolean = false;
@@ -43,11 +54,17 @@ export class GroupDetailComponent {
   private rolesAndGroupsSubscription!: Subscription;
   private querySubscription!: Subscription;
 
-  constructor(
-    private readonly route: ActivatedRoute,
-    private readonly navBar: NavBarService,
-    private readonly graphql: GroupsGraphqlService
-  ) {
+  private readonly snack = inject(MatSnackBar);
+  private readonly router = inject(Router);
+  private readonly dialog = inject(MatDialog);
+
+  private readonly route = inject(ActivatedRoute);
+  private readonly navBar = inject(NavBarService);
+  private readonly graphql = inject(GroupsGraphqlService);
+
+  defaultAction = {
+    next: console.log,
+    error: this.displayError
   }
 
   ngOnInit() {
@@ -58,10 +75,7 @@ export class GroupDetailComponent {
       console.log("Loading group detail for " + groupName);
 
     });
-
-
   }
-
 
   private updateView(groupName: string | null) {
     if (groupName) {
@@ -99,7 +113,6 @@ export class GroupDetailComponent {
     };
   }
 
-
   private updateSelectedItems() {
     this.selectedRoles = [];
     this.selectedClients = [];
@@ -118,6 +131,85 @@ export class GroupDetailComponent {
     }
   }
 
+  private createChangeset() {
+    const changeset: any = { groupName: this.group.groupName };
+    if (this.group.textName !== this.originalGroup.textName) {
+      changeset.textName = this.group.textName;
+    }
+    if (this.group.textDescription !== this.originalGroup.textDescription) {
+      changeset.textDescription = this.group.textDescription;
+    }
+    if (this.rolesChanged) {
+      changeset.roles = this.selectedRoles.map((item) => ({ roleName: item.name, priority: item.priority }));
+    }
+    if (this.clientsChanged) {
+      changeset.clients = this.selectedClients.map((item) => (item.name));
+    }
+
+    return changeset;
+  }
+
+  saveGroup() {
+    const changeset = this.createChangeset();
+    if (this.mode === 'new') {
+      if (changeset.groupName === '') {
+        console.error("Invalid input: missing group name");
+
+        this.snack.open("Group name must be supplied.", "Close", {
+          duration: 15000
+        });
+        return;
+      }
+
+      const action = {
+        next: (data: any) => {
+          console.log(data);
+          this.router.navigate([`../${changeset.groupName}`], { relativeTo: this.route });
+        },
+        error: (error: ApolloError) => {
+          console.error(error);
+          console.error('Mutation error: ', error.message);
+          this.snack.open(`${error.message}`, "Close", {
+            duration: 15000
+          });
+        }
+      }
+
+      this.graphql.createGroup(changeset, action);
+
+    } else {
+      this.graphql.updateGroup(changeset, this.defaultAction);
+    }
+  }
+
+  deleteGroup() {
+    const dialogRef = this.dialog.open(DeleteDialog, {
+      data: { name: this.groupName, itemType: 'group' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'confirm') {
+        const action = {
+          next: (data: any) => {
+            console.log(data);
+            this.router.navigateByUrl('/groups');
+            this.graphql.refresh();
+            this.navBar.openSidenav();
+          },
+          error: this.displayError
+        }
+        this.graphql.deleteGroup(this.groupName, action);
+      }
+    });
+  }
+
+  displayError(error: ApolloError) {
+    console.error(error);
+    console.error('Mutation error: ', error.message);
+    this.snack.open(`${error.message}`, "Close", {
+      duration: 15000
+    });
+  }
 
   ngOnDestroy() {
     if (this.mode != 'new') {

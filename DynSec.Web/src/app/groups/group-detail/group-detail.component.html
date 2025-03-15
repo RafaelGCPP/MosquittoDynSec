@@ -1,5 +1,25 @@
 <form class="group-form">
   <div class="group-form-row">
+    <div class="group-row-left"></div>
+    <div class="group-row-center"></div>
+
+    <button mat-icon-button
+            class="group-row-right"
+            matTooltip="Save"
+            (click)="saveGroup()">
+      <mat-icon>save</mat-icon>
+    </button>
+    <button mat-icon-button
+            class="group-row-right"
+            [disabled]="mode=='new'"
+            [disabledInteractive]="mode=='new'"
+            (click)="deleteGroup()"
+            matTooltip="Delete">
+      <mat-icon>delete</mat-icon>
+    </button>
+
+  </div>
+  <div class="group-form-row">
     <mat-form-field class="group-row-left">
       <mat-label>Role name</mat-label>
       <input matInput readonly name="groupName" [(ngModel)]="group.groupName">

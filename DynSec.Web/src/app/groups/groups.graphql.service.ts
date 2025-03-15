@@ -45,6 +45,21 @@ const rolesAndClientsQuery =
 }`;
 
 
+//const roleUpdateMutation =
+//  gql`mutation modifyRole ($role: RoleACLInput!) {
+//  modifyRole(role: $role) 
+//}`;
+
+//const createRoleMutation =
+//  gql`mutation createRole ($role: RoleACLInput!) {
+//  createRole(newrole: $role) 
+//}`;
+
+//const deleteRoleMutation =
+//  gql`mutation deleteRole ($roleName: String!) {
+//  deleteRole(role: $roleName) 
+//}`;
+
 @Injectable({ providedIn: 'root', })
 export class GroupsGraphqlService {
   constructor(private readonly apollo: Apollo) { }
@@ -73,5 +88,60 @@ export class GroupsGraphqlService {
         query: rolesAndClientsQuery,
       })
       .valueChanges;
+  }
+
+
+  createGroup(group: any, actions?: any) {
+    //return this.runMutation(createRoleMutation, role, actions);
+  }
+
+  updateGroup(group: any, actions?: any) {
+    //return this.runMutation(roleUpdateMutation, role, actions);
+  }
+
+  runMutation(mutation: any, role: any, actions?: any) {
+    //return this.apollo
+    //  .mutate({
+    //    mutation: mutation,
+    //    variables: {
+    //      role: role
+    //    },
+    //    refetchQueries: [
+    //      {
+    //        query: roleslistQuery,
+    //        fetchPolicy: 'network-only',
+    //        variables: {},
+    //      },
+    //      {
+    //        query: roleQuery,
+    //        fetchPolicy: 'network-only',
+    //        variables: {
+    //          roleName: role.roleName
+    //        }
+    //      }
+    //    ]
+
+    //  }).subscribe(actions);
+  }
+
+  deleteGroup(groupName: string, actions?: any) {
+    //return this.apollo
+    //  .mutate({
+    //    mutation: deleteRoleMutation,
+    //    variables: {
+    //      roleName: roleName
+    //    },
+    //    refetchQueries: [
+    //      {
+    //        query: roleslistQuery,
+    //        fetchPolicy: 'network-only',
+    //        variables: {},
+    //      }
+    //    ]
+    //  }).subscribe(actions);
+  }
+
+  refresh() {
+    this.apollo.client.resetStore();
   }
 }
