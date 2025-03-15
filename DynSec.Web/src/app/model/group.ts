@@ -1,3 +1,4 @@
+import { Client } from "./client";
 import { Role } from "./role";
 
 export interface Group {
@@ -6,5 +7,5 @@ export interface Group {
   textName?: string;
   textDescription?: string;
   roles?: Role[];
-  clients?: string[];
+  clients?: Client[];
 }

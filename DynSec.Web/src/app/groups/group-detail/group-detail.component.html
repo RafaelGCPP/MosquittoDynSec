@@ -32,11 +32,12 @@
     </div>
 
     <div class="group-row-center"></div>
-    <!--<div class="group-row-right">
-      <dynsec-priority-list [(selectedValues)]="selectedRoles"
-                            [allValues]="allRoles"
-                            (modified)="rolesChanged=true"
-                            name="Role" />
-    </div>-->
+    <div class="group-row-right">
+      <dynsec-priority-list [(selectedValues)]="selectedClients"
+                            [allValues]="allClients"
+                            (modified)="clientsChanged=true"
+                            hidePriority
+                            name="Client" />
+    </div>
   </div>
 </form>

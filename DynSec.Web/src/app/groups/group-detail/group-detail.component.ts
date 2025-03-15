@@ -37,6 +37,7 @@ export class GroupDetailComponent {
   allRoles: string[] = [];
   allClients: string[] = [];
   selectedRoles: ItemPriority[] = [];
+  selectedClients: ItemPriority[] = [];
 
   private paramSubscription!: Subscription;
   private rolesAndGroupsSubscription!: Subscription;
@@ -85,7 +86,7 @@ export class GroupDetailComponent {
 
     this.rolesAndGroupsSubscription = this.graphql.getRolesAndClients().subscribe(result => {
       this.allRoles = result.data.rolesList.roles.map((x: any) => x.roleName);
-      this.allClients = result.data.clientsList.groups.map((x: any) => x.groupName);
+      this.allClients = result.data.clientsList.clients.map((x: any) => x.userName);
     });
 
     this.navBar.closeSidenav();
@@ -101,7 +102,7 @@ export class GroupDetailComponent {
 
   private updateSelectedItems() {
     this.selectedRoles = [];
-    //this.selectedGroups = [];
+    this.selectedClients = [];
 
     if (this.group.roles) {
       this.selectedRoles = this.group.roles.map(
@@ -109,12 +110,12 @@ export class GroupDetailComponent {
           ({ name: role.roleName, priority: (role.priority) ? (role.priority) : 0 })
       );
     }
-    //if (this.client.groups) {
-    //  this.selectedGroups = this.client.groups.map(
-    //    (group) =>
-    //      ({ name: group.groupName, priority: (group.priority) ? (group.priority) : 0 })
-    //  );
-    //}
+    if (this.group.clients) {
+      this.selectedClients = this.group.clients.map(
+        (client) =>
+          ({ name: client.userName, priority: 1 })
+      );
+    }
   }
 
 
