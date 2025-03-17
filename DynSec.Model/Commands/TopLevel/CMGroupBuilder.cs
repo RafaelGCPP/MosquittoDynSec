@@ -8,19 +8,18 @@ namespace DynSec.Model.Commands.TopLevel
         protected string? textName;
         protected string? textDescription;
         protected List<RolePriority>? Roles;
-        protected List<ClientPriority>? Clients { get; set; }
+        protected List<ClientNameClass>? Clients { get; set; }
 
         public CMGroupBuilder(string _groupname)
         {
             groupname = _groupname;
         }
-        public CMGroupBuilder AddClient(string username, int priority)
+        public CMGroupBuilder AddClient(string username)
         {
             Clients ??= new();
-            Clients.Add(new ClientPriority()
+            Clients.Add(new ClientNameClass()
             {
                 UserName = username,
-                Priority = priority
             });
             return this;
         }
