@@ -86,7 +86,8 @@ namespace DynSec.API
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
-            {                
+            {
+                app.UseCors("GetorPost");
                 app.MapOpenApi();
                 app.MapScalarApiReference(options =>
                 {

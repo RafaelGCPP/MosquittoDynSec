@@ -32,6 +32,14 @@ public static class Extensions
             http.AddServiceDiscovery();
         });
 
+        builder.Services.AddCors(options =>
+        {
+            options.AddPolicy("GetorPost",
+                builder =>
+                builder.AllowAnyOrigin().WithMethods("GET", "POST")
+                .AllowAnyHeader());
+        });
+
         // Uncomment the following to restrict the allowed schemes for service discovery.
         // builder.Services.Configure<ServiceDiscoveryOptions>(options =>
         // {
