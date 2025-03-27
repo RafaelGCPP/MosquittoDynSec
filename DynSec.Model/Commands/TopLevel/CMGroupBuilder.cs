@@ -24,6 +24,12 @@ namespace DynSec.Model.Commands.TopLevel
             return this;
         }
 
+        public CMGroupBuilder AddEmptyClientList()
+        {
+            Clients = new();
+            return this;
+        }
+
         public CMGroupBuilder WithTextName(string textname)
         {
             textName = textname;
@@ -43,6 +49,11 @@ namespace DynSec.Model.Commands.TopLevel
                 RoleName = rolename,
                 Priority = priority
             });
+            return this;
+        }
+        public CMGroupBuilder AddEmptyRoleList()
+        {
+            Roles = new();
             return this;
         }
         public abstract AbstractCommand Build();
