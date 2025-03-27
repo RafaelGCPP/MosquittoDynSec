@@ -3,14 +3,12 @@ using Aspire.Hosting;
 
 var builder = DistributedApplication.CreateBuilder(args);
 
-var dynsecapi = builder.AddProject<Projects.DynSec_API>("DynSecApi")
-    .WithEnvironment("ASPNETCORE_HTTPS_PORT", "7044")
+var dynsecapi = builder.AddProject<Projects.DynSec_API>("API")
     .WithEnvironment("FRONTEND_HTTPS_PORT", "4200")
-    .WithExternalHttpEndpoints()
     .WithScalar();
 
 
-var dynsecfrontend = builder.AddNpmApp("angular", "..\\DynSec.Web")
+var dynsecfrontend = builder.AddNpmApp("Web", "..\\DynSec.Web")
     .WithReference(dynsecapi)
     .WithHttpsEndpoint(port: 4200, targetPort: 4200, name: "frontend", env: "FRONTEND_HTTPS_PORT", isProxied: false)
     .WithEnvironment("ASPNETCORE_HTTPS_PORT", "7044")

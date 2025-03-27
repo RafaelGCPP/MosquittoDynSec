@@ -19,11 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DynSec.API\DynSec.API.csproj" />
-    <ProjectReference Include="..\DynSec.Aspire.ServiceDefaults\DynSec.Aspire.ServiceDefaults.csproj" />
-    <ProjectReference Include="..\DynSec.GraphQL\DynSec.GraphQL.csproj" />
-    <ProjectReference Include="..\DynSec.Model\DynSec.Model.csproj" />
-    <ProjectReference Include="..\DynSec.MQTT\DynSec.MQTT.csproj" />
-    <ProjectReference Include="..\DynSec.Protocol\DynSec.Protocol.csproj" />
     <ProjectReference Include="..\DynSec.Web\DynSec.Web.esproj" />
   </ItemGroup>
 
