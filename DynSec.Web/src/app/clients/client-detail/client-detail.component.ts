@@ -1,4 +1,4 @@
-import { Component, inject, Inject, InjectionToken } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
@@ -17,7 +17,7 @@ import { Subscription } from 'rxjs';
 import { Client } from '../../model/client';
 import { ItemPriority, PriorityListComponent } from '../../priority-list/priority-list.component';
 
-import { MatDialog, MatDialogClose, MatDialogContent, MatDialogRef, MatDialogTitle, MAT_DIALOG_DATA, MatDialogActions } from '@angular/material/dialog'; 
+import { MatDialog } from '@angular/material/dialog';
 import { DeleteDialog } from '../../delete-dialog/delete-dialog';
 
 @Component({

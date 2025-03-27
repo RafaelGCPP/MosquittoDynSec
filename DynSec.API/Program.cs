@@ -86,7 +86,8 @@ namespace DynSec.API
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
-            {                
+            {
+                app.UseCors("GetorPost");
                 app.MapOpenApi();
                 app.MapScalarApiReference(options =>
                 {
@@ -107,7 +108,11 @@ namespace DynSec.API
 
             app.MapStaticAssets();
 
-            app.MapFallbackToFile("/index.html");
+            app.MapFallback(handler =>
+            {
+                handler.Response.Redirect("/scalar/v1");
+                return Task.CompletedTask;
+            });
 
             app.MapDefaultEndpoints();
 

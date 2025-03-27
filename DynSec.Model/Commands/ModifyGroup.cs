@@ -14,7 +14,7 @@ namespace DynSec.Model.Commands
         public string? TextDescription { get; set; }
         public List<RolePriority>? Roles { get; set; }
 
-        public List<ClientPriority>? Clients { get; set; }
+        public List<ClientNameClass>? Clients { get; set; }
 
     }
 
