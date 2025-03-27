@@ -24,7 +24,7 @@ namespace DynSec.Protocol
             }
             foreach (var client in newgroup.Clients ?? [])
             {
-                if (client.UserName == "")
+                if (!string.IsNullOrEmpty(client.UserName))
                 {
                     builder.AddClient(client.UserName);
                 }
