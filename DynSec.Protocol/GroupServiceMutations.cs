@@ -33,29 +33,48 @@ namespace DynSec.Protocol
             return commandDoneString;
         }
 
-        public async Task<string?> ModifyGroup(Group newgroup)
+        public async Task<string?> ModifyGroup(Group group)
         {
-            throw new NotImplementedException("needs fixing!");
-
-            if ((newgroup.GroupName == null) || (newgroup.GroupName == ""))
+            if (string.IsNullOrEmpty(group.GroupName))
             {
                 throw new DynSecProtocolInvalidParameterException("Group name is required");
             }
-            var builder = new ModifyGroupBuilder(newgroup.GroupName)
-                .WithTextDescription(newgroup.TextDescription ?? "")
-                .WithTextName(newgroup.TextName ?? "");
-
-            foreach (var role in newgroup.Roles ?? [])
+            var builder = new ModifyGroupBuilder(group.GroupName);
+            if (group.TextDescription != null)
             {
-                builder.AddRole(role.RoleName, role.Priority);
+                builder = (ModifyGroupBuilder)builder.WithTextDescription(group.TextDescription);
             }
-            foreach (var client in newgroup.Clients ?? [])
+            if (group.TextName != null)
             {
-                if (client.UserName == "")
+                builder = (ModifyGroupBuilder)builder.WithTextName(group.TextName);
+            }
+
+            if (group.Roles != null)
+            {
+                if (group.Roles.Length == 0)
                 {
-                    builder.AddClient(client.UserName);
+                    builder = (ModifyGroupBuilder)builder.AddEmptyRoleList();
+                }
+                foreach (var role in group.Roles)
+                {
+                    builder.AddRole(role.RoleName, role.Priority);
                 }
             }
+            if (group.Clients != null)
+            {
+                if (group.Clients.Length == 0)
+                {
+                    builder = (ModifyGroupBuilder)builder.AddEmptyClientList();
+                }
+                foreach (var client in group.Clients)
+                {
+                    if (!string.IsNullOrEmpty(client.UserName))
+                    {
+                        builder.AddClient(client.UserName);
+                    }
+                }
+            }
+
             var result = await ExecuteCommand<GeneralResponse>(builder.Build());
             return commandDoneString;
         }
