@@ -35,7 +35,7 @@ namespace DynSec.Protocol
 
         public async Task<string?> ModifyGroup(Group group)
         {
-            if (group.GroupName== null)
+            if (string.IsNullOrEmpty(group.GroupName))
             {
                 throw new DynSecProtocolInvalidParameterException("Group name is required");
             }
