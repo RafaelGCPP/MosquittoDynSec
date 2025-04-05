@@ -1,6 +1,7 @@
 ﻿using DynSec.Model;
 using DynSec.Model.Responses;
 using DynSec.Protocol.Interfaces;
+using System.Formats.Asn1;
 
 namespace DynSec.GraphQL
 {
@@ -51,6 +52,16 @@ namespace DynSec.GraphQL
         #region ACLs
 
         public async Task<string?> SetDefaultACLsAsync(List<DefaultACL> data) => await aclService.SetDefault(data);
+        #endregion
+
+        #region Groups
+        public async Task<string?> CreateGroupAsync(Group newgroup) => await groupsService.CreateGroup(newgroup);
+        public async Task<string?> ModifyGroupAsync(Group group) => await groupsService.ModifyGroup(group);
+        public async Task<string?> DeleteGroupAsync(string group) => await groupsService.DeleteGroup(group);
+        #endregion
+
+        #region Anonymous Group
+        public async Task<string?> SetAnonymousGroupAsync(string group) => await groupsService.SetAnonymous(group);
         #endregion
     }
 }
