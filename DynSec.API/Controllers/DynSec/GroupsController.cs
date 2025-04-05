@@ -127,7 +127,7 @@ namespace DynSec.API.Controllers.DynSec
 
         // POST: api/<MQTTdynsecController>/group/<group>/delete
         [HttpPost("group/{group}/delete")]
-        public async Task<ActionResult<string>> DeleteRole(string group)
+        public async Task<ActionResult<string>> DeleteGroup(string group)
         {
             try
             {
