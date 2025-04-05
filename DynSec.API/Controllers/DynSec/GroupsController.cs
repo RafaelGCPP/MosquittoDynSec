@@ -1,6 +1,8 @@
-﻿using DynSec.Model.Commands;
+﻿using DynSec.Model;
+using DynSec.Model.Commands;
 using DynSec.Model.Responses;
 using DynSec.Model.Responses.TopLevel;
+using DynSec.Protocol;
 using DynSec.Protocol.Exceptions;
 using DynSec.Protocol.Interfaces;
 using Microsoft.AspNetCore.Mvc;
@@ -10,12 +12,9 @@ namespace DynSec.API.Controllers.DynSec
 
     [Route("api/[controller]")]
     [ApiController]
-    public class GroupsController : ControllerBase
+    public class GroupsController(IGroupsService _groupService) : ControllerBase
     {
-        private readonly IGroupsService groupService;
-        private readonly IDynamicSecurityRpc dynSec;
-
-        public GroupsController(IGroupsService _groupService, IDynamicSecurityRpc _dynSec) { groupService = _groupService; dynSec = _dynSec; }
+        private readonly IGroupsService groupService = _groupService;
 
         // GET: api/<MQTTdynsecController>/groups
         [HttpGet("groups")]
@@ -75,22 +74,72 @@ namespace DynSec.API.Controllers.DynSec
         [HttpPost("anonymous-group")]
         public async Task<ActionResult<GeneralResponse>> SetAnonymousGroups([FromBody] string group)
         {
-            var cmd = new SetAnonymousGroup(group);
+            try
+            {
+                return Ok(await groupService.SetAnonymous(group));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
 
-            var result = await dynSec.ExecuteCommand(cmd) ?? new GeneralResponse
+        // POST: api/<MQTTdynsecController>/group
+        [HttpPost("group")]
+        public async Task<ActionResult<string>> CreateGroup(Group newgroup)
+        {
+            try
             {
-                Error = "Task cancelled",
-                Command = cmd.Command,
-                Data = null
-            };
-            switch (result.Error)
+                return Ok(await groupService.CreateGroup(newgroup));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
             {
-                case "Ok":
-                    return Ok();
-                case "Task cancelled":
-                    return StatusCode(504);
-                default:
-                    return NotFound(result);
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolDuplicatedException e)
+            {
+                return StatusCode(409, e.Message);
+            }
+        }
+
+
+        // POST: api/<MQTTdynsecController>/group/modify
+        [HttpPost("group/modify")]
+        public async Task<ActionResult<string>> ModifyGroup(Group group)
+        {
+            try
+            {
+                return Ok(await groupService.ModifyGroup(group));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+        }
+
+        // POST: api/<MQTTdynsecController>/group/<group>/delete
+        [HttpPost("group/{group}/delete")]
+        public async Task<ActionResult<string>> DeleteGroup(string group)
+        {
+            try
+            {
+                return Ok(await groupService.DeleteGroup(group));
+            }
+            catch (DynSecProtocolInvalidParameterException e)
+            {
+                return StatusCode(504, e.Message);
+            }
+            catch (DynSecProtocolNotFoundException e)
+            {
+                return NotFound(e.Message);
             }
         }
     }

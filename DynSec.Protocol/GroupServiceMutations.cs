@@ -90,6 +90,11 @@ namespace DynSec.Protocol
             return commandDoneString;
         }
 
-
+        public async Task<string?> SetAnonymous(string group)
+        {
+            var cmd = new SetAnonymousGroup(group);
+            var result = await ExecuteCommand<GeneralResponse>(cmd);
+            return commandDoneString;
+        }
     }
 }

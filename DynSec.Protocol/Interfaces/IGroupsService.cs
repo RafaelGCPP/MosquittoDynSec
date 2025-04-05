@@ -11,7 +11,7 @@ namespace DynSec.Protocol.Interfaces
         Task<string?> CreateGroup(Group newgroup);
         Task<string?> ModifyGroup(Group newgroup);
         Task<string?> DeleteGroup(string group);
-
+        Task<string?> SetAnonymous(string group);
 
     }
 }

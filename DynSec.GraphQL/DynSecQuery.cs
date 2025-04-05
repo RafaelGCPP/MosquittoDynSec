@@ -42,6 +42,9 @@ namespace DynSec.GraphQL
 
         public async Task<GroupListData?> GetGroupsListAsync(bool? verbose) => await groupsService.GetList(verbose);
         public async Task<GroupInfoData?> GetGroupAsync(string group) => await groupsService.Get(group);
+        #endregion
+
+        #region Anonymous Group
         public async Task<AnonymousGroupInfoData?> GetAnonymousGroupAsync() => await groupsService.GetAnonymous();
         #endregion
 

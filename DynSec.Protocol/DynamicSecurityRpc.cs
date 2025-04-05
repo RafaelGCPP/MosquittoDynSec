@@ -70,9 +70,10 @@ namespace DynSec.Protocol
             }
             disconnectTimer.Start();
 
+            logger.LogDebug("Command: {command}", commands.AsJSON());
+
             using MqttRpcClient rpcClient = new(client, mqttRpcClientOptions);
             byte[] data = await rpcClient.ExecuteAsync(timeout, "", commands.AsJSON(), MqttQualityOfServiceLevel.AtMostOnce);
-            logger.LogDebug("Command: {command}", commands.AsJSON());
             logger.LogDebug("Response: {response}", System.Text.Encoding.UTF8.GetString(data));
 
             ResponseList response = JsonSerializer.Deserialize<ResponseList>(data, jsonoptions) ?? new();
