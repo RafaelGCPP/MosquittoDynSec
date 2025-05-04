@@ -12,18 +12,18 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^19.2.5",
-    "@angular/cdk": "^19.2.8",
-    "@angular/common": "^19.2.5",
-    "@angular/compiler": "^19.2.5",
-    "@angular/core": "^19.2.5",
-    "@angular/forms": "^19.2.5",
-    "@angular/material": "^19.2.8",
-    "@angular/platform-browser": "^19.2.5",
-    "@angular/router": "^19.2.5",
-    "@apollo/client": "^3.13.6",
+    "@angular/animations": "^19.2.9",
+    "@angular/cdk": "^19.2.14",
+    "@angular/common": "^19.2.9",
+    "@angular/compiler": "^19.2.9",
+    "@angular/core": "^19.2.9",
+    "@angular/forms": "^19.2.9",
+    "@angular/material": "^19.2.14",
+    "@angular/platform-browser": "^19.2.9",
+    "@angular/router": "^19.2.9",
+    "@apollo/client": "^3.13.8",
     "apollo-angular": "^10.0.3",
-    "graphql": "^16.10.0",
+    "graphql": "^16.11.0",
     "jest-editor-support": "^31.1.2",
     "run-script-os": "^1.1.6",
     "rxjs": "~7.8.2",
@@ -31,11 +31,11 @@
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^19.2.6",
-    "@angular/cli": "^19.2.6",
-    "@angular/compiler-cli": "^19.2.5",
+    "@angular-devkit/build-angular": "^19.2.10",
+    "@angular/cli": "^19.2.10",
+    "@angular/compiler-cli": "^19.2.9",
     "@types/jasmine": "~5.1.7",
-    "eslint": "^9.24.0",
+    "eslint": "^9.26.0",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.4",
     "karma-chrome-launcher": "~3.2.0",
@@ -44,5 +44,5 @@
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.8.3"
   },
-  "packageManager": "yarn@4.7.0"
+  "packageManager": "yarn@4.9.1"
 }
