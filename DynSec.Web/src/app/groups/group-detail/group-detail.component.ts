@@ -13,7 +13,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ApolloError } from '@apollo/client/errors';
+import { CombinedGraphQLErrors } from '@apollo/client/errors';
 import { DeleteDialog } from '../../delete-dialog/delete-dialog';
 
 @Component({
@@ -166,7 +166,7 @@ export class GroupDetailComponent {
           console.log(data);
           this.router.navigate([`../${changeset.groupName}`], { relativeTo: this.route });
         },
-        error: (error: ApolloError) => {
+        error: (error: CombinedGraphQLErrors) => {
           console.error(error);
           console.error('Mutation error: ', error.message);
           this.snack.open(`${error.message}`, "Close", {
@@ -203,7 +203,7 @@ export class GroupDetailComponent {
     });
   }
 
-  displayError(error: ApolloError) {
+  displayError(error: CombinedGraphQLErrors) {
     console.error(error);
     console.error('Mutation error: ', error.message);
     this.snack.open(`${error.message}`, "Close", {

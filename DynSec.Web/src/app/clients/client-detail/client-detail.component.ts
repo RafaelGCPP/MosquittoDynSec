@@ -12,7 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatSelectModule } from '@angular/material/select';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTooltip } from '@angular/material/tooltip';
-import { ApolloError } from '@apollo/client/core';
+import { CombinedGraphQLErrors } from '@apollo/client/errors';
 import { Subscription } from 'rxjs';
 import { Client } from '../../model/client';
 import { ItemPriority, PriorityListComponent } from '../../priority-list/priority-list.component';
@@ -184,7 +184,7 @@ export class ClientDetailComponent {
           console.log(data);
           this.router.navigate([`../${changeset.userName}`], { relativeTo: this.route });
         },
-        error: (error: ApolloError) => {
+        error: (error: CombinedGraphQLErrors) => {
           console.error(error);
           console.error('Mutation error: ', error.message);
           this.snack.open(`${error.message}`, "Close", {
@@ -227,7 +227,7 @@ export class ClientDetailComponent {
     });
   }
 
-  displayError(error: ApolloError) {
+  displayError(error: CombinedGraphQLErrors) {
     console.error(error);
     console.error('Mutation error: ', error.message);
     this.snack.open(`${error.message}`, "Close", {

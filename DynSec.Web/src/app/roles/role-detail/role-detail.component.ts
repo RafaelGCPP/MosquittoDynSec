@@ -13,7 +13,7 @@ import { Role } from '../../model/role';
 import { NavBarService } from '../../navbar/navbar.service';
 import { RolesGraphqlService } from '../roles.graphql.service';
 import { AclListComponent } from '../acl-list/acl-list.component';
-import { ApolloError } from '@apollo/client/core';
+import { CombinedGraphQLErrors } from '@apollo/client/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogActions } from '@angular/material/dialog';
 import { DeleteDialog } from '../../delete-dialog/delete-dialog';
@@ -134,7 +134,7 @@ export class RoleDetailComponent {
           console.log(data);
           this.router.navigate([`../${this.role.roleName}`], { relativeTo: this.route });
         },
-        error: (error: ApolloError) => {
+        error: (error: CombinedGraphQLErrors) => {
           console.error(error);
           console.error('Mutation error: ', error.message);
           this.snack.open(`${error.message}`, "Close", {
@@ -170,7 +170,7 @@ export class RoleDetailComponent {
   }
 
 
-  displayError(error: ApolloError) {
+  displayError(error: CombinedGraphQLErrors) {
     console.error(error);
     console.error('Mutation error: ', error.message);
     this.snack.open(`${error.message}`, "Close", {
