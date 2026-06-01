@@ -15,3 +15,17 @@ Upgraded all 4 foundation projects to .NET 10.0:
 
 **Ready for**: Task 02 (Protocol Layer) — depends on Model (now net10.0 ✅)
 
+
+## [2026-06-01 19:15] 02-protocol-layer
+
+✅ **Task 02: Protocol Layer — COMPLETED**
+
+Upgraded DynSec.Protocol to .NET 10.0:
+- Target framework: net9.0 → net10.0
+- Packages: Updated 2 Microsoft.Extensions.* (9.0.5 → 10.0.8)
+- API fixes: Fixed 3 instances of `TimeSpan.FromSeconds(Int64)` → `TimeSpan.FromSeconds(Double)`
+
+**Build Validation**: 0 warnings, 0 errors. Output assembly in bin/Debug/net10.0/.
+
+**Ready for**: Task 03 (GraphQL Layer) — depends on Protocol (now net10.0 ✅)
+

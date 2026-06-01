@@ -43,7 +43,7 @@ namespace DynSec.Protocol
             {
                 TopicGenerationStrategy = new DynSecTopicStrategy()
             };
-            disconnectTimer = new Timer(TimeSpan.FromSeconds(60));
+            disconnectTimer = new Timer(TimeSpan.FromSeconds(60.0));
             disconnectTimer.Elapsed += AutoDisconnect;
             disconnectTimer.AutoReset = false;
             disconnectTimer.Stop();
@@ -83,7 +83,7 @@ namespace DynSec.Protocol
 
         public async Task<AbstractResponse> ExecuteCommand(AbstractCommand cmd)
         {
-            TimeSpan _timeout = TimeSpan.FromSeconds(10);
+            TimeSpan _timeout = TimeSpan.FromSeconds(10.0);
 
             CommandsList cmds = new([cmd]);
 
