@@ -43,3 +43,19 @@ Upgraded DynSec.GraphQL to .NET 10.0:
 
 **Ready for**: Task 04 (API Layer) — depends on GraphQL (now net10.0 ✅)
 
+
+## [2026-06-01 19:18] 04-api-layer
+
+✅ **Task 04: API Layer — COMPLETED**
+
+Upgraded DynSec.API to .NET 10.0:
+- Target framework: net9.0 → net10.0
+- Packages: Updated 2 Microsoft.AspNetCore.* (9.0.5 → 10.0.8)
+- API fix: JWT token namespace `System.IdentityModel.Tokens.Jwt` → `Microsoft.IdentityModel.JsonWebTokens`
+
+**Build Validation**: 0 compilation errors. 4 transitive warnings (HotChocolate vulnerability advisory, non-blocking).
+
+**Dependencies**: All 5 project references (Model, GraphQL, Protocol, MQTT, ServiceDefaults) successfully resolved at net10.0.
+
+**Ready for**: Task 05 (Aspire Application) — depends on API (now net10.0 ✅)
+

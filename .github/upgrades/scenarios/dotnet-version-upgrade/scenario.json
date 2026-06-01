@@ -3,13 +3,14 @@
   "operationId": "4fed80a1-4085-425f-9f12-5807e81a196a",
   "description": "Upgrade .NET projects to newer .NET versions",
   "startTime": "2026-06-01T22:03:48.9339986Z",
-  "lastUpdateTime": "2026-06-01T22:16:21.0717758Z",
+  "lastUpdateTime": "2026-06-01T22:18:42.3126794Z",
   "properties": {
     "UpgradeTargetFramework": "net10.0",
     "taskStates": {
       "01-foundation-libraries": "Completed",
       "02-protocol-layer": "Completed",
-      "03-graphql-layer": "Completed"
+      "03-graphql-layer": "Completed",
+      "04-api-layer": "Completed"
     }
   },
   "folderPath": ""

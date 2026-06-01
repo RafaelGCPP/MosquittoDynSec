@@ -3,10 +3,10 @@ using DynSec.MQTT;
 using DynSec.Protocol;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Scalar.AspNetCore;
 using Serilog;
-using System.IdentityModel.Tokens.Jwt;
 
 namespace DynSec.API
 {
