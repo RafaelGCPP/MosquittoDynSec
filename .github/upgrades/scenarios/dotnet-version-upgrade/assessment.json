@@ -1,0 +1,1306 @@
+{
+  "settings": {
+    "components": {
+      "code": true,
+      "binaries": false
+    },
+    "targetId": "net10.0",
+    "targetDisplayName": ".NETCoreApp,Version=v10.0"
+  },
+  "analysisStartTime": "2026-06-01T22:04:07.8988383Z",
+  "analysisEndTime": "2026-06-01T22:04:17.7462812Z",
+  "privacyModeHelpUrl": "https://go.microsoft.com/fwlink/?linkid=2270980",
+  "stats": {
+    "summary": {
+      "projects": 8,
+      "issues": 7,
+      "incidents": 40,
+      "effort": 40
+    },
+    "charts": {
+      "severity": {
+        "Mandatory": 9,
+        "Optional": 3,
+        "Potential": 28,
+        "Information": 0
+      },
+      "category": {
+        "Project": 8,
+        "NuGet": 13,
+        "Api": 19
+      }
+    }
+  },
+  "projects": [
+    {
+      "path": "DynSec.API\\DynSec.API.csproj",
+      "startingProject": true,
+      "issues": 4,
+      "storyPoints": 19,
+      "properties": {
+        "appName": "DynSec.API",
+        "projectKind": "AspNetCore",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 8,
+        "numberOfCodeFiles": 6,
+        "linesTotal": 748,
+        "linesOfCode": 690,
+        "totalApiScanned": 671,
+        "minLinesOfCodeToChange": 16,
+        "maxLinesOfCodeToChange": 16
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "8ee46aba-73b2-4f7d-a610-a18c0ffc9a1c",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.8",
+              "protected": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.8"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\DynSec.API.csproj",
+            "snippet": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.8",
+            "protectedSnippet": "Microsoft.AspNetCore.Authentication.OpenIdConnect, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.Authentication.OpenIdConnect, and replace with new package Microsoft.AspNetCore.Authentication.OpenIdConnect 10.0.8",
+            "label": "Microsoft.AspNetCore.Authentication.OpenIdConnect 9.0.5",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageVersion": "9.0.5",
+              "PackageNewVersion": "10.0.8",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "7e708df7-216f-478e-b8d1-be3c7ed9c55e",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.AspNetCore.OpenApi, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.OpenApi, and replace with new package Microsoft.AspNetCore.OpenApi 10.0.8",
+              "protected": "Microsoft.AspNetCore.OpenApi, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.OpenApi, and replace with new package Microsoft.AspNetCore.OpenApi 10.0.8"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\DynSec.API.csproj",
+            "snippet": "Microsoft.AspNetCore.OpenApi, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.OpenApi, and replace with new package Microsoft.AspNetCore.OpenApi 10.0.8",
+            "protectedSnippet": "Microsoft.AspNetCore.OpenApi, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.AspNetCore.OpenApi, and replace with new package Microsoft.AspNetCore.OpenApi 10.0.8",
+            "label": "Microsoft.AspNetCore.OpenApi 9.0.5",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.OpenApi",
+              "PackageVersion": "9.0.5",
+              "PackageNewVersion": "10.0.8",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "d040c3a2-8ed6-4955-b217-608bfd187b13",
+          "ruleId": "Project.0002",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\DynSec.API.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "d85a5b91-eaae-45c9-997f-1f8cb0f1917e",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.TokenValidationParameters.RoleClaimType = \u0022roles\u0022;",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.TokenValidationParameters"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.TokenValidationParameters.RoleClaimType = \u0022roles\u0022;",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.TokenValidationParameters",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.TokenValidationParameters",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 70,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "9dda4911-ed81-43ad-a542-d2bba3da1446",
+          "ruleId": "Api.0001",
+          "description": "API is unavailable in net8.0 ",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;",
+              "protected": "T:System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;",
+            "protectedSnippet": "T:System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames",
+            "label": "T:System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames",
+            "line": 69,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "4b2c3fdb-d0d0-4b0d-be55-aa558360c7b4",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.TokenValidationParameters"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.TokenValidationParameters",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.TokenValidationParameters",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 69,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "e9ae86e4-dddc-4d96-9fdb-7de1e07a0b3f",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.MapInboundClaims = false;",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.MapInboundClaims = false;",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.MapInboundClaims",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 68,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "2ac861a5-1864-4722-b999-dec1eb3ea8a9",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.GetClaimsFromUserInfoEndpoint = true;",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.GetClaimsFromUserInfoEndpoint"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.GetClaimsFromUserInfoEndpoint = true;",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.GetClaimsFromUserInfoEndpoint",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.GetClaimsFromUserInfoEndpoint",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 66,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "e96d643d-56f5-491d-af9c-efb371cb4f13",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.UsePkce = true;",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.UsePkce"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.UsePkce = true;",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.UsePkce",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.UsePkce",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 63,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "af32b6d0-ff44-4e17-9125-1e54cae6310d",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.ResponseMode = OpenIdConnectResponseMode.Query;",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseMode"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.ResponseMode = OpenIdConnectResponseMode.Query;",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseMode",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseMode",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 62,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "84f74546-8181-4f99-af52-ed22d92373a6",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.ResponseType = OpenIdConnectResponseType.Code;",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.ResponseType = OpenIdConnectResponseType.Code;",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ResponseType",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 61,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "a79a1fb8-43ce-4107-a509-5df43971d395",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignOutScheme"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignOutScheme",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.SignOutScheme",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 59,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "72b7e40f-8950-4591-bf75-2e92443740f9",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.ClientSecret = oidcConfig[\u0022ClientSecret\u0022];",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.ClientSecret = oidcConfig[\u0022ClientSecret\u0022];",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientSecret",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 56,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "7ac25db0-e19f-4eb0-8be3-e59080716943",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.ClientId = oidcConfig[\u0022ClientId\u0022];",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientId"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.ClientId = oidcConfig[\u0022ClientId\u0022];",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientId",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.ClientId",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 55,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "957fe379-b4cf-4edb-9e9e-1b457c95072a",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.Authority = oidcConfig[\u0022Authority\u0022];",
+              "protected": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Authority"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.Authority = oidcConfig[\u0022Authority\u0022];",
+            "protectedSnippet": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Authority",
+            "label": "P:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions.Authority",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 54,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "194375a4-ce5a-4c9b-985b-521cd861ba26",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;",
+              "protected": "T:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectDefaults"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;",
+            "protectedSnippet": "T:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectDefaults",
+            "label": "T:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectDefaults",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 47,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "3349d370-d7bc-4900-92c1-35d0911d0e48",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;",
+              "protected": "F:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectDefaults.AuthenticationScheme"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;",
+            "protectedSnippet": "F:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectDefaults.AuthenticationScheme",
+            "label": "F:Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectDefaults.AuthenticationScheme",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 47,
+            "column": 16
+          }
+        },
+        {
+          "incidentId": "29de4e9b-8a8d-48d1-9d1e-a5d2555ceb0c",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddAuthentication(options =\u003E\r\n            {\r\n                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;\r\n            })\r\n            .AddCookie()\r\n            .AddOpenIdConnect(options =\u003E\r\n            {\r\n                var oidcConfig = builder.Configuration.GetSection(\u0022OpenIDConnectSettings\u0022);\r\n\r\n                options.Authority = oidcConfig[\u0022Authority\u0022];\r\n                options.ClientId = oidcConfig[\u0022ClientId\u0022];\r\n                options.ClientSecret = oidcConfig[\u0022ClientSecret\u0022];\r\n\r\n                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n                options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n\r\n                options.ResponseType = OpenIdConnectResponseType.Code;\r\n                options.ResponseMode = OpenIdConnectResponseMode.Query;\r\n                options.UsePkce = true;\r\n\r\n                options.SaveTokens = true;\r\n                options.GetClaimsFromUserInfoEndpoint = true;\r\n\r\n                options.MapInboundClaims = false;\r\n                options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;\r\n                options.TokenValidationParameters.RoleClaimType = \u0022roles\u0022;\r\n\r\n            });",
+              "protected": "T:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "builder.Services.AddAuthentication(options =\u003E\r\n            {\r\n                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;\r\n            })\r\n            .AddCookie()\r\n            .AddOpenIdConnect(options =\u003E\r\n            {\r\n                var oidcConfig = builder.Configuration.GetSection(\u0022OpenIDConnectSettings\u0022);\r\n\r\n                options.Authority = oidcConfig[\u0022Authority\u0022];\r\n                options.ClientId = oidcConfig[\u0022ClientId\u0022];\r\n                options.ClientSecret = oidcConfig[\u0022ClientSecret\u0022];\r\n\r\n                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n                options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n\r\n                options.ResponseType = OpenIdConnectResponseType.Code;\r\n                options.ResponseMode = OpenIdConnectResponseMode.Query;\r\n                options.UsePkce = true;\r\n\r\n                options.SaveTokens = true;\r\n                options.GetClaimsFromUserInfoEndpoint = true;\r\n\r\n                options.MapInboundClaims = false;\r\n                options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;\r\n                options.TokenValidationParameters.RoleClaimType = \u0022roles\u0022;\r\n\r\n            });",
+            "protectedSnippet": "T:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions",
+            "label": "T:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 44,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "1362ed84-32d6-411c-9bae-841f15c0c7db",
+          "ruleId": "Api.0002",
+          "description": "API is available in package Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6. Add package reference to Microsoft.AspNetCore.Authentication.OpenIdConnect, 8.0.6",
+          "projectPath": "DynSec.API\\DynSec.API.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "builder.Services.AddAuthentication(options =\u003E\r\n            {\r\n                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;\r\n            })\r\n            .AddCookie()\r\n            .AddOpenIdConnect(options =\u003E\r\n            {\r\n                var oidcConfig = builder.Configuration.GetSection(\u0022OpenIDConnectSettings\u0022);\r\n\r\n                options.Authority = oidcConfig[\u0022Authority\u0022];\r\n                options.ClientId = oidcConfig[\u0022ClientId\u0022];\r\n                options.ClientSecret = oidcConfig[\u0022ClientSecret\u0022];\r\n\r\n                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n                options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n\r\n                options.ResponseType = OpenIdConnectResponseType.Code;\r\n                options.ResponseMode = OpenIdConnectResponseMode.Query;\r\n                options.UsePkce = true;\r\n\r\n                options.SaveTokens = true;\r\n                options.GetClaimsFromUserInfoEndpoint = true;\r\n\r\n                options.MapInboundClaims = false;\r\n                options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;\r\n                options.TokenValidationParameters.RoleClaimType = \u0022roles\u0022;\r\n\r\n            });",
+              "protected": "M:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions})"
+            },
+            "kind": "File",
+            "path": "DynSec.API\\Program.cs",
+            "snippet": "builder.Services.AddAuthentication(options =\u003E\r\n            {\r\n                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n                options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;\r\n            })\r\n            .AddCookie()\r\n            .AddOpenIdConnect(options =\u003E\r\n            {\r\n                var oidcConfig = builder.Configuration.GetSection(\u0022OpenIDConnectSettings\u0022);\r\n\r\n                options.Authority = oidcConfig[\u0022Authority\u0022];\r\n                options.ClientId = oidcConfig[\u0022ClientId\u0022];\r\n                options.ClientSecret = oidcConfig[\u0022ClientSecret\u0022];\r\n\r\n                options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n                options.SignOutScheme = CookieAuthenticationDefaults.AuthenticationScheme;\r\n\r\n                options.ResponseType = OpenIdConnectResponseType.Code;\r\n                options.ResponseMode = OpenIdConnectResponseMode.Query;\r\n                options.UsePkce = true;\r\n\r\n                options.SaveTokens = true;\r\n                options.GetClaimsFromUserInfoEndpoint = true;\r\n\r\n                options.MapInboundClaims = false;\r\n                options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;\r\n                options.TokenValidationParameters.RoleClaimType = \u0022roles\u0022;\r\n\r\n            });",
+            "protectedSnippet": "M:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions})",
+            "label": "M:Microsoft.Extensions.DependencyInjection.OpenIdConnectExtensions.AddOpenIdConnect(Microsoft.AspNetCore.Authentication.AuthenticationBuilder,System.Action{Microsoft.AspNetCore.Authentication.OpenIdConnect.OpenIdConnectOptions})",
+            "properties": {
+              "PackageId": "Microsoft.AspNetCore.Authentication.OpenIdConnect",
+              "PackageNewVersion": "8.0.6"
+            },
+            "line": 44,
+            "column": 12
+          }
+        }
+      ],
+      "features": [
+        {
+          "featureId": "IdentityModel",
+          "incidents": [
+            "9dda4911-ed81-43ad-a542-d2bba3da1446"
+          ]
+        }
+      ]
+    },
+    {
+      "path": "DynSec.Aspire\\DynSec.Aspire.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 5,
+      "properties": {
+        "appName": "DynSec.Aspire",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 21,
+        "linesOfCode": 21,
+        "totalApiScanned": 49,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "467d788b-2323-42fc-888a-ce2199a89c82",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.Aspire\\DynSec.Aspire.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Aspire.Hosting.AppHost, 9.3.0\n\nRecommendation:\n\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost 13.4.0",
+              "protected": "Aspire.Hosting.AppHost, 9.3.0\n\nRecommendation:\n\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost 13.4.0"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire\\DynSec.Aspire.csproj",
+            "snippet": "Aspire.Hosting.AppHost, 9.3.0\n\nRecommendation:\n\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost 13.4.0",
+            "protectedSnippet": "Aspire.Hosting.AppHost, 9.3.0\n\nRecommendation:\n\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost 13.4.0",
+            "label": "Aspire.Hosting.AppHost 9.3.0",
+            "properties": {
+              "PackageId": "Aspire.Hosting.AppHost",
+              "PackageVersion": "9.3.0",
+              "PackageNewVersion": "13.4.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "a11a5d98-f2eb-423e-be06-87714533a724",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.Aspire\\DynSec.Aspire.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Aspire.Hosting.NodeJs, 9.3.0\n\nRecommendation:\n\nRemove Aspire.Hosting.NodeJs, and replace with new package Aspire.Hosting.NodeJs 9.5.2",
+              "protected": "Aspire.Hosting.NodeJs, 9.3.0\n\nRecommendation:\n\nRemove Aspire.Hosting.NodeJs, and replace with new package Aspire.Hosting.NodeJs 9.5.2"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire\\DynSec.Aspire.csproj",
+            "snippet": "Aspire.Hosting.NodeJs, 9.3.0\n\nRecommendation:\n\nRemove Aspire.Hosting.NodeJs, and replace with new package Aspire.Hosting.NodeJs 9.5.2",
+            "protectedSnippet": "Aspire.Hosting.NodeJs, 9.3.0\n\nRecommendation:\n\nRemove Aspire.Hosting.NodeJs, and replace with new package Aspire.Hosting.NodeJs 9.5.2",
+            "label": "Aspire.Hosting.NodeJs 9.3.0",
+            "properties": {
+              "PackageId": "Aspire.Hosting.NodeJs",
+              "PackageVersion": "9.3.0",
+              "PackageNewVersion": "9.5.2",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "64871be8-957f-497f-a617-9451fe912859",
+          "ruleId": "NuGet.0005",
+          "projectPath": "DynSec.Aspire\\DynSec.Aspire.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Aspire.Hosting.AppHost, 9.3.0\n\nRecommendation:\n\nThis version is out of support and is no longer maintained. Please upgrade to the latest version. See our support policy for details: https://aka.ms/dotnet/aspire/support\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost, 13.4.0",
+              "protected": "Aspire.Hosting.AppHost, 9.3.0\n\nRecommendation:\n\nThis version is out of support and is no longer maintained. Please upgrade to the latest version. See our support policy for details: https://aka.ms/dotnet/aspire/support\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost, 13.4.0"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire\\DynSec.Aspire.csproj",
+            "snippet": "Aspire.Hosting.AppHost, 9.3.0\n\nRecommendation:\n\nThis version is out of support and is no longer maintained. Please upgrade to the latest version. See our support policy for details: https://aka.ms/dotnet/aspire/support\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost, 13.4.0",
+            "protectedSnippet": "Aspire.Hosting.AppHost, 9.3.0\n\nRecommendation:\n\nThis version is out of support and is no longer maintained. Please upgrade to the latest version. See our support policy for details: https://aka.ms/dotnet/aspire/support\nRemove Aspire.Hosting.AppHost, and replace with new package Aspire.Hosting.AppHost, 13.4.0",
+            "label": "Aspire.Hosting.AppHost 9.3.0",
+            "properties": {
+              "PackageId": "Aspire.Hosting.AppHost",
+              "PackageVersion": "9.3.0",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "4757379a-fe33-4027-90a7-702d9ed0ef4d",
+          "ruleId": "NuGet.0005",
+          "projectPath": "DynSec.Aspire\\DynSec.Aspire.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Aspire.Hosting.NodeJs, 9.3.0\n\nRecommendation:\n\nThis package has been renamed to Aspire.Hosting.JavaScript going forward.\nRemove Aspire.Hosting.NodeJs, and replace with new package Aspire.Hosting.NodeJs, 9.5.2",
+              "protected": "Aspire.Hosting.NodeJs, 9.3.0\n\nRecommendation:\n\nThis package has been renamed to Aspire.Hosting.JavaScript going forward.\nRemove Aspire.Hosting.NodeJs, and replace with new package Aspire.Hosting.NodeJs, 9.5.2"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire\\DynSec.Aspire.csproj",
+            "snippet": "Aspire.Hosting.NodeJs, 9.3.0\n\nRecommendation:\n\nThis package has been renamed to Aspire.Hosting.JavaScript going forward.\nRemove Aspire.Hosting.NodeJs, and replace with new package Aspire.Hosting.NodeJs, 9.5.2",
+            "protectedSnippet": "Aspire.Hosting.NodeJs, 9.3.0\n\nRecommendation:\n\nThis package has been renamed to Aspire.Hosting.JavaScript going forward.\nRemove Aspire.Hosting.NodeJs, and replace with new package Aspire.Hosting.NodeJs, 9.5.2",
+            "label": "Aspire.Hosting.NodeJs 9.3.0",
+            "properties": {
+              "PackageId": "Aspire.Hosting.NodeJs",
+              "PackageVersion": "9.3.0",
+              "PackageNewVersion": null,
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "56391d0a-1540-46fc-a0ea-c4a9d6194f5c",
+          "ruleId": "Project.0002",
+          "projectPath": "DynSec.Aspire\\DynSec.Aspire.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire\\DynSec.Aspire.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 6,
+      "properties": {
+        "appName": "DynSec.Aspire.ServiceDefaults",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 1,
+        "numberOfCodeFiles": 1,
+        "linesTotal": 127,
+        "linesOfCode": 127,
+        "totalApiScanned": 115,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "f110e376-37b9-4cc6-bf7b-cc71de192699",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Http.Resilience, 9.5.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Http.Resilience, and replace with new package Microsoft.Extensions.Http.Resilience 10.6.0",
+              "protected": "Microsoft.Extensions.Http.Resilience, 9.5.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Http.Resilience, and replace with new package Microsoft.Extensions.Http.Resilience 10.6.0"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+            "snippet": "Microsoft.Extensions.Http.Resilience, 9.5.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Http.Resilience, and replace with new package Microsoft.Extensions.Http.Resilience 10.6.0",
+            "protectedSnippet": "Microsoft.Extensions.Http.Resilience, 9.5.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.Http.Resilience, and replace with new package Microsoft.Extensions.Http.Resilience 10.6.0",
+            "label": "Microsoft.Extensions.Http.Resilience 9.5.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Http.Resilience",
+              "PackageVersion": "9.5.0",
+              "PackageNewVersion": "10.6.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "732447bc-0413-447d-aa58-f009d1106a72",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.ServiceDiscovery, 9.3.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.ServiceDiscovery, and replace with new package Microsoft.Extensions.ServiceDiscovery 10.6.0",
+              "protected": "Microsoft.Extensions.ServiceDiscovery, 9.3.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.ServiceDiscovery, and replace with new package Microsoft.Extensions.ServiceDiscovery 10.6.0"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+            "snippet": "Microsoft.Extensions.ServiceDiscovery, 9.3.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.ServiceDiscovery, and replace with new package Microsoft.Extensions.ServiceDiscovery 10.6.0",
+            "protectedSnippet": "Microsoft.Extensions.ServiceDiscovery, 9.3.0\n\nRecommendation:\n\nRemove Microsoft.Extensions.ServiceDiscovery, and replace with new package Microsoft.Extensions.ServiceDiscovery 10.6.0",
+            "label": "Microsoft.Extensions.ServiceDiscovery 9.3.0",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.ServiceDiscovery",
+              "PackageVersion": "9.3.0",
+              "PackageNewVersion": "10.6.0",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "db2d67c1-b9c3-4dbc-b9ef-996369e5f89c",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "OpenTelemetry.Instrumentation.AspNetCore, 1.12.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.AspNetCore, and replace with new package OpenTelemetry.Instrumentation.AspNetCore 1.15.2",
+              "protected": "OpenTelemetry.Instrumentation.AspNetCore, 1.12.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.AspNetCore, and replace with new package OpenTelemetry.Instrumentation.AspNetCore 1.15.2"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+            "snippet": "OpenTelemetry.Instrumentation.AspNetCore, 1.12.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.AspNetCore, and replace with new package OpenTelemetry.Instrumentation.AspNetCore 1.15.2",
+            "protectedSnippet": "OpenTelemetry.Instrumentation.AspNetCore, 1.12.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.AspNetCore, and replace with new package OpenTelemetry.Instrumentation.AspNetCore 1.15.2",
+            "label": "OpenTelemetry.Instrumentation.AspNetCore 1.12.0",
+            "properties": {
+              "PackageId": "OpenTelemetry.Instrumentation.AspNetCore",
+              "PackageVersion": "1.12.0",
+              "PackageNewVersion": "1.15.2",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "e9a2306b-8bd3-48e4-8da6-c834017307ec",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "OpenTelemetry.Instrumentation.Http, 1.12.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.Http, and replace with new package OpenTelemetry.Instrumentation.Http 1.15.1",
+              "protected": "OpenTelemetry.Instrumentation.Http, 1.12.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.Http, and replace with new package OpenTelemetry.Instrumentation.Http 1.15.1"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+            "snippet": "OpenTelemetry.Instrumentation.Http, 1.12.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.Http, and replace with new package OpenTelemetry.Instrumentation.Http 1.15.1",
+            "protectedSnippet": "OpenTelemetry.Instrumentation.Http, 1.12.0\n\nRecommendation:\n\nRemove OpenTelemetry.Instrumentation.Http, and replace with new package OpenTelemetry.Instrumentation.Http 1.15.1",
+            "label": "OpenTelemetry.Instrumentation.Http 1.12.0",
+            "properties": {
+              "PackageId": "OpenTelemetry.Instrumentation.Http",
+              "PackageVersion": "1.12.0",
+              "PackageNewVersion": "1.15.1",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "92653ba6-6342-4b62-a915-0a89dc84dc7e",
+          "ruleId": "NuGet.0004",
+          "projectPath": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "OpenTelemetry.Exporter.OpenTelemetryProtocol, 1.12.0\n\nRecommendation:\n\nOpenTelemetry.Exporter.OpenTelemetryProtocol, 1.15.3",
+              "protected": "OpenTelemetry.Exporter.OpenTelemetryProtocol, 1.12.0\n\nRecommendation:\n\nOpenTelemetry.Exporter.OpenTelemetryProtocol, 1.15.3"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+            "snippet": "OpenTelemetry.Exporter.OpenTelemetryProtocol, 1.12.0\n\nRecommendation:\n\nOpenTelemetry.Exporter.OpenTelemetryProtocol, 1.15.3",
+            "protectedSnippet": "OpenTelemetry.Exporter.OpenTelemetryProtocol, 1.12.0\n\nRecommendation:\n\nOpenTelemetry.Exporter.OpenTelemetryProtocol, 1.15.3",
+            "label": "OpenTelemetry.Exporter.OpenTelemetryProtocol 1.12.0",
+            "properties": {
+              "PackageId": "OpenTelemetry.Exporter.OpenTelemetryProtocol",
+              "PackageVersion": "1.12.0",
+              "PackageNewVersion": "1.15.3",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "46e5f637-2238-46b9-ac6a-2f7fbcbda1a8",
+          "ruleId": "Project.0002",
+          "projectPath": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DynSec.Aspire.ServiceDefaults\\DynSec.Aspire.ServiceDefaults.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "DynSec.GraphQL\\DynSec.GraphQL.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "DynSec.GraphQL",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 4,
+        "numberOfCodeFiles": 4,
+        "linesTotal": 184,
+        "linesOfCode": 184,
+        "totalApiScanned": 155,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "b22f814b-2928-4656-8c4c-747e8fddc4dc",
+          "ruleId": "Project.0002",
+          "projectPath": "DynSec.GraphQL\\DynSec.GraphQL.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DynSec.GraphQL\\DynSec.GraphQL.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "DynSec.Model\\DynSec.Model.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "DynSec.Model",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 64,
+        "numberOfCodeFiles": 64,
+        "linesTotal": 1751,
+        "linesOfCode": 1751,
+        "totalApiScanned": 1707,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "663d0de6-181e-425d-aabd-13934a1f8ea4",
+          "ruleId": "Project.0002",
+          "projectPath": "DynSec.Model\\DynSec.Model.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DynSec.Model\\DynSec.Model.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "DynSec.MQTT\\DynSec.MQTT.csproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "DynSec.MQTT",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 2,
+        "numberOfCodeFiles": 2,
+        "linesTotal": 76,
+        "linesOfCode": 76,
+        "totalApiScanned": 99,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "4ba2801c-3d26-4403-bbae-c3bb733cab8d",
+          "ruleId": "Project.0002",
+          "projectPath": "DynSec.MQTT\\DynSec.MQTT.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DynSec.MQTT\\DynSec.MQTT.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "DynSec.Protocol\\DynSec.Protocol.csproj",
+      "startingProject": true,
+      "issues": 3,
+      "storyPoints": 6,
+      "properties": {
+        "appName": "DynSec.Protocol",
+        "projectKind": "ClassLibrary",
+        "frameworks": [
+          "net9.0"
+        ],
+        "languages": [
+          "C#"
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 20,
+        "numberOfCodeFiles": 20,
+        "linesTotal": 790,
+        "linesOfCode": 790,
+        "totalApiScanned": 536,
+        "minLinesOfCodeToChange": 3,
+        "maxLinesOfCodeToChange": 3
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "3559c524-feda-4f7d-aff3-719e6dba3dba",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.Protocol\\DynSec.Protocol.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.DependencyInjection.Abstractions, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.8",
+              "protected": "Microsoft.Extensions.DependencyInjection.Abstractions, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.8"
+            },
+            "kind": "File",
+            "path": "DynSec.Protocol\\DynSec.Protocol.csproj",
+            "snippet": "Microsoft.Extensions.DependencyInjection.Abstractions, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.8",
+            "protectedSnippet": "Microsoft.Extensions.DependencyInjection.Abstractions, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.Extensions.DependencyInjection.Abstractions, and replace with new package Microsoft.Extensions.DependencyInjection.Abstractions 10.0.8",
+            "label": "Microsoft.Extensions.DependencyInjection.Abstractions 9.0.5",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.DependencyInjection.Abstractions",
+              "PackageVersion": "9.0.5",
+              "PackageNewVersion": "10.0.8",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "e2777981-4082-41e4-87a0-52a5500341d4",
+          "ruleId": "NuGet.0002",
+          "projectPath": "DynSec.Protocol\\DynSec.Protocol.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Microsoft.Extensions.Logging.Abstractions, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Abstractions, and replace with new package Microsoft.Extensions.Logging.Abstractions 10.0.8",
+              "protected": "Microsoft.Extensions.Logging.Abstractions, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Abstractions, and replace with new package Microsoft.Extensions.Logging.Abstractions 10.0.8"
+            },
+            "kind": "File",
+            "path": "DynSec.Protocol\\DynSec.Protocol.csproj",
+            "snippet": "Microsoft.Extensions.Logging.Abstractions, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Abstractions, and replace with new package Microsoft.Extensions.Logging.Abstractions 10.0.8",
+            "protectedSnippet": "Microsoft.Extensions.Logging.Abstractions, 9.0.5\n\nRecommendation:\n\nRemove Microsoft.Extensions.Logging.Abstractions, and replace with new package Microsoft.Extensions.Logging.Abstractions 10.0.8",
+            "label": "Microsoft.Extensions.Logging.Abstractions 9.0.5",
+            "properties": {
+              "PackageId": "Microsoft.Extensions.Logging.Abstractions",
+              "PackageVersion": "9.0.5",
+              "PackageNewVersion": "10.0.8",
+              "PackageReplacements": null
+            }
+          }
+        },
+        {
+          "incidentId": "27450410-edab-4edb-8d36-24bcd106d031",
+          "ruleId": "Project.0002",
+          "projectPath": "DynSec.Protocol\\DynSec.Protocol.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net9.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net9.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DynSec.Protocol\\DynSec.Protocol.csproj",
+            "snippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net9.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net9.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        },
+        {
+          "incidentId": "bcb2c441-d75e-4114-a9af-9f2c7622e957",
+          "ruleId": "Api.0002",
+          "description": "Breaking change: New TimeSpan.From*() overloads that take integers ",
+          "projectPath": "DynSec.Protocol\\DynSec.Protocol.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "TimeSpan _timeout = TimeSpan.FromSeconds(10);",
+              "protected": "M:System.TimeSpan.FromSeconds(System.Int64)"
+            },
+            "kind": "File",
+            "path": "DynSec.Protocol\\DynamicSecurityRpc.cs",
+            "snippet": "TimeSpan _timeout = TimeSpan.FromSeconds(10);",
+            "protectedSnippet": "M:System.TimeSpan.FromSeconds(System.Int64)",
+            "label": "M:System.TimeSpan.FromSeconds(System.Int64)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/core-libraries/9.0/timespan-from-overloads.md",
+                "isCustom": false
+              }
+            ],
+            "line": 85,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "47a0b1d3-adfe-4faf-bb87-ded4d0103474",
+          "ruleId": "Api.0002",
+          "description": "Breaking change: New TimeSpan.From*() overloads that take integers ",
+          "projectPath": "DynSec.Protocol\\DynSec.Protocol.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "disconnectTimer = new Timer(TimeSpan.FromSeconds(60));",
+              "protected": "M:System.TimeSpan.FromSeconds(System.Int64)"
+            },
+            "kind": "File",
+            "path": "DynSec.Protocol\\DynamicSecurityRpc.cs",
+            "snippet": "disconnectTimer = new Timer(TimeSpan.FromSeconds(60));",
+            "protectedSnippet": "M:System.TimeSpan.FromSeconds(System.Int64)",
+            "label": "M:System.TimeSpan.FromSeconds(System.Int64)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/core-libraries/9.0/timespan-from-overloads.md",
+                "isCustom": false
+              }
+            ],
+            "line": 45,
+            "column": 12
+          }
+        },
+        {
+          "incidentId": "01257d5d-5ed9-4e09-a472-d4765d029de0",
+          "ruleId": "Api.0002",
+          "description": "Breaking change: New TimeSpan.From*() overloads that take integers ",
+          "projectPath": "DynSec.Protocol\\DynSec.Protocol.csproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "disconnectTimer = new Timer(TimeSpan.FromSeconds(60));",
+              "protected": "M:System.TimeSpan.FromSeconds(System.Int64)"
+            },
+            "kind": "File",
+            "path": "DynSec.Protocol\\DynamicSecurityRpc.cs",
+            "snippet": "disconnectTimer = new Timer(TimeSpan.FromSeconds(60));",
+            "protectedSnippet": "M:System.TimeSpan.FromSeconds(System.Int64)",
+            "label": "M:System.TimeSpan.FromSeconds(System.Int64)",
+            "links": [
+              {
+                "title": "API documentation",
+                "url": "https://github.com/dotnet/docs/blob/main/docs/core/compatibility/core-libraries/9.0/timespan-from-overloads.md",
+                "isCustom": false
+              }
+            ],
+            "line": 45,
+            "column": 12
+          }
+        }
+      ],
+      "features": []
+    },
+    {
+      "path": "DynSec.Web\\DynSec.Web.esproj",
+      "startingProject": true,
+      "issues": 1,
+      "storyPoints": 1,
+      "properties": {
+        "appName": "DynSec.Web",
+        "projectKind": "DotNetCoreApp",
+        "frameworks": [
+          "net6.0"
+        ],
+        "languages": [
+          ""
+        ],
+        "tools": [
+          "MSBuild"
+        ],
+        "isSdkStyle": true,
+        "numberOfFiles": 0,
+        "numberOfCodeFiles": 0,
+        "linesTotal": 0,
+        "linesOfCode": 0,
+        "totalApiScanned": 0,
+        "minLinesOfCodeToChange": 0,
+        "maxLinesOfCodeToChange": 0
+      },
+      "ruleInstances": [
+        {
+          "incidentId": "820c78f4-8422-4c21-a180-b619a86980f8",
+          "ruleId": "Project.0002",
+          "projectPath": "DynSec.Web\\DynSec.Web.esproj",
+          "state": "Active",
+          "location": {
+            "snippetModel": {
+              "unrestricted": "Current target framework: net6.0\nRecommended target framework: net10.0",
+              "protected": "Current target framework: net6.0\nRecommended target framework: net10.0"
+            },
+            "kind": "File",
+            "path": "DynSec.Web\\DynSec.Web.esproj",
+            "snippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "protectedSnippet": "Current target framework: net6.0\nRecommended target framework: net10.0",
+            "properties": {
+              "CurrentTargetFramework": "net6.0",
+              "RecommendedTargetFramework": "net10.0"
+            }
+          }
+        }
+      ],
+      "features": []
+    }
+  ],
+  "rules": {
+    "Project.0002": {
+      "id": "Project.0002",
+      "isFeature": false,
+      "description": "Project\u0027s target framework(s) needs to be changed to the new target framework that you selected for this upgrade.\n\nDuring upgrade target framework will be adjusted to corresponding platform when applicable. In some cases project would result in multiple target frameworks after the upgrade if it was using features that now have their own platforms in modern .NET frameworks (windows, iOS, Android etc).",
+      "label": "Project\u0027s target framework(s) needs to be changed",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Overview of porting from .NET Framework to .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265227",
+          "isCustom": false
+        },
+        {
+          "title": ".NET project SDKs",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2265226",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0002": {
+      "id": "NuGet.0002",
+      "isFeature": false,
+      "description": "NuGet package upgrade is recommended for selected target framework.\n\nStandard .NET packages are recommended to have versions matching version of .NET that project targets.\n\nSome other packages also are known to work better for selected target frameworks.",
+      "label": "NuGet package upgrade is recommended",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262530",
+          "isCustom": false
+        }
+      ]
+    },
+    "Api.0002": {
+      "id": "Api.0002",
+      "isFeature": false,
+      "description": "API is source incompatible for selected .NET version: requires code changes to compile successfully when targeting a new version, such as removing obsolete APIs or changing method signatures.",
+      "label": "Source incompatible for selected .NET version",
+      "severity": "Potential",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Breaking changes in .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0004": {
+      "id": "NuGet.0004",
+      "isFeature": false,
+      "description": "NuGet package contains security vulnerabilities.\n\nPackage needs to be upgraded to a newer version that addresses known security vulnerabilities.",
+      "label": "NuGet package contains security vulnerability",
+      "severity": "Optional",
+      "effort": 1
+    },
+    "Api.0001": {
+      "id": "Api.0001",
+      "isFeature": false,
+      "description": "API is binary incompatible for selected .NET version: affects existing binaries, often requiring recompilation, because the API has changed in a way that prevents older binaries from loading or executing.",
+      "label": "Binary incompatible for selected .NET version",
+      "severity": "Mandatory",
+      "effort": 1,
+      "links": [
+        {
+          "title": "Breaking changes in .NET",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262679",
+          "isCustom": false
+        }
+      ]
+    },
+    "IdentityModel": {
+      "id": "IdentityModel",
+      "isFeature": false,
+      "description": "Windows Identity Foundation (WIF), SAML, and claims-based authentication APIs that have been replaced by modern identity libraries. WIF was the original identity framework for .NET Framework. Migrate to Microsoft.IdentityModel.* packages (modern identity stack).",
+      "label": "IdentityModel \u0026 Claims-based Security",
+      "severity": "Mandatory",
+      "effort": 4,
+      "links": [
+        {
+          "title": "Microsoft.IdentityModel packages",
+          "url": "https://go.microsoft.com/fwlink/?linkid=2341614",
+          "isCustom": false
+        }
+      ]
+    },
+    "NuGet.0005": {
+      "id": "NuGet.0005",
+      "isFeature": false,
+      "description": "NuGet package is deprecated.\n\nGo to its documentation and if there is a guidance for replacement of functionality provided by this package.",
+      "label": "NuGet package is deprecated",
+      "severity": "Optional",
+      "effort": 1,
+      "links": [
+        {
+          "url": "https://go.microsoft.com/fwlink/?linkid=2262531",
+          "isCustom": false
+        }
+      ]
+    }
+  }
+}
