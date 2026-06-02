@@ -66,7 +66,7 @@ All project-to-project references correctly resolved:
 
 ## C# Language Version
 
-**Current Status**: C# language version remains at 9.0 (project default for net10.0 projects)
+**Current Status**: No `LangVersion` is specified; projects use the .NET SDK default C# language version for net10.0
 
 **Recommendation**: C# language version could be upgraded to 13.0 (latest supported by net10.0) to enable modern language features like:
 - Required properties
