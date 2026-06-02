@@ -55,7 +55,7 @@ options.TokenValidationParameters.NameClaimType = JwtRegisteredClaimNames.Name;
 ```
 Build Status: SUCCEEDED
 Errors: 0 ✅
-Warnings: 4 (All related to HotChocolate.Language 15.1.5 vulnerability)
+Warnings: 4 (All related to transitive HotChocolate.Language vulnerability warnings)
   - These are transitive warnings from GraphQL layer (not DynSec.API-specific)
 ```
 
