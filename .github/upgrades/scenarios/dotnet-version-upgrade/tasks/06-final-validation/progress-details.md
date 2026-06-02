@@ -83,10 +83,10 @@ No unit test projects found in solution. API layer includes integration testing 
 ## Warnings Assessment
 
 **Transitive HotChocolate.Language Vulnerability (4 warnings)**:
-- **Source**: HotChocolate.Language 15.1.5 (transitive dependency via HotChocolate.AspNetCore)
+- **Source**: HotChocolate.Language (transitive dependency via HotChocolate.AspNetCore)
 - **Severity**: Critical (GHSA-qr3m-xw4c-jqw3)
 - **Action**: Not blocking for this task. Can be addressed in future maintenance by:
-  - Upgrading HotChocolate to a patched version (when available as non-preview release)
+  - Upgrading/pinning HotChocolate dependencies to a patched version
   - Or: Pinning dependency versions in Directory.Packages.props for corporate governance
 
 ## Completion Checklist
