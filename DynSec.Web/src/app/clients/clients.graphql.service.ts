@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { ApolloError, gql } from "@apollo/client/core";
+import { gql } from "@apollo/client";
 import { Apollo } from "apollo-angular";
 
 const clientslistQuery =
