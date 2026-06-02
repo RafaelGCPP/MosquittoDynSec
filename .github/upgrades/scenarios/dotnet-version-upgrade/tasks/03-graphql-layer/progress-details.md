@@ -9,8 +9,8 @@ Successfully upgraded DynSec.GraphQL to .NET 10.0. Project builds successfully w
 - `DynSec.GraphQL/DynSec.GraphQL.csproj`: net9.0 → **net10.0** ✅
 
 ### Package Status
-- `HotChocolate.AspNetCore`: 15.1.5 (✅ compatible, no update recommended by assessment)
-- `HotChocolate.Types.Analyzers`: 15.1.5 (✅ compatible, no update recommended by assessment)
+- `HotChocolate.AspNetCore`: 16.0.11
+- `HotChocolate.Types.Analyzers`: 16.0.11
 
 ## Build Validation
 
