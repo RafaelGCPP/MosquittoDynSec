@@ -64,7 +64,7 @@ export class GroupDetailComponent {
 
   defaultAction = {
     next: console.log,
-    error: this.displayError
+    error: (e: any) => this.displayError(e)
   }
 
   ngOnInit() {
@@ -196,7 +196,7 @@ export class GroupDetailComponent {
             this.graphql.refresh();
             this.navBar.openSidenav();
           },
-          error: this.displayError
+          error: (e: any) => this.displayError(e)
         }
         this.graphql.deleteGroup(this.groupName, action);
       }

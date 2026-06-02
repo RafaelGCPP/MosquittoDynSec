@@ -57,7 +57,7 @@ export class RoleDetailComponent {
 
   defaultAction = {
     next: console.log,
-    error: this.displayError
+    error: (e: any) => this.displayError(e)
   }
 
   ngOnInit() {
@@ -162,7 +162,7 @@ export class RoleDetailComponent {
             this.graphql.refresh();
             this.navBar.openSidenav();
           },
-          error: this.displayError
+          error: (e: any) => this.displayError(e)
         }
         this.graphql.deleteRole (this.roleName, action);
       }
