@@ -36,10 +36,10 @@ Upgraded DynSec.Protocol to .NET 10.0:
 
 Upgraded DynSec.GraphQL to .NET 10.0:
 - Target framework: net9.0 → net10.0
-- Packages: HotChocolate 15.1.5 confirmed compatible (no updates needed per assessment)
+- Packages: HotChocolate upgraded to 16.0.11
 - Build: Successful
 
-**Build Status**: Builds successfully with NuGet vulnerability warnings (HotChocolate.Language 15.1.5 has known issue, but assessed as compatible). No compilation errors.
+**Build Status**: Builds successfully with NuGet vulnerability warnings (HotChocolate.Language transitive advisory). No compilation errors.
 
 **Ready for**: Task 04 (API Layer) — depends on GraphQL (now net10.0 ✅)
 
