@@ -13,7 +13,7 @@ import { Role } from '../../model/role';
 import { NavBarService } from '../../navbar/navbar.service';
 import { RolesGraphqlService } from '../roles.graphql.service';
 import { AclListComponent } from '../acl-list/acl-list.component';
-import { CombinedGraphQLErrors } from '@apollo/client/core';
+import { CombinedGraphQLErrors } from '@apollo/client/errors';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogActions } from '@angular/material/dialog';
 import { DeleteDialog } from '../../delete-dialog/delete-dialog';
