@@ -107,7 +107,7 @@ A modern web application for managing the **Eclipse Mosquitto MQTT broker's Dyna
 ### **DynSec.Web**
 **Angular 20 SPA** with standalone components
 - Material Design UI for managing clients, roles, groups
-- Apollo Client 5.x for GraphQL communication
+- Apollo Client 4.x for GraphQL communication
 - TypeScript 5.8, RxJS 7.8
 - Runs on HTTPS via Angular CLI dev server
 
